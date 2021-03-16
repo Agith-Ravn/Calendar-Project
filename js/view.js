@@ -1,1 +1,4 @@
 // Views
+function view(){
+    
+}
