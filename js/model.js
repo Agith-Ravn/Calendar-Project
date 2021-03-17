@@ -7,7 +7,7 @@ const model = {
     },
     months: [
         'Januar',
-        'Februar', 
+        'Februar',
         'Mars',
         'April',
         'Mai',
@@ -40,4 +40,4 @@ const model = {
         //Legg til flere farger senere
     }
 }
-console.log(model.adminUser);
+//console.log(model.adminUser);

@@ -2,4 +2,23 @@ body {
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    height: auto;
+}
+
+.navBar {
+    background-color: #5978d5;
+    width: 200px;
+    height: 741px;
+    color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+}
+p {
+    margin: 0;
+}
+
+.mnd {
+
+    padding: 10px;
 }
