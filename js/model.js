@@ -1,8 +1,13 @@
 // Models
 const model = {
+    currentPage: 'loginPage',
+    adminUser: {
+        userName: 'admin',
+        password: '1234',
+    },
     months: [
         'Januar',
-        'Februar',
+        'Februar', 
         'Mars',
         'April',
         'Mai',
@@ -15,7 +20,24 @@ const model = {
         'Desember',
     ],
     days: [],
+    weeks: [], 
     years: [], 
-    weeks: [],
-
+    // holder hva som skjer på datoen. 
+    contentForDate: [
+        {
+            header: '', 
+            content: '', 
+            privat: false
+        },
+    ],
+    colors: {
+        green:'#7CFC00',
+        red:'#8B0000',
+        blue:'#4169E1',
+        yellow:'#FFFF00',
+        indigo:'#4B0082',
+        orange:'#FF7F50',
+        //Legg til flere farger senere
+    }
 }
+console.log(model.adminUser);
