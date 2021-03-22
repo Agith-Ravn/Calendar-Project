@@ -1,6 +1,6 @@
 // Models
 const model = {
-    currentPage: 'loginPage',
+    currentPage: 'homePage',
     adminUser: {
         userName: 'admin',
         password: '1234',
