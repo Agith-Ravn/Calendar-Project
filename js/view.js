@@ -16,7 +16,7 @@ function homeView() {
     let html = ``;
     html += 
     `<div class="navBar">
-        <p class="loginButton" onclick="selectView('loginPage')">Login</p>
+        <p class="loginButton" onclick="selectView('loginPage')">Logout</p>
         <p class="seHeleÅret" onclick="selectView('yearPage')" >Se hele året</p>`
         for(var i in model.months) {
             html += ('<div class="mnd"><a> ' + model.months[i] + ' </a></div>');
@@ -32,7 +32,7 @@ function homeView() {
         //Dato
         html += `<h1> 18 Mars 2021 </h1>`
         //Legg til ny hendelse
-        html += `<div class="nyHendelse"> + Legg til ny </div>`
+        html += `<div class="nyHendelse"><a> + Legg til ny </a></div>`
         //Alle hendelser        
         html += `<div class="hendelseBox">`
             //Hendelse             Hvordan skal vi farge <div> </div>?
@@ -51,14 +51,18 @@ function homeView() {
     return html
 }
 
-// THIS IS LOGIN PAGE
+// THIS IS LOGIN PAGE 
 function loginScreen() {
     let html = ``;
-    html += 
-    `<div>
-        <input type="text"><br>
-        <input type="password">
-    </div>`
+    html += `<div id="loginBackground"> 
+                <div id="loginContainer">
+                    <div> Login</div>
+                    <input type="text" oninput="model.loginInputUser = this.value" id="usernameInput" placeholder="Username">
+                    <input type="password" oninput="model.loginInputPassword = this.value" id="passwordInput" placeholder="Password">
+                    <button onclick="loginResponse('homePage')">Login</button>
+                    <p id="errorMessage" style="font-size: 12px; color: red; display: none;">Wrong Password or Username</p>
+                </div>
+            </div>`
     return html;
 }
 
@@ -68,12 +72,15 @@ function initiereYear(){
     html += 
     `<div class="navBar">
         <p class="loginButton" onclick="selectView('loginPage')">Login</p>
-        <p class="seHeleÅret">Tilbake</p>`
+        <p class="seHeleÅret" onclick="selectView('homePage')" >Tilbake</p>`
         for(var i in model.months) {
             html += ('<div class="mnd"><a> ' + model.months[i] + ' </a></div>');
         }
-    html += 
-    `</div>
-    <h1>Year</h1>`
+        html +=`</div>`
+        html += `<div class="grid-date-container">`
+        // skal være månder for vær 4 månde br på ny linje
+        for (let j = 1; j <= 12 ; j++) {
+            html += `<div class="grid-item">${j}</div>`
+        }
     return html
 }

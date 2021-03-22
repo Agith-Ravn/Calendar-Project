@@ -1,10 +1,14 @@
 // Models
 const model = {
     currentPage: 'homePage',
+    //currentPage: 'loginPage',
+    //currentPage: 'yearPage',
     adminUser: {
         userName: 'admin',
         password: '1234',
     },
+    loginInputUser: '',
+    loginInputPassword: '',
     months: [
         'Januar',
         'Februar',
