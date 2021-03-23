@@ -26,6 +26,9 @@ const model = {
     days: [],
     weeks: [], 
     years: [], 
+    currentYear: 0,
+    changeYear: 0,
+
     // holder hva som skjer på datoen. 
     contentForDate: [
         {

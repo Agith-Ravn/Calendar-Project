@@ -1,4 +1,4 @@
-// Controller
+// Controller.js
 function selectView(cachedView){
     model.currentPage = cachedView
     updateView();
@@ -11,3 +11,18 @@ function loginResponse(){
         document.getElementById("errorMessage").style.display = "block";
     }
 }
+
+function currentYear() {
+    let d = new Date();
+    let year = d.getFullYear()
+    model.currentYear = (year + model.changeYear)
+    console.log(model.currentYear)
+}
+
+function changeYear(value) {    
+    model.changeYear += value
+    navBarView();
+}
+
+//Først må året bli laget igjennom view og fra modell (året nå)
+//Lage en funksjon som endrer på året i modell + 1 osv
