@@ -2,7 +2,7 @@
 const model = {
     currentPage: 'homePage',
     //currentPage: 'loginPage',
-    //currentPage: 'yearPage',
+    // currentPage: 'yearPage',
     adminUser: {
         userName: 'admin',
         password: '1234',

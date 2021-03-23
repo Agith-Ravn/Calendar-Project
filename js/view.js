@@ -17,7 +17,8 @@ function homeView() {
     html += 
     `<div class="navBar">
         <p class="loginButton" onclick="selectView('loginPage')">Logout</p>
-        <p class="seHeleÅret" onclick="selectView('yearPage')" >Se hele året</p>`
+        <p class="seHeleÅret" onclick="selectView('yearPage')" >Se hele året</p>
+        <h1>< 2021 ></h1>`
         for(var i in model.months) {
             html += ('<div class="mnd"><a> ' + model.months[i] + ' </a></div>');
         }
@@ -83,27 +84,29 @@ function initiereYear(){
 
 
    //Entire year
-       html += `<div id="entireYear">`
-           html += `<div id="years">`            
-               html += `<div> < </div>`
-
-               for (let i = 2020; i <= 2030 ; i++) {
-                   html += `<div class="year">${i}</div>`
-               }
-
-               html += `<div> > </div>`
-           html += ` </div>`
+        html += `<div id="entireYear">`
+            html += `<div id="years">`            
+                html += `<div> < </div>`
 
 
-           html += `<div class="month-container">`
+                for (let i = 2020; i <= 2030 ; i++) {
+                    html += `<div class="year">${i}</div>`
+                }
 
-           // skal være månder for vær 4 månde br på ny linje
-           for (let j = 1; j <= 12 ; j++) {
-               html += `<div class="grid-item-month">${j}</div>`
-           }
+                html += `<div> > </div>`
+            html += ` </div>`
 
-           html += `</div>`
-       html += `</div>`
+
+            html += `<div class="month-container">`
+
+            let months = model.months
+            
+            for (let j = 0; j < 12 ; j++) {
+                html += `<div class="grid-item-month">` + model.months[j] + `</div>`
+            }
+
+            html += `</div>`
+        html += `</div>`
 
     return html
 }

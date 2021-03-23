@@ -26,9 +26,10 @@ p {
   display: grid;
   grid-template-columns: 200px 1300px 400px;
 }
+
 .grid-date-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto;
   justify-items: center;
   align-items: center;
   width: 1200px;
@@ -89,7 +90,7 @@ p {
 
 .nyHendelse {
   position: absolute;
-  top: 770px;
+  top: 810px;
   left: 10px;
   width: 380px;
   height: 60px;
