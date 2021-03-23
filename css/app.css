@@ -104,4 +104,44 @@ p {
   width: 400px;
 }
 
-/* Midlertidig.. burde kanskje ha egen css fil til dette..? */
+/* entireYear */
+#entireYear {
+  width: 1600px;
+  height: 55em;
+  margin-left: 45px;
+  margin-top: 30px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  border: solid rgb(200, 200, 200) 2px;
+  border-radius: 25px;
+}
+
+#years {
+  width: 1400px;
+  padding: 50px 30px;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.2rem;
+
+}
+
+.month-container{
+  height: 700px;
+  width: initial;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  justify-items: center;
+  padding: 0 100px;
+  
+
+}
+.grid-item-month {
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  background-color: lightgray;
+  border-radius: 15px;
+}
