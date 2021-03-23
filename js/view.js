@@ -14,20 +14,15 @@ function updateView(){
 // THIS IS HOME PAGE. THIS IS A MESSSSSSSSSSSSSS
 function homeView() {
     let html = ``;
-    html += 
-    `<div class="navBar">
-        <p class="loginButton" onclick="selectView('loginPage')">Logout</p>
-        <p class="seHeleÅret" onclick="selectView('yearPage')" >Se hele året</p>
-        <h1>< 2021 ></h1>`
-        for(var i in model.months) {
-            html += ('<div class="mnd"><a> ' + model.months[i] + ' </a></div>');
-        }
-    html +=`</div>`
+
+    html += navBarView();
+
     html += `<div class="grid-date-container">`
     for (let j = 1; j <= 31 ; j++) {
         html += `<div class="grid-item">${j}</div>`
     }
     html += `</div>
+    
     <div class="widthCard">`
         html += `<div class="hendelser">`
         //Dato
@@ -52,6 +47,26 @@ function homeView() {
     return html
 }
 
+function navBarView() {
+    currentYear();
+    let html = '';
+    html += `<div class="navBar">
+
+                <p class="loginButton" onclick="selectView('loginPage')">Logout</p>
+                <p class="seHeleÅret" onclick="selectView('yearPage')" >Se hele året</p>
+
+                <div onclick="changeYear(-1)"> < </div>
+                <h1> ` + model.currentYear + `</h1>
+                <div onclick="changeYear(1)"> > </div>`
+
+                for(var i in model.months) {
+                    html += '<div class="mnd"><a> ' + model.months[i] + ' </a></div>';
+                }
+
+    html +=`</div>`
+    return html
+}
+
 // THIS IS LOGIN PAGE 
 function loginScreen() {
     let html = ``;
@@ -69,41 +84,30 @@ function loginScreen() {
 
 // THIS IS THE INITEIER YEAR  
 function initiereYear(){
+    let html = ``;
     
-   //Menu bar
-   let html = ``;
-   html += 
-   `<div class="navBar">
-       <p class="loginButton" onclick="selectView('loginPage')">Logout</p>
-       <p class="seHeleÅret" onclick="selectView('homePage')" >Tilbake</p>
-       <h1>< 2021 ></h1>`
-       for(var i in model.months) {
-           html += ('<div class="mnd"><a> ' + model.months[i] + ' </a></div>');
-       }
-   html +=`</div>`
-
+    //Menu bar
+    html += navBarView();
 
    //Entire year
         html += `<div id="entireYear">`
-            html += `<div id="years">`            
-                html += `<div> < </div>`
+            html += `<div id="years">`
 
+                html += `<div> < </div>`
 
                 for (let i = 2020; i <= 2030 ; i++) {
                     html += `<div class="year">${i}</div>`
                 }
-
                 html += `<div> > </div>`
+
             html += ` </div>`
 
 
             html += `<div class="month-container">`
 
-            let months = model.months
-            
-            for (let j = 0; j < 12 ; j++) {
+                for (let j = 0; j < 12 ; j++) {
                 html += `<div class="grid-item-month">` + model.months[j] + `</div>`
-            }
+                }
 
             html += `</div>`
         html += `</div>`
