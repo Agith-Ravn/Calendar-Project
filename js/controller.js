@@ -15,14 +15,12 @@ function loginResponse(){
 function currentYear() {
     let d = new Date();
     let year = d.getFullYear()
-    model.currentYear = year + model.changeYear
+    model.currentYear = (year + model.changeYear)
+    console.log(model.currentYear)
 }
 
-function changeYear(value) {
-    
+function changeYear(value) {    
     model.changeYear += value
-    console.log(model.currentYear)
-
     navBarView();
 }
 

@@ -49,6 +49,7 @@ function homeView() {
 
 function navBarView() {
     currentYear();
+    
     let html = '';
     html += `<div class="navBar">
 
