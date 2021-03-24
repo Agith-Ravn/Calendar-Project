@@ -29,6 +29,11 @@ p {
 
 .loginButton {
   margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.seHeleÅret {
+  cursor: pointer;
 }
 
 .navBarYearContainer {
@@ -45,6 +50,7 @@ p {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .navBarMonth {
