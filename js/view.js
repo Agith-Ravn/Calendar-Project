@@ -16,10 +16,8 @@ function updateView(){
 // THIS IS HOME PAGE.
 function homeView() {
     let html = ``;
-
     //Navbar
     html += navBarView();
-
     //All dates
     html += `<div class="grid-date-container">
     <p>Mandag</p><p>Tirsdag</p><p>Onsdag</p><p>Torsdag</p><p>Fredag</p><p>Lørdag</p><p>Søndag</p>`
@@ -27,7 +25,6 @@ function homeView() {
         html += `<div class="grid-item">${j}</div>`
     }
     html += `</div>`
-    
     //Events / hendelser
     html +=`<div class="widthCard">
                 <div class="hendelser">
@@ -35,24 +32,20 @@ function homeView() {
                     <div class="nyHendelse"><a> + Legg til ny </a></div>`
 
             html += `<div class="hendelseBox">`
-
             // Hvordan skal vi farge <div> </div>?
             html += `<div class="hendelse">
                         <div> </div>
                         <h2> Tekst 1 </h2>
                         <p> Innholds tekst </p>       
                     </div>`
-
             html += `<div class="hendelse">
                         <div> </div>
                         <h2> Tekst 2 </h2>
                         <p> Innholds tekst bla bla bla bla blablal bla Innholds tekst bla bla bla bla blablal blaInnholds tekst bla bla bla bla blablal blaInnholds tekst bla bla bla bla blablal blalablal bla </p>       
                     </div>`
-                
     html += `</div></div></div>`
     return html
 }
-
 
 // THIS IS LOGIN PAGE 
 function loginScreen() {
@@ -69,18 +62,14 @@ function loginScreen() {
     return html;
 }
 
-
 // THIS IS THE INITEIER YEAR  
 function initiereYear(){
     let html = ``;
-    
     //Navbar
     html += navBarView();
-
     //Entire year (10 years)
     html += `<div id="entireYear">`
         html += `<div id="years">`
-
             //Midlertidig buttons
             html += `<div> < </div>`
             for (let i = 2020; i <= 2030 ; i++) {
@@ -89,13 +78,11 @@ function initiereYear(){
             //Midlertidig buttons
             html += `<div> > </div>`
         html += ` </div>`
-
         //Months
         html += `<div class="month-container">`
         for (let j = 0; j < 12 ; j++) {
             html += `<div class="grid-item-month">` + model.months[j] + `</div>`
         }
-
     html += `</div> </div>`
     return html
 }
@@ -103,10 +90,8 @@ function initiereYear(){
 //Egen funksjon som lager navbar
 function navBarView() {
     currentYear();
-    
     let html = '';
     html += `<div class="navBar">`
-
         //Navbar login & se hele året button
         html += `<div class="buttonContainer">
                 <p class="loginButton" onclick="selectView('loginPage')">Logout</p>`
@@ -117,7 +102,6 @@ function navBarView() {
             html += `<p class="seHeleÅret" onclick="selectView('homePage')" >Tilbake</p>`
         }
         html += `</div>`
-
         //Navbar year
         html += `<div class="navBarYearContainer"> 
                     <div onclick="changeYear(-1)"> < </div>
@@ -129,8 +113,6 @@ function navBarView() {
         for(var i in model.months) {
             html += '<div class="navBarMonth"><a> ' + model.months[i] + ' </a></div>';
         }
-
     html +=`</div>`
-
     return html
 }
