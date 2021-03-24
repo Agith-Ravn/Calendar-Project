@@ -21,7 +21,8 @@ function homeView() {
     html += navBarView();
 
     //All dates
-    html += `<div class="grid-date-container">`
+    html += `<div class="grid-date-container">
+    <p>Mandag</p><p>Tirsdag</p><p>Onsdag</p><p>Torsdag</p><p>Fredag</p><p>Lørdag</p><p>Søndag</p>`
     for (let j = 1; j <= 31 ; j++) {
         html += `<div class="grid-item">${j}</div>`
     }

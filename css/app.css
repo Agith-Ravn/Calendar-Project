@@ -1,180 +1,179 @@
 body {
-    padding: 0;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    height: auto;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  height: auto;
 }
-  
+
 /* Navbar */
 .navBar {
-    background-color: #5978d5;
-    width: 250px;
-    height: 100% !important;
-    color: white;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    text-align: center;
-    padding-top: 23px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  background-color: #5978d5;
+  width: 250px;
+  height: 100% !important;
+  color: white;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  text-align: center;
+  padding-top: 23px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 p {
-margin: 0;
+  margin: 0;
 }
 
 .buttonContainer {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .loginButton {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .navBarYearContainer {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.navBarYearContainer div{
-    /* Får samme style som h2 har */
-    display: block;
-    font-size: 2em;
-    margin-block-start: 0.67em;
-    margin-block-end: 0.67em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
+.navBarYearContainer div {
+  /* Får samme style som h2 har */
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
 }
 
 .navBarMonth {
-    display: block;
-    padding: 13px 0;
-    font-size: 1.5rem;;
+  display: block;
+  padding: 13px 0;
+  font-size: 1.5rem;
 }
 
 /* Datoer */
 .grid-container {
-    display: grid;
-    grid-template-columns: 250px 1300px 400px;
+  display: grid;
+  grid-template-columns: 220px 1260px 400px;
 }
 
 .grid-date-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
-    justify-items: center;
-    align-items: center;
-    width: 1200px;
-    height: 55em;
-    margin-left: 45px;
-    margin-top: 30px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    border: solid rgb(200, 200, 200) 2px;
-    border-radius: 25px;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  justify-items: center;
+  align-items: center;
+  width: 1200px;
+  height: 55em;
+  margin-left: 45px;
+  margin-top: 30px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  border: solid rgb(200, 200, 200) 2px;
+  border-radius: 25px;
 }
 
 /* Hendelser (vinduet til høyre) */
 .hendelser {
-    position: absolute;
-    top: 30px;
-    width: 400px;
-    height: 55em;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    border: solid rgb(200, 200, 200) 2px;
-    border-radius: 25px;
+  position: absolute;
+  top: 30px;
+  width: 400px;
+  height: 55em;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  border: solid rgb(200, 200, 200) 2px;
+  border-radius: 25px;
 }
 .hendelser h1 {
-    width: 360px;
-    text-align: center;
+  width: 360px;
+  text-align: center;
 }
 
 .hendelseBox {
-    width: 360px;
-    height: 640px;
-    margin: auto;
+  width: 360px;
+  height: 640px;
+  margin: auto;
 }
 
 .hendelse {
-    padding: 15px;
-    width: 330px;
-    height: auto;
-    margin: auto auto 20px auto;
-    border: solid rgb(200, 200, 200) 1px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
+  padding: 15px;
+  width: 330px;
+  height: auto;
+  margin: auto auto 20px auto;
+  border: solid rgb(200, 200, 200) 1px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
 }
 
 /* Denne må være responsive... Finn en løsning */
 .hendelse div {
-    width: 30px;
-    height: 30px;
-    border-radius: 50px;
-    float: left;
-    background-color: blue;
-    }
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  float: left;
+  background-color: blue;
+}
 
 .hendelse h2 {
-    margin: 0 0 0 40px;
+  margin: 0 0 0 40px;
 }
 
 .hendelse p {
-    margin: 0 0 0 40px;
+  margin: 0 0 0 40px;
 }
 
 .nyHendelse {
-    position: absolute;
-    top: 810px;
-    left: 10px;
-    width: 380px;
-    height: 60px;
-    background-color: #5978d5;
-    border-radius: 15px;
-    text-align: center;
-    line-height: 2.5;
-    color: white;
-    font-size: 1.5rem;
+  position: absolute;
+  top: 810px;
+  left: 10px;
+  width: 380px;
+  height: 60px;
+  background-color: #5978d5;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 2.5;
+  color: white;
+  font-size: 1.5rem;
 }
 .widthCard {
-    width: 400px;
+  width: 400px;
 }
 
 /* entireYear */
 #entireYear {
-    width: 1600px;
-    height: 55em;
-    margin-left: 45px;
-    margin-top: 30px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    border: solid rgb(200, 200, 200) 2px;
-    border-radius: 25px;
+  width: 1600px;
+  height: 55em;
+  margin-left: 45px;
+  margin-top: 30px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  border: solid rgb(200, 200, 200) 2px;
+  border-radius: 25px;
 }
 
 #years {
-    width: 1400px;
-    padding: 50px 30px;
-    margin: auto;
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 1.2rem;
-
+  width: 1400px;
+  padding: 50px 30px;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.2rem;
 }
 
-.month-container{
-    height: 700px;
-    width: initial;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 10px;
-    align-items: center;
-    justify-items: center;
-    padding: 0 100px;
+.month-container {
+  height: 700px;
+  width: initial;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  justify-items: center;
+  padding: 0 100px;
 }
 
 .grid-item-month {
-    width: 300px;
-    height: 200px;
-    text-align: center;
-    background-color: lightgray;
-    border-radius: 15px;
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  background-color: lightgray;
+  border-radius: 15px;
 }
