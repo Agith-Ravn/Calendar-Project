@@ -21,8 +21,5 @@ function currentYear() {
 
 function changeYear(value) {    
     model.changeYear += value
-    navBarView();
+    updateView();
 }
-
-//Først må året bli laget igjennom view og fra modell (året nå)
-//Lage en funksjon som endrer på året i modell + 1 osv

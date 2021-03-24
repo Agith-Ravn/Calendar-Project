@@ -1,14 +1,21 @@
 // Models
 const model = {
     currentPage: 'homePage',
-    //currentPage: 'loginPage',
+    // currentPage: 'loginPage',
     // currentPage: 'yearPage',
+
+    navbar: { //forandrer utseende på navbar
+        homePageView: true,
+    },
+
     adminUser: {
         userName: 'admin',
         password: '1234',
     },
+
     loginInputUser: '',
     loginInputPassword: '',
+
     months: [
         'Januar',
         'Februar',
@@ -26,8 +33,9 @@ const model = {
     days: [],
     weeks: [], 
     years: [], 
-    currentYear: 0,
-    changeYear: 0,
+
+    currentYear: 0, //året nå
+    changeYear: 0, //antall år frem og tilbake
 
     // holder hva som skjer på datoen. 
     contentForDate: [
@@ -37,6 +45,7 @@ const model = {
             privat: false
         },
     ],
+
     colors: {
         green:'#7CFC00',
         red:'#8B0000',
