@@ -41,9 +41,9 @@ function datePlacement() {
     // for(let j = 0; j < 12; j++) {
     //     test123 = new Date(2000, j, 0).getDate();
     // }
-    console.log(test123)
+    // console.log(test123)
     
-    for (let i = 0; i < /*antall dager i ukeb*/2; i++)
+    // for (let i = 0; i < /*antall dager i ukeb*/2; i++)
 
     //Funksjonen har kan finne ut når dato starter i 2000 og oppover?
     //Start på 1996 (skuddår). 1 Januar er en mandag
@@ -53,19 +53,8 @@ function datePlacement() {
 
 
 
-
+    //test
     model.datePlacement = 5;
-    
-    //35 - antall dager i mnd (eksempel: januar 21) = 4 > 
-    //Hvis januar starter på fredag > januar slutter på søndag 
-
-    //februar starter på mandag
-    //februar har 28 dager
-    //februar slutter på søndag
-
-    //mars starer på mandag
-    //mars har 31 dager 
-    //mars slutter på onsdag
 }
 
 //Changes month when selecting month in navbar
@@ -80,8 +69,7 @@ function changeMonth(monthIndex, colorSelected) {
 
 
 function styleCurrentMonth() {
-    let selectedMonth = model.selectedMonth
-    document.getElementById(selectedMonth).classList.add('colorSelected');    
+    document.getElementById(model.selectedMonth).classList.add('colorSelected');    
 }   
 
 
