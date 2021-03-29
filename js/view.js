@@ -3,7 +3,7 @@ function updateView(){
     if(model.currentPage == 'homePage') {
         model.navbar.homePageView = true;
         findCurrentDate();
-        datePlacement();
+        dateDisplacement();
         document.getElementById('app').innerHTML = homeView()
     }
     if(model.currentPage == 'loginPage') {
@@ -26,7 +26,7 @@ function homeView() {
     <p>Mandag</p><p>Tirsdag</p><p>Onsdag</p><p>Torsdag</p><p>Fredag</p><p>Lørdag</p><p>Søndag</p>`
 
     for(let j = 1; j <= model.datePlacement; j++) {
-        html += `<p> test${j} </p>`
+        html += `<p>  </p>`
     }
 
     for (let i = 1; i <= model.daysInMonth ; i++) {
