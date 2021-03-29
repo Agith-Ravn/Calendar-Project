@@ -35,7 +35,7 @@ function findCurrentDate() {
 
 }   
 
-
+//Får dato til å starte på riktig ukedag
 function dateDisplacement() {
     let x = firstWeekdayInMonth(model.currentYear, model.currentMonth, 01)
 
@@ -62,7 +62,7 @@ function dateDisplacement() {
     }   
 }
 
-
+//Finner første ukedag i mnd
 function firstWeekdayInMonth(year, month, date) {
     let d = new Date(year, month - 1, date);
     d.getDay()

@@ -11,6 +11,7 @@ function updateView(){
     }
     if(model.currentPage == 'yearPage') {
         model.navbar.homePageView = false;
+        findCurrentDate();
         document.getElementById('app').innerHTML = initiereYear()
     }
 }
@@ -83,6 +84,8 @@ function initiereYear(){
 
             //Midlertidig buttons (1 år tilbake)
             html += `<div> < </div>`
+
+            html += `<div class="year">` + model.currentYear + `</div>`
             for (let i = 2020; i <= 2030 ; i++) {
                 html += `<div class="year">${i}</div>`
             }
