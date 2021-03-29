@@ -13,8 +13,7 @@ function loginResponse(){
 }
 
 
-/*--------------------------- Calender ---------------------------*/
-
+/*--------------------------- Calender - Homepage ---------------------------*/
 //Egen funksjon som finner datoen idag
 function findCurrentDate() {
 
@@ -35,14 +34,20 @@ function findCurrentDate() {
     model.daysInMonth = new Date(model.currentYear, model.currentMonth, 0).getDate();
 }   
 
-function changeMonth(monthIndex) {
-    model.changeMonth = monthIndex + 1
-
-    //FIX!
-    // document.getElementsByClassName('colorSelected' + monthIndex).classList.add('colorSelected');
-
+//Changes month when selecting month in navbar
+function changeMonth(monthIndex, colorSelected) {
+    model.changeMonth = monthIndex + 1;
+    model.selectedMonth = colorSelected;
+    
     updateView();
+    styleCurrentMonth();
+    
 }
+
+function styleCurrentMonth() {
+    let selectedMonth = model.selectedMonth
+    document.getElementById(selectedMonth).classList.add('colorSelected');    
+}   
 
 function changeYear(value) {    
     model.changeYear += value

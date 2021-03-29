@@ -23,6 +23,11 @@ function homeView() {
     //All dates
     html += `<div class="grid-date-container">
     <p>Mandag</p><p>Tirsdag</p><p>Onsdag</p><p>Torsdag</p><p>Fredag</p><p>Lørdag</p><p>Søndag</p>`
+
+    for(let j = 1; j <= /*antall dager frem*/ 6; j++) {
+        html += `<p> test </p>`
+    }
+
     for (let i = 1; i <= model.daysInMonth ; i++) {
         html += `<div class="grid-item">${i}</div>`
     }
@@ -117,10 +122,12 @@ function navBarView() {
                 </div>`
 
         //Navbar month
+        html += `<div class="btn-group">`
         for(var i in model.months) {
-            html += `<div id="test${i}" class="navBarMonth colorSelected${i}" onclick="changeMonth(${i})"><a> `
-            + model.months[i] + `</a></div>`
+            html += `<div class="navBarMonth" id="colorSelected${i}" onclick="changeMonth(${i}, 'colorSelected${i}')"> `
+            + model.months[i] + `</div>`
         }
+        html += `</div>`
     html +=`</div>`
     return html
 }
