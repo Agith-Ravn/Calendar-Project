@@ -71,12 +71,13 @@ function firstWeekdayInMonth(year, month, date) {
 
 
 //Changes month when selecting month in navbar
-function changeMonth(monthIndex, colorSelected) {
+function changeMonth(monthIndex, selectedDiv) {
 
     //Må fikses slikt at mnd som er valgt når du kommer inn på kalenderen (mnd nå) også er farget
 
     model.changeMonth = monthIndex + 1;
-    model.selectedMonth = colorSelected;
+    model.selectedMonth = selectedDiv;
+    
     
     updateView();
     styleCurrentMonth();
