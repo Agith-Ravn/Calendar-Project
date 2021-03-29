@@ -51,7 +51,7 @@ function datePlacement() {
     //filtrere for å finne ukedag for datoen
 
 
-
+    //test
 
     //test
     model.datePlacement = 5;
