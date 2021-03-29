@@ -2,6 +2,8 @@
 function updateView(){
     if(model.currentPage == 'homePage') {
         model.navbar.homePageView = true;
+        findCurrentDate();
+        datePlacement();
         document.getElementById('app').innerHTML = homeView()
     }
     if(model.currentPage == 'loginPage') {
@@ -18,13 +20,20 @@ function homeView() {
     let html = ``;
     //Navbar
     html += navBarView();
+
     //All dates
     html += `<div class="grid-date-container">
     <p>Mandag</p><p>Tirsdag</p><p>Onsdag</p><p>Torsdag</p><p>Fredag</p><p>Lørdag</p><p>Søndag</p>`
-    for (let j = 1; j <= 31 ; j++) {
-        html += `<div class="grid-item">${j}</div>`
+
+    for(let j = 1; j <= model.datePlacement; j++) {
+        html += `<p> test${j} </p>`
+    }
+
+    for (let i = 1; i <= model.daysInMonth ; i++) {
+        html += `<div class="grid-item">${i}</div>`
     }
     html += `</div>`
+
     //Events / hendelser
     html +=`<div class="widthCard">
                 <div class="hendelser">
@@ -67,17 +76,21 @@ function initiereYear(){
     let html = ``;
     //Navbar
     html += navBarView();
+
     //Entire year (10 years)
     html += `<div id="entireYear">`
         html += `<div id="years">`
-            //Midlertidig buttons
+
+            //Midlertidig buttons (1 år tilbake)
             html += `<div> < </div>`
             for (let i = 2020; i <= 2030 ; i++) {
                 html += `<div class="year">${i}</div>`
             }
-            //Midlertidig buttons
+
+            //Midlertidig buttons (1 år frem)
             html += `<div> > </div>`
         html += ` </div>`
+        
         //Months
         html += `<div class="month-container">`
         for (let j = 0; j < 12 ; j++) {
@@ -89,12 +102,12 @@ function initiereYear(){
 
 //Egen funksjon som lager navbar
 function navBarView() {
-    currentYear();
+    
     let html = '';
     html += `<div class="navBar">`
         //Navbar login & se hele året button
         html += `<div class="buttonContainer">
-                <p class="loginButton" onclick="selectView('loginPage')">Logout</p>`
+                <p class="loginButton" onclick="selectView('loginPage')">Login</p>`
         if (model.navbar.homePageView == true) {
             html += `<p class="seHeleÅret" onclick="selectView('yearPage')" >Se hele året</p>`
         } 
@@ -110,9 +123,12 @@ function navBarView() {
                 </div>`
 
         //Navbar month
+        html += `<div class="btn-group">`
         for(var i in model.months) {
-            html += '<div class="navBarMonth"><a> ' + model.months[i] + ' </a></div>';
+            html += `<div class="navBarMonth" id="colorSelected${i}" onclick="changeMonth(${i}, 'colorSelected${i}')"> `
+            + model.months[i] + `</div>`
         }
+        html += `</div>`
     html +=`</div>`
     return html
 }

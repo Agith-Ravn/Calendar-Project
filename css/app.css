@@ -5,7 +5,8 @@ body {
   height: auto;
 }
 
-/* Navbar */
+
+/*--------------------------- Navbar ---------------------------*/
 .navBar {
   background-color: #5978d5;
   width: 250px;
@@ -55,11 +56,16 @@ p {
 
 .navBarMonth {
   display: block;
-  padding: 13px 0;
+  padding: 15px 0;
   font-size: 1.5rem;
 }
 
-/* Datoer */
+.colorSelected {
+  background-color: #364e96;
+}
+
+
+/*--------------------------- Calender (dates) ---------------------------*/
 .grid-container {
   display: grid;
   grid-template-columns: 220px 1260px 400px;
@@ -79,7 +85,8 @@ p {
   border-radius: 25px;
 }
 
-/* Hendelser (vinduet til høyre) */
+
+/*--------------------------- Events ---------------------------*/
 .hendelser {
   position: absolute;
   top: 30px;
@@ -144,7 +151,8 @@ p {
   width: 400px;
 }
 
-/* entireYear */
+
+/*--------------------------- Calender (entire year) ---------------------------*/
 #entireYear {
   width: 1600px;
   height: 55em;
