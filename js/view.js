@@ -3,6 +3,7 @@ function updateView(){
     if(model.currentPage == 'homePage') {
         model.navbar.homePageView = true;
         findCurrentDate();
+        datePlacement();
         document.getElementById('app').innerHTML = homeView()
     }
     if(model.currentPage == 'loginPage') {
@@ -24,8 +25,8 @@ function homeView() {
     html += `<div class="grid-date-container">
     <p>Mandag</p><p>Tirsdag</p><p>Onsdag</p><p>Torsdag</p><p>Fredag</p><p>Lørdag</p><p>Søndag</p>`
 
-    for(let j = 1; j <= /*antall dager frem*/ 6; j++) {
-        html += `<p> test </p>`
+    for(let j = 1; j <= model.datePlacement; j++) {
+        html += `<p> test${j} </p>`
     }
 
     for (let i = 1; i <= model.daysInMonth ; i++) {

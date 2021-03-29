@@ -39,7 +39,6 @@ const model = {
     weeks: [], 
     years: [],
     
-    //Må lage en funksjon som forandrer denne etter hvilken mnd det er
     daysInMonth: 0,
     weekdayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
 
@@ -50,6 +49,7 @@ const model = {
     currentYear: 0, //året nå
     changeYear: 0, //antall år frem og tilbake
 
+    datePlacement:0,
 
 //--------------------------- Appointments ---------------------------
     //hendelser
