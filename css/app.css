@@ -5,6 +5,11 @@ body {
   height: auto;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 220px 1260px 400px;
+}
+
 /*--------------------------- Navbar ---------------------------*/
 .navBar {
   background-color: #5978d5;
@@ -64,18 +69,10 @@ p {
 }
 
 /*--------------------------- Calender (dates) ---------------------------*/
-.grid-container {
-  display: grid;
-  grid-template-columns: 220px 1260px 400px;
-}
-
-.grid-date-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
-  justify-items: center;
-  align-items: center;
-  width: 1200px;
-  height: 55em;
+.calender {
+  width: 1100px;
+  padding: 0 50px;
+  height: 880px;
   margin-left: 45px;
   margin-top: 30px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
@@ -83,7 +80,31 @@ p {
   border-radius: 25px;
 }
 
-.grid-item {
+.weeksContainer {
+  display: grid;
+  grid-template-columns: auto;
+  width: 150px;
+  height: 880px;
+  float: left;
+  justify-items: center;
+  align-items: center;
+  color: rgb(121, 121, 121);
+}
+
+.weeks-grid-item {
+  padding: 30px;
+}
+
+.grid-date-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  justify-items: center;
+  align-items: center;
+  width: 950px;
+  height: 880px;
+}
+
+.dates-grid-item {
   padding: 30px;
 }
 

@@ -23,17 +23,41 @@ function homeView() {
     //Navbar
     html += navBarView();
 
-    //All dates
-    html += `<div class="grid-date-container">
-    <p>Mandag</p><p>Tirsdag</p><p>Onsdag</p><p>Torsdag</p><p>Fredag</p><p>Lørdag</p><p>Søndag</p>`
+    //Dates
+    html += `<div class="calender">`
 
-    for(let j = 1; j <= model.dateDisplacement; j++) {
-        html += `<p>  </p>`
-    }
+            //Weeks
+            html += `<div class="weeksContainer">`
 
-    for (let i = 1; i <= model.daysInMonth ; i++) {
-        html += `<div class="grid-item">${i}</div>`
-    }
+                //Midlertidig
+                html += `<p> Uke</p>
+                        <p class="weeks-grid-item"> 1 </p>
+                        <p class="weeks-grid-item"> 2 </p>
+                        <p class="weeks-grid-item"> 3 </p>
+                        <p class="weeks-grid-item"> 4 </p>
+                        <p class="weeks-grid-item"> 5 </p>`
+            html += `</div>`
+           
+            //Weekdays
+            html += `<div class="grid-date-container">
+                <p>Mandag</p>
+                <p>Tirsdag</p>
+                <p>Onsdag</p>
+                <p>Torsdag</p>
+                <p>Fredag</p>
+                <p>Lørdag</p>
+                <p>Søndag</p>`
+
+                //Empty boxes (date displacement)
+                for(let j = 1; j <= model.dateDisplacement; j++) {
+                    html += `<p>  </p>`
+                }
+
+                //Dates
+                for (let i = 1; i <= model.daysInMonth ; i++) {
+                    html += `<div class="dates-grid-item">${i}</div>`
+                }
+            html += `</div>`
     html += `</div>`
 
     //Events / hendelser

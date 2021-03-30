@@ -32,7 +32,6 @@ function findCurrentDate() {
 
     //days in this month
     model.daysInMonth = new Date(model.currentYear, model.currentMonth, 0).getDate();
-
 }   
 
 //Får dato til å starte på riktig ukedag
@@ -53,13 +52,14 @@ function firstWeekdayInMonth(year, month, date) {
     return d.getDay()
 }
 
-
 //Changes month when selecting month in navbar
 function changeMonth(monthIndex, selectedDiv) {
     model.changeMonth = monthIndex + 1;
     model.selectedMonth = selectedDiv; 
     updateView();
 }
+
+//
 
 //Farger current/selected mnd
 function styleCurrentMonth() {

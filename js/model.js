@@ -39,9 +39,10 @@ const model = {
     weeks: [], 
     years: [],
     
-    daysInMonth: 0,
     weekdayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
-
+    
+    daysInMonth: 0,
+    weeksInMonth: [],
     currentMonth: 0,
     changeMonth: 0,
     selectedMonth: 'empty',
