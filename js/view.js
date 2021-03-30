@@ -5,6 +5,7 @@ function updateView(){
         findCurrentDate();
         dateDisplacement();
         document.getElementById('app').innerHTML = homeView()
+        styleCurrentMonth();
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
@@ -26,7 +27,7 @@ function homeView() {
     html += `<div class="grid-date-container">
     <p>Mandag</p><p>Tirsdag</p><p>Onsdag</p><p>Torsdag</p><p>Fredag</p><p>Lørdag</p><p>Søndag</p>`
 
-    for(let j = 1; j <= model.datePlacement; j++) {
+    for(let j = 1; j <= model.dateDisplacement; j++) {
         html += `<p>  </p>`
     }
 
@@ -85,8 +86,7 @@ function initiereYear(){
             //Midlertidig buttons (1 år tilbake)
             html += `<div> < </div>`
 
-            html += `<div class="year">` + model.currentYear + `</div>`
-            for (let i = 2020; i <= 2030 ; i++) {
+            for (let i = 2020; i <= 2030; i++) {
                 html += `<div class="year">${i}</div>`
             }
 
@@ -126,7 +126,7 @@ function navBarView() {
                 </div>`
 
         //Navbar month
-        html += `<div class="btn-group">`
+        html += `<div>`
         for(var i in model.months) {
             html += `<div class="navBarMonth" id="colorSelected${i}" onclick="changeMonth(${i}, 'colorSelected${i}')"> `
             + model.months[i] + `</div>`

@@ -40,25 +40,25 @@ function dateDisplacement() {
     let x = firstWeekdayInMonth(model.currentYear, model.currentMonth, 01)
 
     if (x == 1) {
-    model.datePlacement = 0;
+    model.dateDisplacement = 0;
     }
     if (x == 2) {
-    model.datePlacement = 1;
+    model.dateDisplacement = 1;
     }
     if (x == 3) {
-    model.datePlacement = 2;
+    model.dateDisplacement = 2;
     }
     if (x == 4) {
-    model.datePlacement = 3;
+    model.dateDisplacement = 3;
     }
     if (x == 5) {
-    model.datePlacement = 4;
+    model.dateDisplacement = 4;
     }
     if (x == 6) {
-    model.datePlacement = 5;
+    model.dateDisplacement = 5;
     }
     if (x == 7) {
-    model.datePlacement = 6;
+    model.dateDisplacement = 6;
     }   
 }
 
@@ -80,13 +80,16 @@ function changeMonth(monthIndex, selectedDiv) {
     
     
     updateView();
-    styleCurrentMonth();
-    datePlacement()
+    dateDisplacement();
 }
 
 
 function styleCurrentMonth() {
-    document.getElementById(model.selectedMonth).classList.add('colorSelected');    
+    if (model.selectedMonth == 'empty') {
+    document.getElementById('colorSelected2').classList.add('colorSelected');
+    } else {
+        document.getElementById(model.selectedMonth).classList.add('colorSelected');
+    }
 }   
 
 
