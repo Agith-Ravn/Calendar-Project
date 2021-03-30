@@ -35,9 +35,7 @@ function findCurrentDate() {
 }   
 
 function findDaysOfMonthYear(){
-    Date.getDate()
-    Date.getFullYear()
-    Date.getMonth()
+    
 }
 
 function daysInMonth(month, year){
