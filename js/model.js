@@ -44,12 +44,12 @@ const model = {
 
     currentMonth: 0,
     changeMonth: 0,
-    selectedMonth: 0,
+    selectedMonth: 'empty',
 
     currentYear: 0, //året nå
     changeYear: 0, //antall år frem og tilbake
 
-    datePlacement:0,
+    dateDisplacement: 0,
 
 //--------------------------- Appointments ---------------------------
     //hendelser

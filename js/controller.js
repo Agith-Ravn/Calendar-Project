@@ -32,44 +32,67 @@ function findCurrentDate() {
 
     //days in this month
     model.daysInMonth = new Date(model.currentYear, model.currentMonth, 0).getDate();
+
 }   
 
+//Får dato til å starte på riktig ukedag
+function dateDisplacement() {
+    let x = firstWeekdayInMonth(model.currentYear, model.currentMonth, 01)
 
-function datePlacement() {
-
-    //En funksjon som finner antall dager i året
-    // for(let j = 0; j < 12; j++) {
-    //     test123 = new Date(2000, j, 0).getDate();
-    // }
-    // console.log(test123)
-    
-    // for (let i = 0; i < /*antall dager i ukeb*/2; i++)
-
-    //Funksjonen har kan finne ut når dato starter i 2000 og oppover?
-    //Start på 1996 (skuddår). 1 Januar er en mandag
-    //Ukedager som looper i igjennom alle dager?
-    //filtrere for å finne ukedag for datoen
-
-
-
-
-    //test
-    model.datePlacement = 5;
+    if (x == 1) {
+    model.dateDisplacement = 0;
+    }
+    if (x == 2) {
+    model.dateDisplacement = 1;
+    }
+    if (x == 3) {
+    model.dateDisplacement = 2;
+    }
+    if (x == 4) {
+    model.dateDisplacement = 3;
+    }
+    if (x == 5) {
+    model.dateDisplacement = 4;
+    }
+    if (x == 6) {
+    model.dateDisplacement = 5;
+    }
+    if (x == 7) {
+    model.dateDisplacement = 6;
+    }   
 }
 
+//Finner første ukedag i mnd
+function firstWeekdayInMonth(year, month, date) {
+    let d = new Date(year, month - 1, date);
+    d.getDay()
+    return d.getDay()
+}
+
+
 //Changes month when selecting month in navbar
-function changeMonth(monthIndex, colorSelected) {
+function changeMonth(monthIndex, selectedDiv) {
+
+    //Må fikses slikt at mnd som er valgt når du kommer inn på kalenderen (mnd nå) også er farget
+
     model.changeMonth = monthIndex + 1;
-    model.selectedMonth = colorSelected;
+    model.selectedMonth = selectedDiv;
+    
     
     updateView();
-    styleCurrentMonth();
-    datePlacement()
+    dateDisplacement();
 }
 
 
 function styleCurrentMonth() {
-    document.getElementById(model.selectedMonth).classList.add('colorSelected');    
+    let index = model.currentMonth
+    console.log(index)
+    
+    if (model.selectedMonth == 'empty') {
+    document.getElementById('colorSelected2').classList.add('colorSelected');
+    } else {
+        document.getElementById(model.selectedMonth).classList.add('colorSelected');
+    }
 }   
 
 

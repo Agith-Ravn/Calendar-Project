@@ -85,6 +85,9 @@ p {
   border-radius: 25px;
 }
 
+.grid-item {
+  padding: 30px;
+}
 
 /*--------------------------- Events ---------------------------*/
 .hendelser {
@@ -169,7 +172,15 @@ p {
   margin: auto;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   font-size: 1.2rem;
+}
+
+.selectedYear {
+  background-color: #5978d5;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
 }
 
 .month-container {
