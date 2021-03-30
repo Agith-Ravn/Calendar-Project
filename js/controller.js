@@ -83,15 +83,35 @@ function changeYear(value) {
     updateView();
 }
 
-function weekRows() {
+function weeksRow() {
     let x = model.dateDisplacement + model.daysInMonth
 
     if (x >= 36) {
-        model.weekRows = 6
+        model.weeksRow = 6
     } if (x >= 29 && x < 36) {
-        model.weekRows = 5
+        model.weeksRow = 5
     } if (x <= 28) {
-        model.weekRows = 4
+        model.weeksRow = 4
     }
     
 } 
+//Uferdig
+findWeekNumber();
+function findWeekNumber() {    
+    //define a date object variable with date inside it  
+    var date1 = new Date("01/01/2021");  
+
+    //find the year of the entered date  
+    var oneJan =  new Date(date1.getFullYear(), 0, 1);   
+
+    // calculating number of days in given year before the given date   
+    var numberOfDays =  Math.floor((date1 - oneJan) / (24 * 60 * 60 * 1000));   
+
+    // adding 1 since to current date and returns value starting from 0   
+    var result = Math.ceil(( date1.getDay() + 1 + numberOfDays) / 7);     
+
+    //display the calculated result         
+    console.log(result)
+    
+}
+

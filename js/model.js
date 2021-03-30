@@ -41,7 +41,8 @@ const model = {
     
     weekdayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
 
-    weekRows: 0,
+    numberOfWeeks: [],
+    weeksRow: 0,
     
     daysInMonth: 0,
     weeksInMonth: [],
