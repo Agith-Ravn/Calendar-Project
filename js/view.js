@@ -4,6 +4,7 @@ function updateView(){
         model.navbar.homePageView = true;
         findCurrentDate();
         dateDisplacement();
+        weekRows();
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
     }
@@ -30,12 +31,12 @@ function homeView() {
             html += `<div class="weeksContainer">`
 
                 //Midlertidig
-                html += `<p> Uke</p>
-                        <p class="weeks-grid-item"> 1 </p>
-                        <p class="weeks-grid-item"> 2 </p>
-                        <p class="weeks-grid-item"> 3 </p>
-                        <p class="weeks-grid-item"> 4 </p>
-                        <p class="weeks-grid-item"> 5 </p>`
+                html += `<p> Uke</p>`
+
+                for(let i = 1; i <= model.weekRows; i++) {
+                    html += `<p class="weeks-grid-item"> ${i}</p>`
+                }
+
             html += `</div>`
            
             //Weekdays

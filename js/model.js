@@ -40,6 +40,8 @@ const model = {
     years: [],
     
     weekdayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
+
+    weekRows: 0,
     
     daysInMonth: 0,
     weeksInMonth: [],

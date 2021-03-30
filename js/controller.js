@@ -67,8 +67,6 @@ function changeMonth(monthIndex, selectedDiv) {
     updateView();
 }
 
-//
-
 //Farger current/selected mnd
 function styleCurrentMonth() {
     let id = 'colorSelected' + (model.currentMonth - 1)
@@ -80,8 +78,20 @@ function styleCurrentMonth() {
     }
 }   
 
-
 function changeYear(value) {    
     model.changeYear += value
     updateView();
 }
+
+function weekRows() {
+    let x = model.dateDisplacement + model.daysInMonth
+
+    if (x >= 36) {
+        model.weekRows = 6
+    } if (x >= 29 && x < 36) {
+        model.weekRows = 5
+    } if (x <= 28) {
+        model.weekRows = 4
+    }
+    
+} 
