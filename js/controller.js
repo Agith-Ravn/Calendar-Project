@@ -56,25 +56,17 @@ function firstWeekdayInMonth(year, month, date) {
 
 //Changes month when selecting month in navbar
 function changeMonth(monthIndex, selectedDiv) {
-
-    //Må fikses slikt at mnd som er valgt når du kommer inn på kalenderen (mnd nå) også er farget
-
     model.changeMonth = monthIndex + 1;
-    model.selectedMonth = selectedDiv;
-    
-    
+    model.selectedMonth = selectedDiv; 
     updateView();
-    dateDisplacement();
 }
 
-
+//Farger current/selected mnd
 function styleCurrentMonth() {
-    let index = model.currentMonth
-    console.log(index)
-    // check current date if new Month change
-    // if day = 1 then new month 
+    let id = 'colorSelected' + (model.currentMonth - 1)
+
     if (model.selectedMonth == 'empty') {
-    document.getElementById('colorSelected2').classList.add('colorSelected');
+        document.getElementById(id).classList.add('colorSelected');
     } else {
         document.getElementById(model.selectedMonth).classList.add('colorSelected');
     }
