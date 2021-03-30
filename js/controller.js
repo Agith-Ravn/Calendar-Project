@@ -87,7 +87,8 @@ function changeMonth(monthIndex, selectedDiv) {
 function styleCurrentMonth() {
     let index = model.currentMonth
     console.log(index)
-    
+    // check current date if new Month change
+    // if day = 1 then new month 
     if (model.selectedMonth == 'empty') {
     document.getElementById('colorSelected2').classList.add('colorSelected');
     } else {
