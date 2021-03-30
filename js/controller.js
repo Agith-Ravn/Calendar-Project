@@ -39,27 +39,11 @@ function findCurrentDate() {
 function dateDisplacement() {
     let x = firstWeekdayInMonth(model.currentYear, model.currentMonth, 01)
 
-    if (x == 1) {
-    model.dateDisplacement = 0;
-    }
-    if (x == 2) {
-    model.dateDisplacement = 1;
-    }
-    if (x == 3) {
-    model.dateDisplacement = 2;
-    }
-    if (x == 4) {
-    model.dateDisplacement = 3;
-    }
-    if (x == 5) {
-    model.dateDisplacement = 4;
-    }
-    if (x == 6) {
-    model.dateDisplacement = 5;
-    }
-    if (x == 7) {
-    model.dateDisplacement = 6;
-    }   
+    for(let i = 1; i <= 7; i++) {
+        if (x == i) {
+            model.dateDisplacement = i - 1;
+        }
+    } 
 }
 
 //Finner første ukedag i mnd
