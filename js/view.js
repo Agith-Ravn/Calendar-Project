@@ -123,8 +123,14 @@ function initiereYear(){
         // Put days in month for visual not just a gray box.
         html += `<div class="month-container">`
         for (let j = 0; j < 12 ; j++) {
-            html += `<div class="grid-item-month">` + model.months[j] + `<div class="daysInMonthBox">
-                1</div>
+            html += `<div class="grid-item-month">` + model.months[j] + `
+                <div class="daysInMonthBox">
+                    <div class="grid-item-month-days">`
+                        for (let i = 1; i <= model.daysInMonth ; i++) {
+                            html += `<div class="grid-item-year-days">${i}</div>`
+                        }
+            html += `</div>
+                </div>
             </div>`
         }
     html += `</div> </div>`

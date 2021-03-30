@@ -34,6 +34,16 @@ function findCurrentDate() {
     model.daysInMonth = new Date(model.currentYear, model.currentMonth, 0).getDate();
 }   
 
+function findDaysOfMonthYear(){
+    Date.getDate()
+    Date.getFullYear()
+    Date.getMonth()
+}
+
+function daysInMonth(month, year){
+    return new Date(year, month, 0).getDate();
+}
+
 //Får dato til å starte på riktig ukedag
 function dateDisplacement() {
     let x = firstWeekdayInMonth(model.currentYear, model.currentMonth, 01)
