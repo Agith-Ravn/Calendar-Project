@@ -46,7 +46,7 @@ function daysInMonth(month, year){
 function dateDisplacement() {
     let x = firstWeekdayInMonth(model.currentYear, model.currentMonth, 01)
 
-    for(let i = 1; i <= 7; i++) {
+    for(let i = 1; i <= 8; i++) {
         if (x == i) {
             model.dateDisplacement = i - 1;
         }
@@ -81,6 +81,15 @@ function styleCurrentMonth() {
 function changeYear(value) {    
     model.changeYear += value
     updateView();
+    
+}
+
+function weeks() {
+    for(let i = 1; i <= model.daysInMonth; i++) {
+        let test123 = findWeekNumber(model.currentYear, model.currentMonth, i)
+        console.log(test123)
+        
+    }
 }
 
 function weeksRow() {
@@ -95,10 +104,8 @@ function weeksRow() {
     }
     
 } 
-//Uferdig
-console.log(findWeekNumber(2021, 01, 01));
 
-findWeekNumber();
+//Uferdig
 function findWeekNumber(year,month,day) {   
    
     function serial(days) { return 86400000*days; }
@@ -109,12 +116,4 @@ function findWeekNumber(year,month,day) {
         date2 = dateserial(yearserial(date - serial(weekday(date-serial(1))) + serial(4)),1,3);
     return ~~((date - date2 + serial(weekday(date2) + 5))/ serial(7));    
 
-    
-
-// finne første uken i mnd | 1 april 2021 = uke 13
-// siste dato er 30 | siste dato = new Date(model.currentYear, model.currentMonth, 0).getDate();
-// finne ut av plassering av første dato | første dato + 3 displacement = 4 
-// 
-
 }
-
