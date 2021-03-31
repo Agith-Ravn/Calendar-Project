@@ -2,8 +2,8 @@
 function updateView(){
     if(model.currentPage == 'homePage') {
         model.navbar.homePageView = true;
-        dateDisplacement();
         findCurrentDate();
+        dateDisplacement();
         weeksRow();
         weeks();
         document.getElementById('app').innerHTML = homeView()

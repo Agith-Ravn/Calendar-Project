@@ -30,6 +30,10 @@ function findCurrentDate() {
         model.currentMonth = model.changeMonth
     }
 
+    //date
+    let date = d.getDate();
+    model.currentDay = date
+
     //days in this month
     model.daysInMonth = new Date(model.currentYear, model.currentMonth, 0).getDate();
 }   
@@ -44,26 +48,28 @@ function daysInMonth(month, year){
 
 //Får dato til å starte på riktig ukedag
 function dateDisplacement() {
-    let x = firstWeekdayInMonth(model.currentYear, model.currentMonth, 01)
-
-    for(let i = 1; i <= 8; i++) {
-        if (x == i) {
-            model.dateDisplacement = i - 1;
-        }
+    let x = firstWeekdayInMonth(model.currentYear, model.currentMonth,)
+    if (x == 0) {
+        model.dateDisplacement = 6;
     } 
+
+    for(let i = 1; i <= 6; i++) {
+        if (x == i) {
+            model.dateDisplacement = (i - 1);
+        }
+    }
 }
 
 //Finner første ukedag i mnd
-function firstWeekdayInMonth(year, month, date) {
-    let d = new Date(year, month - 1, date);
-    d.getDay()
+function firstWeekdayInMonth(year, month) {
+    let d = new Date(year, month - 1, 01);    
     return d.getDay()
 }
 
 //Changes month when selecting month in navbar
-function changeMonth(monthIndex, selectedDiv) {
+function changeMonth(monthIndex, colorSelectedIndex) {
     model.changeMonth = monthIndex + 1;
-    model.selectedMonth = selectedDiv; 
+    model.selectedMonth = colorSelectedIndex; 
     updateView();
 }
 
@@ -86,9 +92,8 @@ function changeYear(value) {
 
 function weeks() {
     for(let i = 1; i <= model.daysInMonth; i++) {
-        let test123 = findWeekNumber(model.currentYear, model.currentMonth, i)
-        console.log(test123)
-        
+        let weeksInMonth = findWeekNumber(model.currentYear, model.currentMonth, i)
+        console.log(weeksInMonth)        
     }
 }
 

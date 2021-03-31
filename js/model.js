@@ -41,6 +41,8 @@ const model = {
     
     weekdayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
 
+    currentDay: 0,
+
     numberOfWeeks: [],
     weeksRow: 0,
     
@@ -81,3 +83,4 @@ const model = {
 
 }
 
+// console.log(model)
