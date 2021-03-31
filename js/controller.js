@@ -96,22 +96,25 @@ function weeksRow() {
     
 } 
 //Uferdig
+console.log(findWeekNumber(2021, 01, 01));
+
 findWeekNumber();
-function findWeekNumber() {    
-    //define a date object variable with date inside it  
-    var date1 = new Date("01/01/2021");  
+function findWeekNumber(year,month,day) {   
+   
+    function serial(days) { return 86400000*days; }
+    function dateserial(year,month,day) { return (new Date(year,month-1,day).valueOf()); }
+    function weekday(date) { return (new Date(date)).getDay()+1; }
+    function yearserial(date) { return (new Date(date)).getFullYear(); }
+    var date = year instanceof Date ? year.valueOf() : typeof year === "string" ? new Date(year).valueOf() : dateserial(year,month,day), 
+        date2 = dateserial(yearserial(date - serial(weekday(date-serial(1))) + serial(4)),1,3);
+    return ~~((date - date2 + serial(weekday(date2) + 5))/ serial(7));    
 
-    //find the year of the entered date  
-    var oneJan =  new Date(date1.getFullYear(), 0, 1);   
-
-    // calculating number of days in given year before the given date   
-    var numberOfDays =  Math.floor((date1 - oneJan) / (24 * 60 * 60 * 1000));   
-
-    // adding 1 since to current date and returns value starting from 0   
-    var result = Math.ceil(( date1.getDay() + 1 + numberOfDays) / 7);     
-
-    //display the calculated result         
-    console.log(result)
     
+
+// finne første uken i mnd | 1 april 2021 = uke 13
+// siste dato er 30 | siste dato = new Date(model.currentYear, model.currentMonth, 0).getDate();
+// finne ut av plassering av første dato | første dato + 3 displacement = 4 
+// 
+
 }
 
