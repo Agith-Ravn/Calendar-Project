@@ -87,30 +87,32 @@ function styleCurrentMonth() {
 function changeYear(value) {    
     model.changeYear += value
     updateView();
-    
 }
 
-function weeks() {
-    for(let i = 1; i <= model.daysInMonth; i++) {
-        let weeksInMonth = findWeekNumber(model.currentYear, model.currentMonth, i)
-        console.log(weeksInMonth)        
+//Funksjon som finner riktig uke nummer i currentMonth
+function findWeeksInCurrentMonth() {
+    let x = [] 
+    
+    if (model.daysInMonth + model.dateDisplacement <= 28) {
+        x.push(1, 8, 15, 22)
+    } else if (model.daysInMonth + model.dateDisplacement >= 29 &&
+        model.daysInMonth + model.dateDisplacement < 35) {
+        let LastDateInMonth = model.daysInMonth;
+        x.push(1, 8, 15, 22, LastDateInMonth)
+    } else if (model.daysInMonth + model.dateDisplacement >= 35) {
+        let LastDateInMonth = model.daysInMonth;
+        x.push(1, 8, 15, 22, 29, LastDateInMonth)
     }
+
+    let weekNumber = []
+    for(let i = 0; i < x.length; i++) {
+        let date = x[i];
+        weekNumber.push(findWeekNumber(model.currentYear, model.currentMonth, date))
+    }    
+    model.weeksInCurrentMonth = weekNumber;
 }
 
-function weeksRow() {
-    let x = model.dateDisplacement + model.daysInMonth
-
-    if (x >= 36) {
-        model.weeksRow = 6
-    } if (x >= 29 && x < 36) {
-        model.weeksRow = 5
-    } if (x <= 28) {
-        model.weeksRow = 4
-    }
-    
-} 
-
-//Uferdig
+//Hjelpe funksjon som finner uke nummer fra dato
 function findWeekNumber(year,month,day) {   
    
     function serial(days) { return 86400000*days; }
@@ -120,5 +122,17 @@ function findWeekNumber(year,month,day) {
     var date = year instanceof Date ? year.valueOf() : typeof year === "string" ? new Date(year).valueOf() : dateserial(year,month,day), 
         date2 = dateserial(yearserial(date - serial(weekday(date-serial(1))) + serial(4)),1,3);
     return ~~((date - date2 + serial(weekday(date2) + 5))/ serial(7));    
-
 }
+
+//Antall rader
+function findWeeksRowCount() {
+    let x = model.dateDisplacement + model.daysInMonth
+
+    if (x >= 36) {
+        model.weeksRowCount = 6
+    } if (x >= 29 && x < 36) {
+        model.weeksRowCount = 5
+    } if (x <= 28) {
+        model.weeksRowCount = 4
+    }
+} 

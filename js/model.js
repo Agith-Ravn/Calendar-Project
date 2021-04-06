@@ -43,8 +43,9 @@ const model = {
 
     currentDay: 0,
 
-    numberOfWeeks: [],
-    weeksRow: 0,
+    
+    weeksInCurrentMonth: [], 
+    weeksRowCount: 0,
     
     daysInMonth: 0,
     weeksInMonth: [],
