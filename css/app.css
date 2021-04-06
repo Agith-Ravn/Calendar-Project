@@ -44,14 +44,16 @@ p {
 .navBarYearContainer {
   display: flex;
   justify-content: space-evenly;
+  width: 200px;
+  margin: auto;
 }
 
 .navBarYearContainer div {
   /* Får samme style som h2 har */
   display: block;
   font-size: 2em;
-  margin-block-start: 0.67em;
-  margin-block-end: 0.67em;
+  margin-block-start: 0.58em;
+  margin-block-end: 0.58em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
@@ -65,7 +67,7 @@ p {
 }
 
 .colorSelected {
-  background-color: #364e96;
+  background-color: #2544a3;
 }
 
 /*--------------------------- Calender (dates) ---------------------------*/
@@ -106,6 +108,17 @@ p {
 
 .dates-grid-item {
   padding: 30px;
+}
+
+.selectedDate {
+  background-color:#5978d5;
+  border-radius: 20%;
+  width: 40px;
+  height: 0px;
+  text-align: center;
+  line-height: 0;
+  color: white;
+  font-weight: bold;
 }
 
 /*--------------------------- Events ---------------------------*/

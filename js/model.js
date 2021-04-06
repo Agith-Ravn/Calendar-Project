@@ -41,9 +41,9 @@ const model = {
     
     weekdayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
 
-    currentDay: 0,
+    currentDate: 0,
+    selectedDate: 0,
 
-    
     weeksInCurrentMonth: [], 
     weeksRowCount: 0,
     

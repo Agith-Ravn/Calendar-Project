@@ -32,7 +32,7 @@ function findCurrentDate() {
 
     //date
     let date = d.getDate();
-    model.currentDay = date
+    model.currentDate = date
 
     //days in this month
     model.daysInMonth = new Date(model.currentYear, model.currentMonth, 0).getDate();
@@ -113,8 +113,7 @@ function findWeeksInCurrentMonth() {
 }
 
 //Hjelpe funksjon som finner uke nummer fra dato
-function findWeekNumber(year,month,day) {   
-   
+function findWeekNumber(year,month,day) {    
     function serial(days) { return 86400000*days; }
     function dateserial(year,month,day) { return (new Date(year,month-1,day).valueOf()); }
     function weekday(date) { return (new Date(date)).getDay()+1; }
@@ -124,7 +123,7 @@ function findWeekNumber(year,month,day) {
     return ~~((date - date2 + serial(weekday(date2) + 5))/ serial(7));    
 }
 
-//Antall rader
+//Antall rader i mnd
 function findWeeksRowCount() {
     let x = model.dateDisplacement + model.daysInMonth
 
@@ -136,3 +135,25 @@ function findWeeksRowCount() {
         model.weeksRowCount = 4
     }
 } 
+
+//Style valgt dato + selected
+function styleSelectedDate(i) {
+    //Hvis du ikke har valgt noen
+    if (model.selectedDate == 0) {
+        model.selectedDate = model.currentDate;
+        let index = model.currentDate
+        let id = 'date' + index 
+        document.getElementById(id).classList.add('selectedDate')
+    } 
+
+    //hvis du velger
+
+    //1. selectedDate = currentDate
+
+    //2. når du trykker på andre datoer
+    //      selectedDate = dato du trykker på
+
+    //3. selectedDate skal bli stylet
+
+}
+

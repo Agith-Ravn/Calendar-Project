@@ -8,6 +8,8 @@ function updateView(){
         findWeeksInCurrentMonth();
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
+        styleSelectedDate();
+
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
@@ -57,8 +59,9 @@ function homeView() {
 
                 //Dates
                 for (let i = 1; i <= model.daysInMonth ; i++) {
-                    html += `<div class="dates-grid-item">${i}</div>`
+                    html += `<div id="date${i}" class="dates-grid-item" onclick="selectedDate(this)">${i}</div>`
                 }
+
             html += `</div>`
     html += `</div>`
 
@@ -156,9 +159,9 @@ function navBarView() {
         html += `</div>`
         //Navbar year
         html += `<div class="navBarYearContainer"> 
-                    <div onclick="changeYear(-1)"> < </div>
+                    <div onclick="changeYear(-1)"> ‹ </div>
                     <h1> ` + model.currentYear + `</h1>
-                    <div onclick="changeYear(1)"> > </div>
+                    <div onclick="changeYear(1)"> › </div>
                 </div>`
 
         //Navbar month
