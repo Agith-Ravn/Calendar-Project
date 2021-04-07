@@ -64,6 +64,7 @@ p {
   display: block;
   padding: 15px 0;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .colorSelected {
@@ -84,7 +85,7 @@ p {
 
 .weeksContainer {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 135px;
   width: 150px;
   height: 880px;
   float: left;
@@ -99,7 +100,7 @@ p {
 
 .grid-date-container {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
+  grid-template-columns: repeat(7, 135px);
   justify-items: center;
   align-items: center;
   width: 950px;
@@ -107,18 +108,20 @@ p {
 }
 
 .dates-grid-item {
-  padding: 30px;
+  padding: 30px 40px;
+  cursor: pointer;
 }
 
 .selectedDate {
   background-color:#5978d5;
-  border-radius: 20%;
-  width: 40px;
-  height: 0px;
+  border-radius: 10px;
+  width: auto;
+  height: auto;
   text-align: center;
   line-height: 0;
   color: white;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
 /*--------------------------- Events ---------------------------*/
