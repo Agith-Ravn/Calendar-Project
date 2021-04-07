@@ -157,3 +157,50 @@ function styleSelectedDate(i) {
 
 }
 
+// FULL YEAR
+
+today = new Date();
+currentMonth = today.getMonth();
+currentYear = today.getFullYear();
+selectYear = document.getElementById("year");
+selectedMonth = document.getElementById("month");
+
+months = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"]
+
+monthAndYear = document.getElementById("monthAndYear");
+showCalendar(currentMonth, currentYear);
+// Backwords years 
+function next() {
+    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+    currentMonth = (currentMonth + 1) % 12;
+    showCalendar(currentMonth, currentYear);
+}
+// Forward years 
+function previous() {
+    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    showCalendar(currentMonth, currentYear)
+}
+function jump(){
+    currentYear = parseInt(selectYear.value);
+    currentMonth = parseInt(selectMonth.value);
+    showCalendar(currentMonth, currentYear);
+}
+
+function showCalender(month, year) {
+    let firstDay = (new Date(year, month)).getDate();
+
+    // Body Calender
+    tb1 = document.getElementById("calender-body"); 
+
+    // Clearing all previous cells
+    tb1.innerHTML = "";
+
+    // filing data about month and in the page via DOM.
+    monthAndYear.innerHTML = months[months] + " " + year;
+    selectYear.value = year;
+    selectedMonth.value = month;
+
+    // Create all month cells 
+}
+

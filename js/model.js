@@ -1,9 +1,9 @@
 // Models
 const model = {
 //--------------------------- View ---------------------------
-    currentPage: 'homePage',
+    currentPage: 'yearPage',
     // currentPage: 'loginPage',
-    // currentPage: 'yearPage',
+    // currentPage: 'homePage',
 
     navbar: { //forandrer utseende på navbar
         homePageView: true,

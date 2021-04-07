@@ -114,18 +114,23 @@ function initiereYear(){
 
             //Midlertidig buttons (1 år tilbake)
             // Make dragger so can see 2031...
-            html += `<div> < </div>`
+            html += `<div> <button onclick="previous"> < </button></div>`
 
+            /*
             for (let i = 2020; i <= 2030; i++) {
                 html += `<div class="year">${i}</div>`
-            }
+            }*/
+
+            html += `<div id="year" class="year">2021</div>`
+
 
             //Midlertidig buttons (1 år frem)
-            html += `<div> > </div>`
+            html += `<div> <button onclick="next"> > </button></div>`
         html += ` </div>`
         
         //Months
         // Put days in month for visual not just a gray box.
+        // 
         html += `<div class="month-container">`
         for (let j = 0; j < 12 ; j++) {
             html += `<div class="grid-item-month">` + model.months[j] + `
