@@ -48,7 +48,6 @@ const model = {
     weeksRowCount: 0,
     
     daysInMonth: 0,
-    weeksInMonth: [],
     currentMonth: 0,
     changeMonth: 0,
     selectedMonth: 'empty',
@@ -83,5 +82,3 @@ const model = {
     },
 
 }
-
-// console.log(model)
