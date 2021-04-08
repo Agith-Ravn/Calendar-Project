@@ -202,5 +202,36 @@ function showCalender(month, year) {
     selectedMonth.value = month;
 
     // Create all month cells 
+    let date = 1; 
+    for (let i = 0; i < 4; i ++){
+        // Table row
+        let row = document.createElement("tr");
+        // Individual cells
+        for (let j = 0; j < 7; j++){
+            if (i === 0 && j < firstDay) {
+                cell = document.createElement("td");
+                cellText = document.createTextNode("");
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }
+            else if (date > daysInMonth(month, year)) {
+                break
+            }
+            else {
+                cell = document.createElement("td");
+                cellText = document.createTextNode(date);
+                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                    cell.classList.add("bg-info");
+                }
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+                date++;
+            }
+        }
+        tb1.appendChild(row);
+    }
 }
-
+// Check days in month
+function daysInMonth(iMonth, iYear){
+    return 32 - new Date(iYear, iMonth, 32).getDate();
+}
