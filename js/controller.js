@@ -136,25 +136,33 @@ function findWeeksRowCount() {
     }
 } 
 
-//Style valgt dato + selected
-function styleSelectedDate(i) {
-    //Hvis du ikke har valgt noen
+//Style currentDate
+function styleCurrentDate(i) {
+    let d = new Date();
+    let month = d.getMonth() + 1;
+    let year = d.getFullYear()
+
+    if (model.currentMonth == month && model.currentYear == year) {
+        model.selectedDate = 0;
+    } else {
+        model.selectedDate = null;
+    }
+
     if (model.selectedDate == 0) {
         model.selectedDate = model.currentDate;
         let index = model.currentDate
         let id = 'date' + index 
         document.getElementById(id).classList.add('selectedDate')
-    } 
+    }
+}
 
-    //hvis du velger
-
-    //1. selectedDate = currentDate
-
-    //2. når du trykker på andre datoer
-    //      selectedDate = dato du trykker på
-
-    //3. selectedDate skal bli stylet
-
+//Style selectedDate
+function selectedDate(selectedDiv) {    
+    let datesDiv = document.getElementsByClassName('dates-grid-item');
+    for(let i = 0; i < datesDiv.length; i++) {
+        datesDiv[i].classList.remove('selectedDate');
+    }
+    selectedDiv.classList.add('selectedDate')
 }
 
 // FULL YEAR
