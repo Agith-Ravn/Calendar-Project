@@ -50,7 +50,7 @@ const model = {
     daysInMonth: 0,
     currentMonth: 0,
     changeMonth: 0,
-    selectedMonth: 'empty',
+    colorSelectedMonth: 'empty',
 
     currentYear: 0, //året nå
     changeYear: 0, //antall år frem og tilbake
@@ -60,13 +60,13 @@ const model = {
 //--------------------------- Appointments ---------------------------
     //hendelser
     appointments: [//år , mnd (zero index) , dato
-        { date: new Date(2021, 2, 29), header: 'Test1', content: 'Test-test-test1', privat: false},
-        { date: new Date(2021, 2, 30), header: 'Test2', content: 'Test-test-test2', privat: false},
-        { date: new Date(2021, 2, 22), header: 'Test3', content: 'Test-test-test3', privat: true},
-        { date: new Date(2021, 2, 25), header: 'Test4', content: 'Test-test-test4', privat: true},
-        { date: new Date(2021, 2, 28), header: 'Test5', content: 'Test-test-test5', privat: true},
+        { date: new Date(2021, 3, 08), header: 'Test1', content: 'Test-test-test1', privat: false},
+        { date: new Date(2021, 3, 22), header: 'Test3', content: 'Test-test-test3', privat: true},
+        { date: new Date(2021, 3, 25), header: 'Test4', content: 'Test-test-test4', privat: true},
+        { date: new Date(2021, 3, 28), header: 'Test5', content: 'Test-test-test5', privat: true},
+        { date: new Date(2021, 3, 30), header: 'Test2', content: 'Test-test-test2', privat: false},
     ],
-
+    selectedDateAppointments: [],
     appointmentsDateInput:'',
     appointmentsHeaderInput:'',
     appointmentsContentInput:'',

@@ -67,20 +67,20 @@ function firstWeekdayInMonth(year, month) {
 }
 
 //Changes month when selecting month in navbar
-function changeMonth(monthIndex, colorSelectedIndex) {
+function changeMonth(monthIndex, idName) {
     model.changeMonth = monthIndex + 1;
-    model.selectedMonth = colorSelectedIndex; 
+    model.colorSelectedMonth = idName; 
     updateView();
 }
 
 //Farger current/selected mnd
 function styleCurrentMonth() {
-    let id = 'colorSelected' + (model.currentMonth - 1)
+    let id = 'month' + (model.currentMonth - 1)
 
-    if (model.selectedMonth == 'empty') {
+    if (model.colorSelectedMonth == 'empty') {
         document.getElementById(id).classList.add('colorSelected');
     } else {
-        document.getElementById(model.selectedMonth).classList.add('colorSelected');
+        document.getElementById(model.colorSelectedMonth).classList.add('colorSelected');
     }
 }   
 
@@ -162,8 +162,34 @@ function selectedDate(selectedDiv) {
     for(let i = 0; i < datesDiv.length; i++) {
         datesDiv[i].classList.remove('selectedDate');
     }
+    model.selectedDate = selectedDiv.innerHTML
     selectedDiv.classList.add('selectedDate')
 }
+
+//Get appointment from selected date
+function getSelectedAppointment() {
+    let filteredList = [];
+
+    for(let i = 0; i < model.appointments.length; i++) {
+        let appointment = model.appointments[i];
+
+        if (appointment.date.getFullYear() == model.currentYear
+            && appointment.date.getMonth() == (model.currentMonth - 1)
+            && appointment.date.getDate() == model.selectedDate) {
+            
+            filteredList.push(appointment)
+        } 
+    }
+
+    //8, 22, 25, 28, 30 april 2021 skal fungere
+    model.selectedDateAppointments = filteredList
+}
+
+/* Lag en egen funksjon som viser antall 
+avtaler/hendelser for currentMonth under alle datoer */
+
+/* Lag en egen funksjon som legger til nye avtaler/hendelser */
+
 
 // FULL YEAR
 

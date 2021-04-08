@@ -59,7 +59,7 @@ function homeView() {
 
                 //Dates
                 for (let i = 1; i <= model.daysInMonth ; i++) {
-                    html += `<div id="date${i}" class="dates-grid-item" onclick="selectedDate(this)">${i}</div>`
+                    html += `<div id="date${i}" class="dates-grid-item" onclick="selectedDate(this);getSelectedAppointment();">${i}</div>`
                 }
 
             html += `</div>`
@@ -74,12 +74,12 @@ function homeView() {
             html += `<div class="hendelseBox">`
             // Hvordan skal vi farge <div> </div>?
             html += `<div class="hendelse">
-                        <div> </div>
+                        <div> <!-- color --> </div>
                         <h2> Tekst 1 </h2>
                         <p> Innholds tekst </p>       
                     </div>`
             html += `<div class="hendelse">
-                        <div> </div>
+                        <div> <!-- color --> </div>
                         <h2> Tekst 2 </h2>
                         <p> Innholds tekst bla bla bla bla blablal bla Innholds tekst bla bla bla bla blablal blaInnholds tekst bla bla bla bla blablal blaInnholds tekst bla bla bla bla blablal blalablal bla </p>       
                     </div>`
@@ -172,7 +172,7 @@ function navBarView() {
         //Navbar month
         html += `<div>`
         for(var i in model.months) {
-            html += `<div class="navBarMonth" id="colorSelected${i}" onclick="changeMonth(${i}, 'colorSelected${i}')"> `
+            html += `<div class="navBarMonth" id="month${i}" onclick="changeMonth(${i}, 'month${i}')"> `
             + model.months[i] + `</div>`
         }
         html += `</div>`
