@@ -8,7 +8,7 @@ function updateView(){
         findWeeksInCurrentMonth();
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
-        //styleCurrentDate();
+        styleCurrentDate();
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
