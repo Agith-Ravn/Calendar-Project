@@ -185,27 +185,6 @@ function getSelectedAppointment() {
     model.selectedDateAppointments = filteredList
 }
 
-<<<<<<< Updated upstream
-/* Lag en egen funksjon som viser antall 
-avtaler/hendelser for currentMonth under alle datoer */
-
-/* Lag en egen funksjon som legger til nye avtaler/hendelser */
-
-
-// FULL YEAR
-
-today = new Date();
-currentMonth = today.getMonth();
-currentYear = today.getFullYear();
-selectYear = document.getElementById("year");
-selectedMonth = document.getElementById("month");
-
-months = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"]
-
-monthAndYear = document.getElementById("monthAndYear");
-showCalendar(currentMonth, currentYear);
-=======
->>>>>>> Stashed changes
 // Backwords years 
 function next() {
     fullYear ++;
