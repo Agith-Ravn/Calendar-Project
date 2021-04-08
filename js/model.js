@@ -80,5 +80,9 @@ const model = {
         orange:'#FF7F50',
         //Legg til flere farger senere
     },
-
 }
+today = new Date();
+fullYear = today.getFullYear();
+monthsNames = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"]
+
+

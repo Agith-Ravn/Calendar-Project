@@ -8,8 +8,7 @@ function updateView(){
         findWeeksInCurrentMonth();
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
-        styleCurrentDate();
-
+        //styleCurrentDate();
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
@@ -26,22 +25,17 @@ function homeView() {
     let html = ``;
     //Navbar
     html += navBarView();
-
     //Dates
     html += `<div class="calender">`
-
             //Weeks
             html += `<div class="weeksContainer">`
-
                 //Midlertidig
                 html += `<p> Uke</p>`
-
                 for(let i = 1; i <= model.weeksRowCount; i++) {
                     html += `<p class="weeks-grid-item"> ${model.weeksInCurrentMonth[i - 1]}</p>`
                 }
 
             html += `</div>`
-           
             //Weekdays
             html += `<div class="grid-date-container">
                 <p>Mandag</p>
@@ -51,20 +45,16 @@ function homeView() {
                 <p>Fredag</p>
                 <p>Lørdag</p>
                 <p>Søndag</p>`
-
                 //Empty boxes (date displacement)
                 for(let j = 1; j <= model.dateDisplacement; j++) {
                     html += `<p>  </p>`
                 }
-
                 //Dates
                 for (let i = 1; i <= model.daysInMonth ; i++) {
                     html += `<div id="date${i}" class="dates-grid-item" onclick="selectedDate(this);getSelectedAppointment();">${i}</div>`
                 }
-
             html += `</div>`
     html += `</div>`
-
     //Events / hendelser
     html +=`<div class="widthCard">
                 <div class="hendelser">
@@ -86,7 +76,6 @@ function homeView() {
     html += `</div></div></div>`
     return html
 }
-
 // THIS IS LOGIN PAGE 
 function loginScreen() {
     let html = ``;
@@ -101,42 +90,24 @@ function loginScreen() {
             </div>`
     return html;
 }
-
 // THIS IS THE INITEIER YEAR  
 function initiereYear(){
+    var getMonthDays = days(0, fullYear); // adds a week to a date
     let html = ``;
     //Navbar
     html += navBarView();
-
-    //Entire year (10 years)
     html += `<div id="entireYear">`
-        html += `<div id="years">`
-
-            //Midlertidig buttons (1 år tilbake)
-            // Make dragger so can see 2031...
-            html += `<div> <button onclick="previous"> < </button></div>`
-
-            /*
-            for (let i = 2020; i <= 2030; i++) {
-                html += `<div class="year">${i}</div>`
-            }*/
-
-            html += `<div id="year" class="year">2021</div>`
-
-
-            //Midlertidig buttons (1 år frem)
-            html += `<div> <button onclick="next"> > </button></div>`
-        html += ` </div>`
-        
+        // HTML + funksjon 
+        html += yearUpdateView();
         //Months
         // Put days in month for visual not just a gray box.
-        // 
         html += `<div class="month-container">`
-        for (let j = 0; j < 12 ; j++) {
-            html += `<div class="grid-item-month">` + model.months[j] + `
+        for (let j = 1; j <= 12 ; j++) {
+            var getMonthDays = days(j, fullYear)
+            html += `<div class="grid-item-month">` + model.months[j - 1] + `
                 <div class="daysInMonthBox">
                     <div class="grid-item-month-days">`
-                        for (let i = 1; i <= model.daysInMonth ; i++) {
+                        for (let i = 1; i <= getMonthDays ; i++) {
                             html += `<div class="grid-item-year-days">${i}</div>`
                         }
             html += `</div>
@@ -146,10 +117,8 @@ function initiereYear(){
     html += `</div> </div>`
     return html
 }
-
 //Egen funksjon som lager navbar
 function navBarView() {
-    
     let html = '';
     html += `<div class="navBar">`
         //Navbar login & se hele året button
@@ -168,7 +137,6 @@ function navBarView() {
                     <h1> ` + model.currentYear + `</h1>
                     <div onclick="changeYear(1)"> › </div>
                 </div>`
-
         //Navbar month
         html += `<div>`
         for(var i in model.months) {
@@ -178,4 +146,13 @@ function navBarView() {
         html += `</div>`
     html +=`</div>`
     return html
+}
+function yearUpdateView() {
+    return `<div id="years">
+        <div> <button onclick="previous()"> < </button></div>
+
+        <div id="year" class="year">${fullYear}</div>
+
+        <div> <button onclick="next()"> > </button> </div>
+    </div>`
 }

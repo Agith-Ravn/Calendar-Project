@@ -185,6 +185,7 @@ function getSelectedAppointment() {
     model.selectedDateAppointments = filteredList
 }
 
+<<<<<<< Updated upstream
 /* Lag en egen funksjon som viser antall 
 avtaler/hendelser for currentMonth under alle datoer */
 
@@ -203,69 +204,22 @@ months = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August",
 
 monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
+=======
+>>>>>>> Stashed changes
 // Backwords years 
 function next() {
-    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
-    currentMonth = (currentMonth + 1) % 12;
-    showCalendar(currentMonth, currentYear);
+    fullYear ++;
+    initiereYear();
+    updateView();
 }
 // Forward years 
 function previous() {
-    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
-    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
-    showCalendar(currentMonth, currentYear)
-}
-function jump(){
-    currentYear = parseInt(selectYear.value);
-    currentMonth = parseInt(selectMonth.value);
-    showCalendar(currentMonth, currentYear);
+    fullYear --;
+    initiereYear();
+    updateView();
 }
 
-function showCalender(month, year) {
-    let firstDay = (new Date(year, month)).getDate();
-
-    // Body Calender
-    tb1 = document.getElementById("calender-body"); 
-
-    // Clearing all previous cells
-    tb1.innerHTML = "";
-
-    // filing data about month and in the page via DOM.
-    monthAndYear.innerHTML = months[months] + " " + year;
-    selectYear.value = year;
-    selectedMonth.value = month;
-
-    // Create all month cells 
-    let date = 1; 
-    for (let i = 0; i < 4; i ++){
-        // Table row
-        let row = document.createElement("tr");
-        // Individual cells
-        for (let j = 0; j < 7; j++){
-            if (i === 0 && j < firstDay) {
-                cell = document.createElement("td");
-                cellText = document.createTextNode("");
-                cell.appendChild(cellText);
-                row.appendChild(cell);
-            }
-            else if (date > daysInMonth(month, year)) {
-                break
-            }
-            else {
-                cell = document.createElement("td");
-                cellText = document.createTextNode(date);
-                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                    cell.classList.add("bg-info");
-                }
-                cell.appendChild(cellText);
-                row.appendChild(cell);
-                date++;
-            }
-        }
-        tb1.appendChild(row);
-    }
-}
-// Check days in month
-function daysInMonth(iMonth, iYear){
-    return 32 - new Date(iYear, iMonth, 32).getDate();
-}
+function days(month,year) {
+    return new Date(year, month, 0).getDate();
+    initiereYear();
+};
