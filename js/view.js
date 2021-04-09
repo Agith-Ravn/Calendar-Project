@@ -49,7 +49,17 @@ function homeView() {
                 }
                 //Dates
                 for (let i = 1; i <= model.daysInMonth ; i++) {
-                    html += `<div id="date${i}" class="dates-grid-item" onclick="selectedDate(this);getSelectedAppointment();"> ${i} </div>`
+                    html += `<div>
+                                <div id="date${i}" class="dates-grid-item" onclick="selectedDate(this, ${i});getSelectedAppointment();"> ${i} </div>
+                                <div class="appointment-container">`
+
+                                let date = i
+                                for(let i = 0; i < model.selectedMonthAppointments.length; i++) {
+                                    if (model.selectedMonthAppointments[i].date.getDate() == date) {
+                                        html +=`<div class="appointment--color"></div>`
+                                    }
+                                }
+                    html +=`</div></div>`
                 }
             html += `</div>`
     html += `</div>`    

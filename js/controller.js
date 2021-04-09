@@ -139,12 +139,12 @@ function styleSelectedDate() {
 }
 
 //Style selectedDate
-function selectedDate(selectedDiv) {    
+function selectedDate(selectedDiv, date) {    
     let datesDiv = document.getElementsByClassName('dates-grid-item');
     for(let i = 0; i < datesDiv.length; i++) {
         datesDiv[i].classList.remove('selectedDate');
     }
-    model.selectedDate = selectedDiv.innerHTML
+    model.selectedDate = date
     selectedDiv.classList.add('selectedDate')
     updateView();
 }
@@ -178,7 +178,6 @@ function getAppointmentsSelctedMonth() {
         } 
     }  
     model.selectedMonthAppointments = filteredList
-    console.log(model.selectedMonthAppointments)
     updateView();
 }
 
