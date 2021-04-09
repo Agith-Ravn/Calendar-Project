@@ -66,8 +66,12 @@ const model = {
         { date: new Date(2021, 3, 25), header: 'Test5', content: 'Test-test-test5', privat: true, color: ''},
         { date: new Date(2021, 3, 28), header: 'Test6', content: 'Test-test-test6', privat: true, color: ''},
         { date: new Date(2021, 3, 30), header: 'Test3', content: 'Test-test-test3', privat: false, color: ''},
+        { date: new Date(2021, 2, 9), header: 'Test7', content: 'smfdsfsd ', privat: false, color: 'yellow'},
+        { date: new Date(2021, 2, 11), header: 'Test8', content: '233ssdfdsfsfd ', privat: false, color: 'hotpink'},
     ],
     selectedDateAppointments: [],
+    selectedMonthAppointments: [],
+    
     appointmentsDateInput:'',
     appointmentsHeaderInput:'',
     appointmentsContentInput:'',

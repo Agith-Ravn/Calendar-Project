@@ -49,7 +49,7 @@ function homeView() {
                 }
                 //Dates
                 for (let i = 1; i <= model.daysInMonth ; i++) {
-                    html += `<div id="date${i}" class="dates-grid-item" onclick="selectedDate(this);getSelectedAppointment();">${i}</div>`
+                    html += `<div id="date${i}" class="dates-grid-item" onclick="selectedDate(this);getSelectedAppointment();"> ${i} </div>`
                 }
             html += `</div>`
     html += `</div>`    
@@ -135,9 +135,7 @@ function appointmentsView() {
         <div class="nyHendelse"><a> + Legg til ny </a></div>`
 
     html += `<div class="hendelseBox">`
-    // Hvordan skal vi farge <div> </div>?
 
-    // console.log(model.selectedDateAppointments[0].header)
     for(let i = 0; i < model.selectedDateAppointments.length; i++) {
         html += `<div class="hendelse">
                 <div style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>

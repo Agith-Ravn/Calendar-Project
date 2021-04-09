@@ -163,8 +163,26 @@ function getSelectedAppointment() {
     }
     //8, 22, 25, 28, 30 april 2021 skal fungere
     model.selectedDateAppointments = filteredList
+    getAppointmentsSelctedMonth();
+}
+
+//Get appointment from selected month
+function getAppointmentsSelctedMonth() {
+    let filteredList = [];
+    for(let i = 0; i < model.appointments.length; i++) {
+        let appointment = model.appointments[i];
+        if (appointment.date.getFullYear() == model.currentYear
+            && appointment.date.getMonth() == (model.currentMonth - 1)) {
+
+            filteredList.push(appointment)
+        } 
+    }  
+    model.selectedMonthAppointments = filteredList
+    console.log(model.selectedMonthAppointments)
     updateView();
 }
+
+
 // Backwords years 
 function days(month,year) {
     return new Date(year, month, 0).getDate();
