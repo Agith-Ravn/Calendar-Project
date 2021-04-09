@@ -155,13 +155,12 @@ p {
   border-radius: 15px;
 }
 
-/* Denne må være responsive... Finn en løsning */
+/* hendelse farge */
 .hendelse div {
   width: 30px;
   height: 30px;
   border-radius: 50px;
   float: left;
-  background-color: blue;
 }
 
 .hendelse h2 {

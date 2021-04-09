@@ -163,7 +163,7 @@ function getSelectedAppointment() {
     }
     //8, 22, 25, 28, 30 april 2021 skal fungere
     model.selectedDateAppointments = filteredList
-    console.log(model.selectedDateAppointments)
+    updateView();
 }
 // Backwords years 
 function days(month,year) {

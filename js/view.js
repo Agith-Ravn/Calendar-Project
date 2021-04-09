@@ -52,25 +52,10 @@ function homeView() {
                     html += `<div id="date${i}" class="dates-grid-item" onclick="selectedDate(this);getSelectedAppointment();">${i}</div>`
                 }
             html += `</div>`
+    html += `</div>`    
+    html += appointmentsView();
     html += `</div>`
-    //Events / hendelser
-    html +=`<div class="widthCard">
-                <div class="hendelser">
-                    <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
-                    <div class="nyHendelse"><a> + Legg til ny </a></div>`
-            html += `<div class="hendelseBox">`
-            // Hvordan skal vi farge <div> </div>?
-            html += `<div class="hendelse">
-                        <div> <!-- color --> </div>
-                        <h2> Tekst 1 </h2>
-                        <p> Innholds tekst </p>       
-                    </div>`
-            html += `<div class="hendelse">
-                        <div> <!-- color --> </div>
-                        <h2> Tekst 2 </h2>
-                        <p> Innholds tekst bla bla bla bla blablal bla Innholds tekst bla bla bla bla blablal blaInnholds tekst bla bla bla bla blablal blaInnholds tekst bla bla bla bla blablal blalablal bla </p>       
-                    </div>`
-    html += `</div></div></div>`
+    
     return html
 }
 // THIS IS LOGIN PAGE 
@@ -141,6 +126,32 @@ function navBarView() {
     html +=`</div>`
     return html
 }
+
+function appointmentsView() {
+    let html = '';
+    html +=`<div class="widthCard">
+    <div class="hendelser">
+        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
+        <div class="nyHendelse"><a> + Legg til ny </a></div>`
+
+    html += `<div class="hendelseBox">`
+    // Hvordan skal vi farge <div> </div>?
+
+    // console.log(model.selectedDateAppointments[0].header)
+    for(let i = 0; i < model.selectedDateAppointments.length; i++) {
+        html += `<div class="hendelse">
+                <div style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
+                <h2> ${model.selectedDateAppointments[i].header} </h2>
+                <p> ${model.selectedDateAppointments[i].content} </p>
+                <p> Privat: ${model.selectedDateAppointments[i].privat} <- må endres til noe annet </p>
+                </div>`
+    }
+        
+    html += `</div></div>`
+
+    return html;
+}
+
 function yearUpdateView() {
     return `<div id="years">
         <div> <button onclick="changeYear(-1)"> < </button></div>
