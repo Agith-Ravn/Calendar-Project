@@ -12,16 +12,13 @@ function loginResponse(){
     }
 }
 
-
 /*--------------------------- Calender - Homepage ---------------------------*/
 //Egen funksjon som finner datoen idag
 function findCurrentDate() {
-
     //year
     let d = new Date();
     let year = d.getFullYear()
     model.currentYear = (year + model.changeYear)
-
     //month
     let month = d.getMonth() + 1;    
     if (model.changeMonth == 0) {
@@ -29,11 +26,9 @@ function findCurrentDate() {
     } else {
         model.currentMonth = model.changeMonth
     }
-
     //date
     let date = d.getDate();
     model.currentDate = date
-
     //days in this month
     model.daysInMonth = new Date(model.currentYear, model.currentMonth, 0).getDate();
 }   
@@ -52,7 +47,6 @@ function dateDisplacement() {
     if (x == 0) {
         model.dateDisplacement = 6;
     } 
-
     for(let i = 1; i <= 6; i++) {
         if (x == i) {
             model.dateDisplacement = (i - 1);
@@ -76,7 +70,6 @@ function changeMonth(monthIndex, idName) {
 //Farger current/selected mnd
 function styleCurrentMonth() {
     let id = 'month' + (model.currentMonth - 1)
-
     if (model.colorSelectedMonth == 'empty') {
         document.getElementById(id).classList.add('colorSelected');
     } else {
@@ -92,7 +85,6 @@ function changeYear(value) {
 //Funksjon som finner riktig uke nummer i currentMonth
 function findWeeksInCurrentMonth() {
     let x = [] 
-    
     if (model.daysInMonth + model.dateDisplacement <= 28) {
         x.push(1, 8, 15, 22)
     } else if (model.daysInMonth + model.dateDisplacement >= 29 &&
@@ -103,7 +95,6 @@ function findWeeksInCurrentMonth() {
         let LastDateInMonth = model.daysInMonth;
         x.push(1, 8, 15, 22, 29, LastDateInMonth)
     }
-
     let weekNumber = []
     for(let i = 0; i < x.length; i++) {
         let date = x[i];
@@ -126,7 +117,6 @@ function findWeekNumber(year,month,day) {
 //Antall rader i mnd
 function findWeeksRowCount() {
     let x = model.dateDisplacement + model.daysInMonth
-
     if (x >= 36) {
         model.weeksRowCount = 6
     } if (x >= 29 && x < 36) {
@@ -141,13 +131,11 @@ function styleCurrentDate(i) {
     let d = new Date();
     let month = d.getMonth() + 1;
     let year = d.getFullYear()
-
     if (model.currentMonth == month && model.currentYear == year) {
         model.selectedDate = 0;
     } else {
         model.selectedDate = null;
     }
-
     if (model.selectedDate == 0) {
         model.selectedDate = model.currentDate;
         let index = model.currentDate
@@ -169,10 +157,8 @@ function selectedDate(selectedDiv) {
 //Get appointment from selected date
 function getSelectedAppointment() {
     let filteredList = [];
-
     for(let i = 0; i < model.appointments.length; i++) {
         let appointment = model.appointments[i];
-
         if (appointment.date.getFullYear() == model.currentYear
             && appointment.date.getMonth() == (model.currentMonth - 1)
             && appointment.date.getDate() == model.selectedDate) {
@@ -180,24 +166,11 @@ function getSelectedAppointment() {
             filteredList.push(appointment)
         } 
     }
-
     //8, 22, 25, 28, 30 april 2021 skal fungere
     model.selectedDateAppointments = filteredList
+    console.log(model.selectedDateAppointments)
 }
-
 // Backwords years 
-function next() {
-    fullYear ++;
-    initiereYear();
-    updateView();
-}
-// Forward years 
-function previous() {
-    fullYear --;
-    initiereYear();
-    updateView();
-}
-
 function days(month,year) {
     return new Date(year, month, 0).getDate();
     initiereYear();

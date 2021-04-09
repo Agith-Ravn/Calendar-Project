@@ -19,7 +19,6 @@ function updateView(){
         document.getElementById('app').innerHTML = initiereYear()
     }
 }
-
 // THIS IS HOME PAGE.
 function homeView() {
     let html = ``;
@@ -34,7 +33,6 @@ function homeView() {
                 for(let i = 1; i <= model.weeksRowCount; i++) {
                     html += `<p class="weeks-grid-item"> ${model.weeksInCurrentMonth[i - 1]}</p>`
                 }
-
             html += `</div>`
             //Weekdays
             html += `<div class="grid-date-container">
@@ -60,7 +58,6 @@ function homeView() {
                 <div class="hendelser">
                     <h1> 18 Mars 2021 </h1>
                     <div class="nyHendelse"><a> + Legg til ny </a></div>`
-
             html += `<div class="hendelseBox">`
             // Hvordan skal vi farge <div> </div>?
             html += `<div class="hendelse">
@@ -97,13 +94,10 @@ function initiereYear(){
     //Navbar
     html += navBarView();
     html += `<div id="entireYear">`
-        // HTML + funksjon 
-        html += yearUpdateView();
-        //Months
-        // Put days in month for visual not just a gray box.
+    html += yearUpdateView();
         html += `<div class="month-container">`
         for (let j = 1; j <= 12 ; j++) {
-            var getMonthDays = days(j, fullYear)
+            var getMonthDays = days(j, model.currentYear)
             html += `<div class="grid-item-month">` + model.months[j - 1] + `
                 <div class="daysInMonthBox">
                     <div class="grid-item-month-days">`
@@ -149,10 +143,8 @@ function navBarView() {
 }
 function yearUpdateView() {
     return `<div id="years">
-        <div> <button onclick="previous()"> < </button></div>
-
-        <div id="year" class="year">${fullYear}</div>
-
-        <div> <button onclick="next()"> > </button> </div>
+        <div> <button onclick="changeYear(-1)"> < </button></div>
+        <div id="year" class="year">${model.currentYear}</div>
+        <div> <button onclick="changeYear(1)"> > </button> </div>
     </div>`
 }
