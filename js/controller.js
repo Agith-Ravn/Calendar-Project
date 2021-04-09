@@ -31,6 +31,11 @@ function findCurrentDate() {
     model.currentDate = date
     //days in this month
     model.daysInMonth = new Date(model.currentYear, model.currentMonth, 0).getDate();
+
+    //gives selectedDate same date as currentDate
+    if (model.selectedDate == 0) {
+        model.selectedDate = model.currentDate;        
+    }
 }   
 
 function findDaysOfMonthYear(){
@@ -126,22 +131,11 @@ function findWeeksRowCount() {
     }
 } 
 
-//Style currentDate
-function styleCurrentDate(i) {
-    let d = new Date();
-    let month = d.getMonth() + 1;
-    let year = d.getFullYear()
-    if (model.currentMonth == month && model.currentYear == year) {
-        model.selectedDate = 0;
-    } else {
-        model.selectedDate = null;
-    }
-    if (model.selectedDate == 0) {
-        model.selectedDate = model.currentDate;
-        let index = model.currentDate
-        let id = 'date' + index 
-        document.getElementById(id).classList.add('selectedDate')
-    }
+//Style currentDate first, then style selectedDate
+function styleSelectedDate() {
+    let index = model.selectedDate
+    let id = 'date' + index 
+    document.getElementById(id).classList.add('selectedDate')
 }
 
 //Style selectedDate
@@ -152,9 +146,7 @@ function selectedDate(selectedDiv) {
     }
     model.selectedDate = selectedDiv.innerHTML
     selectedDiv.classList.add('selectedDate')
-
-    // Når du klikker på en dato skal komme inn i Hendelser Dato
-    //updateView();
+    updateView();
 }
 
 //Get appointment from selected date
