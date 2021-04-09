@@ -115,8 +115,8 @@ p {
 .selectedDate {
   background-color: #5978d5;
   border-radius: 10px;
-  width: 0px;
-  height: 0px;
+  width: auto;
+  height: auto;
   text-align: center;
   line-height: 0;
   color: white;
@@ -124,7 +124,7 @@ p {
   font-size: 1.2rem;
 }
 
-.appointment--color {
+/* .appointment--color {
   display: block;
   background-color: blue;
   width: 20px;
@@ -136,7 +136,7 @@ p {
   font-size: 1rem;
   position: relative;
   top: 30px;
-}
+} */
 
 /*--------------------------- Events ---------------------------*/
 .hendelser {
