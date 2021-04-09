@@ -132,7 +132,7 @@ function appointmentsView() {
     html +=`<div class="widthCard">
     <div class="hendelser">
         <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
-        <div class="nyHendelse"><a> + Legg til ny </a></div>`
+        <a href="#" onclick="addAppointment()"> <div class="nyHendelse">+ Legg til ny </div></a>`
 
     html += `<div class="hendelseBox">`
 
@@ -156,4 +156,8 @@ function yearUpdateView() {
         <div id="year" class="year">${model.currentYear}</div>
         <div> <button onclick="changeYear(1)"> > </button> </div>
     </div>`
+}
+
+function addAppointment() {
+    
 }
