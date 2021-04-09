@@ -152,6 +152,9 @@ function selectedDate(selectedDiv) {
     }
     model.selectedDate = selectedDiv.innerHTML
     selectedDiv.classList.add('selectedDate')
+
+    // Når du klikker på en dato skal komme inn i Hendelser Dato
+    //updateView();
 }
 
 //Get appointment from selected date

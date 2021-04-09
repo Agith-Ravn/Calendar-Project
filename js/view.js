@@ -56,7 +56,7 @@ function homeView() {
     //Events / hendelser
     html +=`<div class="widthCard">
                 <div class="hendelser">
-                    <h1> 18 Mars 2021 </h1>
+                    <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
                     <div class="nyHendelse"><a> + Legg til ny </a></div>`
             html += `<div class="hendelseBox">`
             // Hvordan skal vi farge <div> </div>?
