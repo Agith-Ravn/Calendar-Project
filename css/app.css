@@ -146,7 +146,8 @@ p {
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  margin: 2.5px
+  margin: 2.5px;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
 } 
 
 
@@ -227,7 +228,7 @@ p {
 
 #years {
   width: 1400px;
-  padding: 50px 30px;
+  padding: 40px 30px;
   margin: auto;
   display: flex;
   justify-content: space-evenly;
@@ -237,7 +238,7 @@ p {
 
 .selectedYear {
   background-color: #5978d5;
-  padding: 10px 20px;
+  padding: 10px 50px;
   border-radius: 5px;
   color: white;
 }
@@ -249,27 +250,36 @@ p {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 10px;
-  align-items: center;
   justify-items: center;
   padding: 0 100px;
 }
 
 .grid-item-month {
-  width: 300px;
-  height: 200px;
+  width: 310px;
+  height: 214px;
   text-align: center;
   background-color: lightgray;
   border-radius: 15px;
 }
 .daysInMonthBox {
-  width: 280px;
+  width: 290px;
   height: 170px;
   margin: auto;
   background-color: white;
+  border-radius: 3%;
+}
+
+.month-name {
+  padding: 5px 0;
+  font-size: 1.2rem;
 }
 .grid-item-month-days {
+  background-color: white;
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: auto 10px auto 10px auto 10px auto;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  justify-items: center;
+  align-items: center;
+  border-radius: 50px;
 }

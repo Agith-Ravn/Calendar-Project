@@ -95,7 +95,7 @@ function initiereYear(){
         html += `<div class="month-container">`
         for (let j = 1; j <= 12 ; j++) {
             var getMonthDays = days(j, model.currentYear)
-            html += `<div class="grid-item-month">` + model.months[j - 1] + `
+            html += `<div class="grid-item-month"><div class="month-name">` + model.months[j - 1] + `</div>
                 <div class="daysInMonthBox">
                     <div class="grid-item-month-days">`
                         for (let i = 1; i <= getMonthDays ; i++) {
@@ -164,9 +164,9 @@ function appointmentsView() {
 
 function yearUpdateView() {
     return `<div id="years">
-        <div> <button onclick="changeYear(-1)"> < </button></div>
-        <div id="year" class="year">${model.currentYear}</div>
-        <div> <button onclick="changeYear(1)"> > </button> </div>
+        <div> <button onclick="changeYear(-1)"> ‹ </button></div>
+        <div id="year" class="year selectedYear ">${model.currentYear}</div>
+        <div> <button onclick="changeYear(1)"> › </button> </div>
     </div>`
 }
 
