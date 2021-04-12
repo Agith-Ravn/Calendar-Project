@@ -149,8 +149,8 @@ function selectedDate(selectedDiv, date) {
     updateView();
 }
 
-//Get appointment from currentDate (Når du går inn på app)
-function getAppointment() {
+//Shows appointments from selected month
+function showAppointments() {
     let filteredList = [];
     for(let i = 0; i < model.appointments.length; i++) {
         let appointment = model.appointments[i];
@@ -162,22 +162,6 @@ function getAppointment() {
         } 
     }
     model.selectedDateAppointments = filteredList
-}
-
-//Get appointment from selected date
-function getSelectedAppointment() {
-    let filteredList = [];
-    for(let i = 0; i < model.appointments.length; i++) {
-        let appointment = model.appointments[i];
-        if (appointment.date.getFullYear() == model.currentYear
-            && appointment.date.getMonth() == (model.currentMonth - 1)
-            && appointment.date.getDate() == model.selectedDate) {
-            
-            filteredList.push(appointment)
-        } 
-    }
-    model.selectedDateAppointments = filteredList
-    updateView();
 }
 
 //Get appointment from selected month
