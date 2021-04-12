@@ -161,7 +161,6 @@ function getAppointment() {
             filteredList.push(appointment)
         } 
     }
-    //8, 22, 25, 28, 30 april 2021 skal fungere
     model.selectedDateAppointments = filteredList
 }
 
@@ -177,7 +176,6 @@ function getSelectedAppointment() {
             filteredList.push(appointment)
         } 
     }
-    //8, 22, 25, 28, 30 april 2021 skal fungere
     model.selectedDateAppointments = filteredList
     updateView();
 }
