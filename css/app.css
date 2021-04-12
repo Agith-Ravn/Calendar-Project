@@ -130,7 +130,6 @@ p {
   font-size: 1.2rem;
 }
 
-
 .appointment-container {
   display: flex;
   justify-content: center;
@@ -138,10 +137,10 @@ p {
   position: relative;
   top: 0px;
   width: 100px;
-} 
+}
 
 .appointment--color {
-  display: block;  
+  display: block;
   /* background-color: blue; */
   width: 10px;
   height: 10px;
@@ -149,7 +148,6 @@ p {
   margin: 2.5px;
   border: 0.5px solid rgba(0, 0, 0, 0.5);
 } 
-
 
 /*--------------------------- Events ---------------------------*/
 .hendelser {
@@ -282,4 +280,17 @@ p {
   justify-items: center;
   align-items: center;
   border-radius: 50px;
+}
+
+#headerText {
+  height: 40px;
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid rgb(121, 121, 121);
+}
+#paragraphText {
+  height: 75px;
+  width: 250px;
+  border-radius: 10px;
+  border: 1px solid rgb(121, 121, 121);
 }
