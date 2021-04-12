@@ -149,7 +149,7 @@ function selectedDate(selectedDiv, date) {
     updateView();
 }
 
-//Shows appointments from selected month
+//Shows appointments from selectedDate
 function showAppointments() {
     let filteredList = [];
     for(let i = 0; i < model.appointments.length; i++) {
@@ -176,8 +176,8 @@ function getAppointmentsSelctedMonth() {
         } 
     }  
     model.selectedMonthAppointments = filteredList
-    
 }
+
 
 
 

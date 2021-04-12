@@ -142,7 +142,7 @@ p {
 
 .appointment--color {
   display: block;  
-  background-color: blue;
+  /* background-color: blue; */
   width: 10px;
   height: 10px;
   border-radius: 100%;

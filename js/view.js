@@ -52,13 +52,13 @@ function homeView() {
                 //Dates
                 for (let i = 1; i <= model.daysInMonth ; i++) {
                     html += `<div>
-                                <div id="date${i}" class="dates-grid-item" onclick="selectedDate(this, ${i});getSelectedAppointment();"> ${i} </div>
+                                <div id="date${i}" class="dates-grid-item" onclick="selectedDate(this, ${i})"> ${i} </div>
                                 <div class="appointment-container">`
 
                                 let date = i
                                 for(let i = 0; i < model.selectedMonthAppointments.length; i++) {
                                     if (model.selectedMonthAppointments[i].date.getDate() == date) {
-                                        html +=`<div class="appointment--color"></div>`
+                                        html +=`<div class="appointment--color" style="background-color:${model.selectedMonthAppointments[i].color}"></div>`
                                     }
                                 }
                     html +=`</div></div>`
