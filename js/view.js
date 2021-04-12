@@ -142,7 +142,7 @@ function navBarView() {
 function appointmentsView() {
     let html = '';
     html +=`<div class="widthCard">
-    <div class="hendelser">
+    <div id="changeBox" class="hendelser">
         <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
         <a href="#" onclick="addAppointment()"> <div class="nyHendelse">+ Legg til ny </div></a>`
 
@@ -171,5 +171,30 @@ function yearUpdateView() {
 }
 
 function addAppointment() {
-    
+    let html = '';
+    html +=`<div id="changeBox">
+        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
+
+        <input id="headerText" alt="text"><br>
+        <input id="paragraphText" alt="text"><br>
+
+        <input type="checkbox" id="Modul1" name="Modul1">
+        <label for="Modul1"> Modul 1</label><br>
+
+        <input type="checkbox" id="Modul2" name="Modul2">
+        <label for="Modul1"> Modul 2</label><br>
+
+        <input type="checkbox" id="Modul3" name="Modul3">
+        <label for="Modul1"> Modul 3</label><br>
+
+        <input type="checkbox" id="StartIT" name="StartIT">
+        <label for="StartIT"> Start IT</label><br>
+
+        <input type="checkbox" id="Privat" name="Privat">
+        <label for="Privat"> Privat</label><br>
+
+        <a href="#"><div class="nyHendelse">Legg til i kalender </div></a>
+    `
+    document.getElementById("changeBox").innerHTML = html;
+
 }
