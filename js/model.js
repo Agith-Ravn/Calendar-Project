@@ -54,6 +54,7 @@ const model = {
 
     currentYear: 0, //året nå
     changeYear: 0, //antall år frem og tilbake
+    selectedYearInEntireYear: 0,
 
     dateDisplacement: 0,
 

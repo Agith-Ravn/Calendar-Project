@@ -19,6 +19,7 @@ function updateView(){
         model.navbar.homePageView = false;
         findCurrentDate();
         document.getElementById('app').innerHTML = initiereYear()
+        selectCurrentYear();
     }
 }
 // THIS IS HOME PAGE.
@@ -162,12 +163,25 @@ function appointmentsView() {
     return html;
 }
 
+
 function yearUpdateView() {
-    return `<div id="years">
-        <div> <button onclick="changeYear(-1)"> ‹ </button></div>
-        <div id="year" class="year selectedYear ">${model.currentYear}</div>
-        <div> <button onclick="changeYear(1)"> › </button> </div>
+    let html = '';
+    html += `<div id="years">
+        <div> <button onclick="changeYear(-10)"> ‹ </button></div>`
+
+    let currentYear = model.currentYear
+    let lastNumber = currentYear.toString().slice(-1);
+    let x = currentYear - lastNumber;
+    let y = 10 - lastNumber;
+    for(let i = x; i <= (model.currentYear + y); i++) {
+        html += `<div class="entireYear__years" id="year${i}" onclick="selectYearInEntireYear(${i})">${i}</div>`   
+    }
+
+ 
+
+    html += `<div> <button onclick="changeYear(10)"> › </button> </div>
     </div>`
+    return html;
 }
 
 function addAppointment() {

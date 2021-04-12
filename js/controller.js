@@ -18,7 +18,12 @@ function findCurrentDate() {
     //year
     let d = new Date();
     let year = d.getFullYear()
-    model.currentYear = (year + model.changeYear)
+    if (model.selectedYearInEntireYear !== 0 ) {
+        model.currentYear = model.selectedYearInEntireYear
+    } else {
+        model.currentYear = (year + model.changeYear)
+    }
+
     //month
     let month = d.getMonth() + 1;    
     if (model.changeMonth == 0) {
@@ -37,10 +42,6 @@ function findCurrentDate() {
         model.selectedDate = model.currentDate;        
     }
 }   
-
-function findDaysOfMonthYear(){
-    
-}
 
 function daysInMonth(month, year){
     return new Date(year, month, 0).getDate();
@@ -84,6 +85,9 @@ function styleCurrentMonth() {
 
 function changeYear(value) {    
     model.changeYear += value
+    if (model.selectedYearInEntireYear !== 0) {
+        model.selectedYearInEntireYear += value;
+    }
     updateView();
 }
 
@@ -184,3 +188,29 @@ function days(month,year) {
     return new Date(year, month, 0).getDate();
     initiereYear();
 };
+
+//Select current year in entire year view
+function selectCurrentYear() {
+    let index;
+    if (model.selectedYearInEntireYear !== 0 ) {
+        index = model.selectedYearInEntireYear
+    } else {
+        index = model.currentYear
+    }
+    let id = 'year' + index 
+    document.getElementById(id).classList.add('entireYear__currentYear')
+}
+
+function selectYearInEntireYear(value) {
+    model.selectedYearInEntireYear = value;
+    updateView();
+    console.log(model.selectedYearInEntireYear)
+}
+
+
+
+
+// Siste 2 siffer av currentYear| 21 - 10 = 1 | (x + 1) +  (y -1) = 10
+// - Når du går inn, skal currentYear være selected
+// - Skal være 10 år å velge mellom (laget ved hjelp av currentYear)
+// - Hvis jeg velger nytt år > velge nytt år + endre selected year modell, men ikke update view.
