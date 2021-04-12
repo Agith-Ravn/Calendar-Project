@@ -7,6 +7,7 @@ function updateView(){
         findWeeksRowCount();
         findWeeksInCurrentMonth();
         getAppointmentsSelctedMonth();
+        getAppointment();
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
         styleSelectedDate();

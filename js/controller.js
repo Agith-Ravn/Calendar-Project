@@ -149,6 +149,22 @@ function selectedDate(selectedDiv, date) {
     updateView();
 }
 
+//Get appointment from currentDate (Når du går inn på app)
+function getAppointment() {
+    let filteredList = [];
+    for(let i = 0; i < model.appointments.length; i++) {
+        let appointment = model.appointments[i];
+        if (appointment.date.getFullYear() == model.currentYear
+            && appointment.date.getMonth() == (model.currentMonth - 1)
+            && appointment.date.getDate() == model.selectedDate) {
+            
+            filteredList.push(appointment)
+        } 
+    }
+    //8, 22, 25, 28, 30 april 2021 skal fungere
+    model.selectedDateAppointments = filteredList
+}
+
 //Get appointment from selected date
 function getSelectedAppointment() {
     let filteredList = [];
