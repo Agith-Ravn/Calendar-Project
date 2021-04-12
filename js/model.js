@@ -60,8 +60,8 @@ const model = {
 //--------------------------- Appointments ---------------------------
     //hendelser
     appointments: [//år , mnd (zero index) , dato
-        { date: new Date(2021, 3, 08), header: 'Test1', content: 'fsfkpdfkps', privat: false, color: 'blue'},
-        { date: new Date(2021, 3, 08), header: 'Test2', content: 'Masse tekst her ;)', privat: false, color: 'red'},
+        { date: new Date(2021, 3, 12), header: 'Møte med Elin', content: 'Oppdater Elin om hvor langt dere er i oppgaven', privat: false, color: 'blue'},
+        { date: new Date(2021, 3, 12), header: 'Test2', content: 'Masse tekst her ;)', privat: false, color: 'red'},
         { date: new Date(2021, 3, 22), header: 'Test4', content: 'Tgg sdfd dfs', privat: true, color: ''},
         { date: new Date(2021, 3, 25), header: 'Test5', content: 'Test-test-test5', privat: true, color: ''},
         { date: new Date(2021, 3, 28), header: 'Test6', content: 'Test-test-test6', privat: true, color: ''},

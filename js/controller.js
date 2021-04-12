@@ -163,7 +163,7 @@ function getSelectedAppointment() {
     }
     //8, 22, 25, 28, 30 april 2021 skal fungere
     model.selectedDateAppointments = filteredList
-    getAppointmentsSelctedMonth();
+    updateView();
 }
 
 //Get appointment from selected month
@@ -178,8 +178,10 @@ function getAppointmentsSelctedMonth() {
         } 
     }  
     model.selectedMonthAppointments = filteredList
-    updateView();
+    
 }
+
+
 
 
 // Backwords years 
