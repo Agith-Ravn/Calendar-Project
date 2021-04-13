@@ -162,6 +162,7 @@ p {
 .hendelser h1 {
   width: 360px;
   text-align: center;
+  margin: 25px auto;
 }
 
 .hendelseBox {
