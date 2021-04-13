@@ -172,7 +172,7 @@ function yearUpdateView() {
     let currentYear = model.currentYear
     let lastNumber = currentYear.toString().slice(-1);
     let x = currentYear - lastNumber;
-    let y = 10 - lastNumber;
+    let y = 9 - lastNumber;
     for(let i = x; i <= (model.currentYear + y); i++) {
         html += `<div class="entireYear__years" id="year${i}" onclick="selectYearInEntireYear(${i})">${i}</div>`   
     }
