@@ -43,6 +43,7 @@ const model = {
 
     currentDate: 0,
     selectedDate: 0,
+    dateDisplacement: 0,
 
     weeksInCurrentMonth: [], 
     weeksRowCount: 0,
@@ -56,7 +57,8 @@ const model = {
     changeYear: 0, //antall år frem og tilbake
     selectedYearInEntireYear: 0,
 
-    dateDisplacement: 0,
+    allHolidaysInCurrentYear: [],
+
 
 //--------------------------- Appointments ---------------------------
     //hendelser

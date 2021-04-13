@@ -204,8 +204,26 @@ function selectCurrentYear() {
 function selectYearInEntireYear(value) {
     model.selectedYearInEntireYear = value;
     updateView();
-    console.log(model.selectedYearInEntireYear)
 }
+
+getHolidays(2021)
+function getHolidays(year) {
+    let x = 'holidays' + year
+    let filterdList = []
+
+    for(let i = 0; i < x.length; i++) {
+        // console.log(holidays2021[i].date.datetime)
+        // console.log(holidays2021[i].name[0].text)
+        
+        let date = holidays2021[i].date.datetime;
+        let holidayName = holidays2021[i].name[0].text;
+        
+        filterdList.push({holidayName, date})
+    }
+    model.allHolidaysInCurrentYear = filterdList;
+    console.log(model.allHolidaysInCurrentYear)
+}
+
 
 
 
