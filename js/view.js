@@ -11,6 +11,7 @@ function updateView(){
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
         styleSelectedDate();
+        
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
@@ -209,3 +210,5 @@ function addAppointment() {
     `
     document.getElementById("changeBox").innerHTML = html;
 }
+
+
