@@ -186,27 +186,48 @@ function yearUpdateView() {
 function addAppointment() {
     let html = '';
     html +=`<div id="changeBox">
-        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
+        <div class="gridContainer">
+            <div class="gridItem" >
+                <a href="#" id="circleColorChooser" onclick="changeColorfunction()"></a>
+            </div>
+            <div class="gridItem" >
+                <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
+            </div>
+        </div>
 
+        <h2 id="alignTextInEvent">Header</h2>
         <input id="headerText" alt="text"><br>
-        <input id="paragraphText" alt="text"><br>
+        <h2 id="alignTextInEvent">Paragraph</h2>
+        <input id="paragraphText" alt="text">
 
-        <input type="checkbox" id="Modul1" name="Modul1">
-        <label for="Modul1"> Modul 1</label><br>
+        <br>
+        <h2 id="alignTextInEvent">Velg hvem som skal se</h2>
+        <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul1">
+        <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
-        <input type="checkbox" id="Modul2" name="Modul2">
-        <label for="Modul1"> Modul 2</label><br>
+        <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul2">
+        <label id="alignTextInEvent" for="Modul1"> Modul 2</label><br>
 
-        <input type="checkbox" id="Modul3" name="Modul3">
-        <label for="Modul1"> Modul 3</label><br>
+        <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul3">
+        <label id="alignTextInEvent" for="Modul1"> Modul 3</label><br>
 
-        <input type="checkbox" id="StartIT" name="StartIT">
-        <label for="StartIT"> Start IT</label><br>
+        <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT">
+        <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
-        <input type="checkbox" id="Privat" name="Privat">
-        <label for="Privat"> Privat</label><br>
+        <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat">
+        <label id="alignTextInEvent" for="Privat"> Privat</label><br>
+        <br>
+
+
+        <h2 id="alignTextInEvent">Legg til ferie</h2>
+        <p id="alignTextInEvent">Fra</p>
+        <input id="alignTextInEvent" type="date">
+        <br>
+        <p id="alignTextInEvent">Til</p>
+        <input id="alignTextInEvent" type="date">
 
         <a href="#"><div class="nyHendelse">Legg til i kalender </div></a>
+    </div>
     `
     document.getElementById("changeBox").innerHTML = html;
 }
