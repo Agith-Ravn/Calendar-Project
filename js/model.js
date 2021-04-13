@@ -58,6 +58,8 @@ const model = {
     selectedYearInEntireYear: 0,
 
     allHolidaysInCurrentYear: [],
+    allHolidaysInCurrentMonth: [],
+    sundaysInCurrentMonth: [],
 
 
 //--------------------------- Appointments ---------------------------

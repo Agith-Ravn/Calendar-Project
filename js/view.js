@@ -3,6 +3,8 @@ function updateView(){
     if(model.currentPage == 'homePage') {
         model.navbar.homePageView = true;
         findCurrentDate();
+        getHolidays();
+        allSundaysInCurrentMonth();
         dateDisplacement();
         findWeeksRowCount();
         findWeeksInCurrentMonth();
@@ -11,7 +13,6 @@ function updateView(){
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
         styleSelectedDate();
-        
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
@@ -53,11 +54,14 @@ function homeView() {
                 }
                 //Dates
                 for (let i = 1; i <= model.daysInMonth ; i++) {
+                    let date = i
                     html += `<div>
-                                <div id="date${i}" class="dates-grid-item" onclick="selectedDate(this, ${i})"> ${i} </div>
+                                <div id="date${i}" class="dates-grid-item `
+                                html += holidaysInMonthView(date);
+                                // html += sundaysInMonthView();
+                                html +=`" onclick="selectedDate(this, ${i})"> ${i} </div>
                                 <div class="appointment-container">`
 
-                                let date = i
                                 for(let i = 0; i < model.selectedMonthAppointments.length; i++) {
                                     if (model.selectedMonthAppointments[i].date.getDate() == date) {
                                         html +=`<div class="appointment--color" style="background-color:${model.selectedMonthAppointments[i].color}"></div>`
@@ -232,4 +236,20 @@ function addAppointment() {
     document.getElementById("changeBox").innerHTML = html;
 }
 
+// Gives all holidays holidays classname 'holidays'
+function holidaysInMonthView(date) {
+    for(let i = 0; i < model.allHolidaysInCurrentMonth.length; i++) {
+        if (model.allHolidaysInCurrentMonth[i].day == date) {
+            return ' holidays'
+        }
+    }
+}
 
+//Gives all sundays classname 'sunday'
+// function sundaysInMonthView() {
+//     for(let i = 1; i < daysInMonth; i++) {
+//         if (model.sundaysInCurrentMonth[i] == i) {
+//             return ' sundays'
+//         }
+//     }
+// }

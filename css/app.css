@@ -93,6 +93,7 @@ p {
   justify-items: center;
   align-items: center;
   color: rgb(121, 121, 121);
+  font-size: 1.1rem;
 }
 
 .weeks-grid-item {
@@ -107,6 +108,7 @@ p {
   align-items: center;
   width: 950px;
   height: 880px;
+  font-size: 1.1rem;
 }
 
 .dates-grid-item {
@@ -114,6 +116,13 @@ p {
   cursor: pointer;
   display: block;
   text-align: center;
+}
+
+.holidays {
+  color: rgb(255, 0, 0);
+}
+.sundays {
+  color: rgb(255, 0, 0);
 }
 
 .selectedDate {
@@ -148,6 +157,8 @@ p {
   margin: 2.5px;
   border: 0.5px solid rgba(0, 0, 0, 0.5);
 }
+
+
 
 /*--------------------------- Events ---------------------------*/
 .hendelser {

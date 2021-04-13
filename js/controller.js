@@ -206,20 +206,36 @@ function selectYearInEntireYear(value) {
     updateView();
 }
 
-getHolidays(2021)
-function getHolidays(year) {
-    let x = 'holidays' + year
+function getHolidays() {
+    //Gets all holidays in current year (er kun 2021 uansett.. finn et bedre alternativ)
     let filterdList = []
-
-    for(let i = 0; i < x.length; i++) {
-        // console.log(holidays2021[i].date.datetime)
-        // console.log(holidays2021[i].name[0].text)
-        
+    for(let i = 0; i < holidays2021.length; i++) {        
         let date = holidays2021[i].date.datetime;
         let holidayName = holidays2021[i].name[0].text;
-        
         filterdList.push({holidayName, date})
     }
     model.allHolidaysInCurrentYear = filterdList;
-    console.log(model.allHolidaysInCurrentYear)
+
+    //Gets all holidays in current month
+    let filterdList2 = []
+    for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {        
+        if (holidays2021[i].date.datetime.month == model.currentMonth) {
+            filterdList2.push(holidays2021[i].date.datetime)
+        }
+    }
+    model.allHolidaysInCurrentMonth = filterdList2;
 }
+
+function allSundaysInCurrentMonth() {
+    let filteredList = []
+    for(let i = 1; i < model.daysInMonth; i++) {
+        let isoDates = new Date(model.currentYear, (model.currentMonth - 1), i);
+        let dateToString = isoDates.toString()
+        let weekday = dateToString.substr(0, 2)
+        if (weekday == 'Su') {
+            filteredList.push(i)
+        }
+    }
+    model.sundaysInCurrentMonth = filteredList;
+}
+
