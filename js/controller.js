@@ -223,12 +223,3 @@ function getHolidays(year) {
     model.allHolidaysInCurrentYear = filterdList;
     console.log(model.allHolidaysInCurrentYear)
 }
-
-
-
-
-
-// Siste 2 siffer av currentYear| 21 - 10 = 1 | (x + 1) +  (y -1) = 10
-// - Når du går inn, skal currentYear være selected
-// - Skal være 10 år å velge mellom (laget ved hjelp av currentYear)
-// - Hvis jeg velger nytt år > velge nytt år + endre selected year modell, men ikke update view.
