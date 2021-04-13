@@ -188,7 +188,7 @@ function addAppointment() {
     html +=`<div id="changeBox">
         <div class="gridContainer">
             <div class="gridItem" >
-                <a id="circleColorChooser"></a>
+                <a href="#" id="circleColorChooser" onclick="changeColorfunction()"></a>
             </div>
             <div class="gridItem" >
                 <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
