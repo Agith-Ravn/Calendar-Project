@@ -147,7 +147,7 @@ p {
   border-radius: 100%;
   margin: 2.5px;
   border: 0.5px solid rgba(0, 0, 0, 0.5);
-} 
+}
 
 /*--------------------------- Events ---------------------------*/
 .hendelser {
@@ -294,13 +294,16 @@ p {
 
 #headerText {
   height: 40px;
-  width: 250px;
+  width: 350px;
   border-radius: 10px;
   border: 1px solid rgb(121, 121, 121);
 }
 #paragraphText {
   height: 75px;
-  width: 250px;
+  width: 350px;
   border-radius: 10px;
   border: 1px solid rgb(121, 121, 121);
+}
+#changeBox {
+  text-align: center;
 }

@@ -187,10 +187,13 @@ function addAppointment() {
     let html = '';
     html +=`<div id="changeBox">
         <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
-
+            <h2>Header</h2>
         <input id="headerText" alt="text"><br>
+        <h2>Paragraph</h2>
         <input id="paragraphText" alt="text"><br>
 
+        <br>
+        <h2>Velg hvem som skal se</h2>
         <input type="checkbox" id="Modul1" name="Modul1">
         <label for="Modul1"> Modul 1</label><br>
 
@@ -205,8 +208,18 @@ function addAppointment() {
 
         <input type="checkbox" id="Privat" name="Privat">
         <label for="Privat"> Privat</label><br>
+        <br>
+        <br>
+
+        <h2>Legg til ferie</h2>
+        <p>Fra</p>
+        <input type="date">
+        <br>
+        <p>Til</p>
+        <input type="date">
 
         <a href="#"><div class="nyHendelse">Legg til i kalender </div></a>
+    </div>
     `
     document.getElementById("changeBox").innerHTML = html;
 }
