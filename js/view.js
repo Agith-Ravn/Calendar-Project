@@ -177,8 +177,6 @@ function yearUpdateView() {
         html += `<div class="entireYear__years" id="year${i}" onclick="selectYearInEntireYear(${i})">${i}</div>`   
     }
 
- 
-
     html += `<div> <button onclick="changeYear(10)"> › </button> </div>
     </div>`
     return html;
@@ -210,5 +208,4 @@ function addAppointment() {
         <a href="#"><div class="nyHendelse">Legg til i kalender </div></a>
     `
     document.getElementById("changeBox").innerHTML = html;
-
 }
