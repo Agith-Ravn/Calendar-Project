@@ -65,14 +65,14 @@ const model = {
 //--------------------------- Appointments ---------------------------
     //hendelser
     appointments: [//år , mnd (zero index) , dato
-        { date: new Date(2021, 3, 12), header: 'Møte med Elin', content: 'Oppdater Elin om hvor langt dere er i oppgaven', privat: false, color: 'blue'},
-        { date: new Date(2021, 3, 12), header: 'Test2', content: 'Masse tekst her ;)', privat: false, color: 'red'},
-        { date: new Date(2021, 3, 22), header: 'Test4', content: 'Tgg sdfd dfs', privat: true, color: 'green'},
-        { date: new Date(2021, 3, 25), header: 'Test5', content: 'Test-test-test5', privat: true, color: 'orange'},
-        { date: new Date(2021, 3, 28), header: 'Test6', content: 'Test-test-test6', privat: true, color: 'purple'},
-        { date: new Date(2021, 3, 30), header: 'Test3', content: 'Test-test-test3', privat: false, color: 'blue'},
-        { date: new Date(2021, 2, 9), header: 'Test7', content: 'smfdsfsd ', privat: false, color: 'yellow'},
-        { date: new Date(2021, 2, 11), header: 'Test8', content: '233ssdfdsfsfd ', privat: false, color: 'hotpink'},
+        { date: new Date(2021, 3, 12), header: 'Møte med Elin', content: 'Oppdater Elin om hvor langt dere er i oppgaven',  privat: false, color: 'blue'},
+        { date: new Date(2021, 3, 12), header: 'Test2',         content: 'Masse tekst her ;)',                              privat: false, color: 'red'},
+        { date: new Date(2021, 3, 22), header: 'Test4',         content: 'Tgg sdfd dfs',                                    privat: true, color: 'green'},
+        { date: new Date(2021, 3, 25), header: 'Test5',         content: 'Test-test-test5',                                 privat: true, color: 'orange'},
+        { date: new Date(2021, 3, 28), header: 'Test6',         content: 'Test-test-test6',                                 privat: true, color: 'purple'},
+        { date: new Date(2021, 3, 30), header: 'Test3',         content: 'Test-test-test3',                                 privat: false, color: 'blue'},
+        { date: new Date(2021, 2, 9),  header: 'Test7',         content: 'smfdsfsd ',                                       privat: false, color: 'yellow'},
+        { date: new Date(2021, 2, 11), header: 'Test8',         content: '233ssdfdsfsfd ',                                  privat: false, color: 'hotpink'},
     ],
     selectedDateAppointments: [],
     selectedMonthAppointments: [],
@@ -90,6 +90,13 @@ const model = {
         orange:'#FF7F50',
         //Legg til flere farger senere
     },
+    addedNewEventParams: {
+        header: "",
+        content: "",
+        color: "",
+        fromToDate: "",
+        date: new Date(),
+    }
 }
 today = new Date();
 fullYear = today.getFullYear();

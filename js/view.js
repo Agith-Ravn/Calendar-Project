@@ -207,6 +207,7 @@ function addAppointment() {
 
         <h2 id="alignTextInEvent">Header</h2>
         <input id="headerText" alt="text"><br>
+
         <h2 id="alignTextInEvent">Paragraph</h2>
         <input id="paragraphText" alt="text">
 
@@ -236,7 +237,7 @@ function addAppointment() {
         <p id="alignTextInEvent">Til</p>
         <input id="alignTextInEvent" type="date">
 
-        <a href="#"><div class="nyHendelse">Legg til i kalender </div></a>
+        <a href="#"><div class="nyHendelse" onclick="addNewEvent()">Legg til i kalender </div></a>
     </div>
     `
     document.getElementById("changeBox").innerHTML = html;

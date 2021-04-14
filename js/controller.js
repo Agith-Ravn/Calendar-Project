@@ -240,3 +240,8 @@ function allSundaysInCurrentMonth() {
     // console.log(model.sundaysInCurrentMonth)
 }
 
+// Add Event to Calender
+function addNewEvent() {
+    model.addedNewEventParams
+}
+
