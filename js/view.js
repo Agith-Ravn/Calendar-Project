@@ -200,10 +200,10 @@ function addAppointment() {
         </div>
 
         <h2 id="alignTextInEvent">Header</h2>
-        <input id="headerText" alt="text"><br>
+        <input id="headerText" placeholder="Enter text" onblur="getVal() type="text"><br>
 
         <h2 id="alignTextInEvent">Paragraph</h2>
-        <input id="paragraphText" alt="text">
+        <input id="paragraphText" placeholder="Enter text" onblur="getVal() type="text">
 
         <br>
         <h2 id="alignTextInEvent">Velg hvem som skal se</h2>

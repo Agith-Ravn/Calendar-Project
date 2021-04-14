@@ -241,6 +241,10 @@ function allSundaysInCurrentMonth() {
 
 // Add Event to Calender
 function addNewEvent() {
+    const h = document.getElementById("headerText").value
+    const p = document.getElementById("paragraphText").value
+    console.log(h);
+    console.log(p);
     model.addedNewEventParams
 }
 
