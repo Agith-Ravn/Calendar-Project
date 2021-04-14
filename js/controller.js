@@ -228,7 +228,7 @@ function getHolidays() {
 
 function allSundaysInCurrentMonth() {
     let filteredList = []
-    for(let i = 1; i < model.daysInMonth; i++) {
+    for(let i = 1; i < model.daysInMonth + 1; i++) {
         let isoDates = new Date(model.currentYear, (model.currentMonth - 1), i);
         let dateToString = isoDates.toString()
         let weekday = dateToString.substr(0, 2)
@@ -237,5 +237,6 @@ function allSundaysInCurrentMonth() {
         }
     }
     model.sundaysInCurrentMonth = filteredList;
+    // console.log(model.sundaysInCurrentMonth)
 }
 

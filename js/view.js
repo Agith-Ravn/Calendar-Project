@@ -55,18 +55,24 @@ function homeView() {
                 //Dates
                 for (let i = 1; i <= model.daysInMonth ; i++) {
                     let date = i
-                    html += `<div>
-                                <div id="date${i}" class="dates-grid-item `
-                                html += holidaysInMonthView(date);
-                                // html += sundaysInMonthView();
-                                html +=`" onclick="selectedDate(this, ${i})"> ${i} </div>
-                                <div class="appointment-container">`
+                    html += `<div>`
+                        html += `<div id="date${i}" class="dates-grid-item `
 
-                                for(let i = 0; i < model.selectedMonthAppointments.length; i++) {
-                                    if (model.selectedMonthAppointments[i].date.getDate() == date) {
-                                        html +=`<div class="appointment--color" style="background-color:${model.selectedMonthAppointments[i].color}"></div>`
-                                    }
-                                }
+                        if (holidaysInMonthView(date) == undefined) {
+                            html += ''
+                        } else {html += holidaysInMonthView(date)}
+
+                        if (sundaysInMonthView(date) == undefined) {
+                            html += ''
+                        } else {html += sundaysInMonthView(date)}
+                        
+                        html +=`" onclick="selectedDate(this, ${i})"> ${i} </div>
+                        <div class="appointment-container">`
+                        for(let i = 0; i < model.selectedMonthAppointments.length; i++) {
+                            if (model.selectedMonthAppointments[i].date.getDate() == date) {
+                                html +=`<div class="appointment--color" style="background-color:${model.selectedMonthAppointments[i].color}"></div>`
+                            }
+                        }
                     html +=`</div></div>`
                 }
             html += `</div>`
@@ -236,20 +242,24 @@ function addAppointment() {
     document.getElementById("changeBox").innerHTML = html;
 }
 
-// Gives all holidays holidays classname 'holidays'
+//Gives all holidays holidays classname 'holidays'
 function holidaysInMonthView(date) {
     for(let i = 0; i < model.allHolidaysInCurrentMonth.length; i++) {
+        // console.log(model.allHolidaysInCurrentMonth[i].day == date)
         if (model.allHolidaysInCurrentMonth[i].day == date) {
             return ' holidays'
-        }
+        } 
     }
 }
 
 //Gives all sundays classname 'sunday'
-// function sundaysInMonthView() {
-//     for(let i = 1; i < daysInMonth; i++) {
-//         if (model.sundaysInCurrentMonth[i] == i) {
-//             return ' sundays'
-//         }
-//     }
-// }
+function sundaysInMonthView(date) {
+    for(let i = 0; i < model.sundaysInCurrentMonth.length; i++) {
+        // console.log(date)
+        // console.log(model.sundaysInCurrentMonth[i])
+        if (model.sundaysInCurrentMonth[i] == date) {
+            // console.log(model.sundaysInCurrentMonth[i - 1] == sundays && model.sundaysInCurrentMonth[i - 1] !== undefined && sundays !== undefined)
+            return ' sundays'
+        }
+    }
+}
