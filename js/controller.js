@@ -239,3 +239,8 @@ function allSundaysInCurrentMonth() {
     model.sundaysInCurrentMonth = filteredList;
 }
 
+// Add Event to Calender
+function addNewEvent() {
+    model.addedNewEventParams
+}
+
