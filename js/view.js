@@ -3,6 +3,7 @@ function updateView(){
     if(model.currentPage == 'homePage') {
         model.navbar.homePageView = true;
         findCurrentDate();
+        getCurrentTime()
         getHolidays();
         getSundays();
         dateDisplacement();
@@ -165,7 +166,7 @@ function appointmentsView() {
     let html = '';
     html +=`<div class="widthCard">
     <div id="changeBox" class="hendelser">
-        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
+        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear} | ${model.currentTime}</h1>
         <a href="#" onclick="addAppointment()"> <div class="nyHendelse">+ Legg til ny </div></a>`
 
     html += `<div class="hendelseBox">`

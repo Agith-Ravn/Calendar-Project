@@ -43,6 +43,15 @@ function findCurrentDate() {
     }
 }
 
+function getCurrentTime() {
+    let d = new Date();
+    let hour = d.getHours();
+    let minutes = d.getMinutes();
+    
+    model.currentTime = hour + ':' + minutes;
+}
+setInterval(getCurrentTime, 10000);
+
 function daysInMonth(month, year){
     return new Date(year, month, 0).getDate();
 }
