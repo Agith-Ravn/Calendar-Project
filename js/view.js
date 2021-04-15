@@ -20,9 +20,9 @@ function updateView(){
     if(model.currentPage == 'yearPage') {
         model.navbar.homePageView = false;
         findCurrentDate();
+        dateDisplacementEntireYear();
         getHolidays();
         getSundays();
-        dateDisplacementEntireYear();
         document.getElementById('app').innerHTML = initiereYear()
         selectCurrentYear();
     }
