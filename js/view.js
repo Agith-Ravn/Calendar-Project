@@ -160,6 +160,19 @@ function appointmentsView() {
 
     html += `<div class="hendelseBox">`
 
+    //Holidays in appointment
+    for(let i = 0; i < model.allHolidaysInCurrentMonth.length; i++) {
+        let holidayName;
+        if (model.allHolidaysInCurrentMonth[i].date.day == model.selectedDate) {
+            holidayName = model.allHolidaysInCurrentMonth[i].holidayName
+            html += `<div class="hendelse">
+                        <div> <!-- color --> </div>
+                        <h2 style="color:red"> ${holidayName} </h2>
+                    </div>`
+        }
+    }
+
+    //Shows appointment from model
     for(let i = 0; i < model.selectedDateAppointments.length; i++) {
         html += `<div class="hendelse">
                 <div style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
@@ -246,8 +259,7 @@ function addAppointment() {
 //Gives all holidays holidays classname 'holidays'
 function holidaysInMonthView(date) {
     for(let i = 0; i < model.allHolidaysInCurrentMonth.length; i++) {
-        // console.log(model.allHolidaysInCurrentMonth[i].day == date)
-        if (model.allHolidaysInCurrentMonth[i].day == date) {
+        if (model.allHolidaysInCurrentMonth[i].date.day == date) {
             return ' holidays'
         } 
     }
@@ -256,10 +268,7 @@ function holidaysInMonthView(date) {
 //Gives all sundays classname 'sunday'
 function sundaysInMonthView(date) {
     for(let i = 0; i < model.sundaysInCurrentMonth.length; i++) {
-        // console.log(date)
-        // console.log(model.sundaysInCurrentMonth[i])
         if (model.sundaysInCurrentMonth[i] == date) {
-            // console.log(model.sundaysInCurrentMonth[i - 1] == sundays && model.sundaysInCurrentMonth[i - 1] !== undefined && sundays !== undefined)
             return ' sundays'
         }
     }

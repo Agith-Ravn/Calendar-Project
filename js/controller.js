@@ -206,6 +206,7 @@ function selectYearInEntireYear(value) {
     updateView();
 }
 
+//Gets all holidays
 function getHolidays() {
     //Gets all holidays in current year (er kun 2021 uansett.. finn et bedre alternativ)
     let filterdList = []
@@ -220,12 +221,15 @@ function getHolidays() {
     let filterdList2 = []
     for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {        
         if (holidays2021[i].date.datetime.month == model.currentMonth) {
-            filterdList2.push(holidays2021[i].date.datetime)
+            let date = holidays2021[i].date.datetime
+            let holidayName = holidays2021[i].name[0].text
+            filterdList2.push({holidayName, date})
         }
     }
     model.allHolidaysInCurrentMonth = filterdList2;
 }
 
+//Finds all sundays in currentMonth
 function allSundaysInCurrentMonth() {
     let filteredList = []
     for(let i = 1; i < model.daysInMonth + 1; i++) {
@@ -237,7 +241,14 @@ function allSundaysInCurrentMonth() {
         }
     }
     model.sundaysInCurrentMonth = filteredList;
-    // console.log(model.sundaysInCurrentMonth)
+}
+
+//lag en funksjon som lager alle helligdager under appointment 
+function holidaysInAppointment() {
+
+    console.log(model)
+
+    // let holidayNames
 }
 
 // Add Event to Calender
