@@ -20,6 +20,8 @@ function updateView(){
     if(model.currentPage == 'yearPage') {
         model.navbar.homePageView = false;
         findCurrentDate();
+        getHolidays();
+        getSundays();
         dateDisplacementEntireYear();
         document.getElementById('app').innerHTML = initiereYear()
         selectCurrentYear();
@@ -267,7 +269,7 @@ function addAppointment() {
 //Gives all holidays classname 'holidays'
 function holidaysInMonthView(date) {
     for(let i = 0; i < model.allHolidaysInCurrentMonth.length; i++) {
-        if (model.allHolidaysInCurrentMonth[i].date.day == date) {
+        if (model.allHolidaysInCurrentMonth[i].date.day == date && model.allHolidaysInCurrentMonth[i].date.year == model.currentYear) {
             return ' holidays'
         } 
     }
@@ -285,7 +287,8 @@ function sundaysInMonthView(date) {
 //Gives all holidays classname 'holidays'
 function holidaysInEntireYearView(date, month) {
     for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {
-        if (model.allHolidaysInCurrentYear[i].date.day == date && model.allHolidaysInCurrentYear[i].date.month == month) {
+        // console.log(model.allHolidaysInCurrentYear[i].date.year)
+        if (model.allHolidaysInCurrentYear[i].date.day == date && model.allHolidaysInCurrentYear[i].date.month == month && model.allHolidaysInCurrentYear[i].date.year == model.currentYear) {
             return ' holidays'
         } 
     }
