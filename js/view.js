@@ -4,7 +4,7 @@ function updateView(){
         model.navbar.homePageView = true;
         findCurrentDate();
         getHolidays();
-        allSundaysInCurrentMonth();
+        getSundays();
         dateDisplacement();
         findWeeksRowCount();
         findWeeksInCurrentMonth();
@@ -20,6 +20,7 @@ function updateView(){
     if(model.currentPage == 'yearPage') {
         model.navbar.homePageView = false;
         findCurrentDate();
+        dateDisplacementEntireYear();
         document.getElementById('app').innerHTML = initiereYear()
         selectCurrentYear();
     }
@@ -57,15 +58,8 @@ function homeView() {
                     let date = i
                     html += `<div>`
                         html += `<div id="date${i}" class="dates-grid-item `
-
-                        if (holidaysInMonthView(date) == undefined) {
-                            html += ''
-                        } else {html += holidaysInMonthView(date)}
-
-                        if (sundaysInMonthView(date) == undefined) {
-                            html += ''
-                        } else {html += sundaysInMonthView(date)}
-                        
+                        holidaysInMonthView(date) == undefined ? html += '' : html += holidaysInMonthView(date);
+                        sundaysInMonthView(date) == undefined ? html += '' : html += sundaysInMonthView(date);                        
                         html +=`" onclick="selectedDate(this, ${i})"> ${i} </div>
                         <div class="appointment-container">`
                         for(let i = 0; i < model.selectedMonthAppointments.length; i++) {
@@ -108,11 +102,25 @@ function initiereYear(){
         for (let j = 1; j <= 12 ; j++) {
             var getMonthDays = days(j, model.currentYear)
             html += `<div class="grid-item-month"><div class="month-name">` + model.months[j - 1] + `</div>
-                <div class="daysInMonthBox">
+                    <div class="daysInMonthBox">
                     <div class="grid-item-month-days">`
-                        for (let i = 1; i <= getMonthDays ; i++) {
-                            html += `<div class="grid-item-year-days">${i}</div>`
+                    
+                    //displacement in entireYear view
+                    for(let i = 0; i < model.dateDisplacementEntireYear.length; i++) {
+                        if(model.dateDisplacementEntireYear[i].month == (j)) {
+                            for(let o = 0; o < model.dateDisplacementEntireYear[i].dateDisplacement; o++) {
+                                html += `<p> </p>`
+                            }
                         }
+                    }
+
+                    //days in month
+                    for (let i = 1; i <= getMonthDays ; i++) {
+                        html += `<div class="grid-item-year-days`
+                        holidaysInEntireYearView(i, j) == undefined ? html += '' : html += holidaysInEntireYearView(i, j);
+                        sundaysInEntireYearView(i, j) == undefined ? html += '' : html += sundaysInEntireYearView(i, j);
+                        html += `">${i}</div>`
+                    }
             html += `</div>
                 </div>
             </div>`
@@ -256,7 +264,7 @@ function addAppointment() {
     document.getElementById("changeBox").innerHTML = html;
 }
 
-//Gives all holidays holidays classname 'holidays'
+//Gives all holidays classname 'holidays'
 function holidaysInMonthView(date) {
     for(let i = 0; i < model.allHolidaysInCurrentMonth.length; i++) {
         if (model.allHolidaysInCurrentMonth[i].date.day == date) {
@@ -269,6 +277,24 @@ function holidaysInMonthView(date) {
 function sundaysInMonthView(date) {
     for(let i = 0; i < model.sundaysInCurrentMonth.length; i++) {
         if (model.sundaysInCurrentMonth[i] == date) {
+            return ' sundays'
+        }
+    }
+}
+
+//Gives all holidays classname 'holidays'
+function holidaysInEntireYearView(date, month) {
+    for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {
+        if (model.allHolidaysInCurrentYear[i].date.day == date && model.allHolidaysInCurrentYear[i].date.month == month) {
+            return ' holidays'
+        } 
+    }
+}
+
+//Gives all sundays classname 'sunday'
+function sundaysInEntireYearView(date, month) {
+    for(let i = 0; i < model.sundaysInCurrentYear.length; i++) {
+        if (model.sundaysInCurrentYear[i].date == date && model.sundaysInCurrentYear[i].month == month) {
             return ' sundays'
         }
     }

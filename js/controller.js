@@ -4,7 +4,7 @@ function selectView(cachedView){
     updateView();
 }
 
-function loginResponse(){ 
+function loginResponse(){
     if(model.loginInputUser === model.adminUser.userName && model.loginInputPassword === model.adminUser.password){
         document.getElementById('app').innerHTML = homeView();
     } else {
@@ -25,7 +25,7 @@ function findCurrentDate() {
     }
 
     //month
-    let month = d.getMonth() + 1;    
+    let month = d.getMonth() + 1;
     if (model.changeMonth == 0) {
         model.currentMonth = month
     } else {
@@ -39,9 +39,9 @@ function findCurrentDate() {
 
     //gives selectedDate same date as currentDate
     if (model.selectedDate == 0) {
-        model.selectedDate = model.currentDate;        
+        model.selectedDate = model.currentDate;
     }
-}   
+}
 
 function daysInMonth(month, year){
     return new Date(year, month, 0).getDate();
@@ -52,7 +52,7 @@ function dateDisplacement() {
     let x = firstWeekdayInMonth(model.currentYear, model.currentMonth,)
     if (x == 0) {
         model.dateDisplacement = 6;
-    } 
+    }
     for(let i = 1; i <= 6; i++) {
         if (x == i) {
             model.dateDisplacement = (i - 1);
@@ -60,16 +60,37 @@ function dateDisplacement() {
     }
 }
 
+//EntireYear - Får dato til å starte på riktig ukedag
+function dateDisplacementEntireYear() {
+    let filterdList = [];
+    for(let i = 1; i <= 12; i++) {
+        let month = i;
+        let x = firstWeekdayInMonth(model.currentYear, i);
+
+        if (x == 0) {
+            filterdList.push({month, dateDisplacement:6})
+        }
+
+        for(let j = 1; j <= 6; j++) {
+            if (x == j) {
+                filterdList.push({month, dateDisplacement:j - 1});
+            }
+        }
+    }
+    model.dateDisplacementEntireYear = filterdList;
+    // console.log(model.dateDisplacementEntireYear)
+}
+
 //Finner første ukedag i mnd
 function firstWeekdayInMonth(year, month) {
-    let d = new Date(year, month - 1, 01);    
+    let d = new Date(year, month - 1, 01);
     return d.getDay()
 }
 
 //Changes month when selecting month in navbar
 function changeMonth(monthIndex, idName) {
     model.changeMonth = monthIndex + 1;
-    model.colorSelectedMonth = idName; 
+    model.colorSelectedMonth = idName;
     updateView();
 }
 
@@ -81,9 +102,9 @@ function styleCurrentMonth() {
     } else {
         document.getElementById(model.colorSelectedMonth).classList.add('colorSelected');
     }
-}   
+}
 
-function changeYear(value) {    
+function changeYear(value) {
     model.changeYear += value
     if (model.selectedYearInEntireYear !== 0) {
         model.selectedYearInEntireYear += value;
@@ -93,7 +114,7 @@ function changeYear(value) {
 
 //Funksjon som finner riktig uke nummer i currentMonth
 function findWeeksInCurrentMonth() {
-    let x = [] 
+    let x = []
     if (model.daysInMonth + model.dateDisplacement <= 28) {
         x.push(1, 8, 15, 22)
     } else if (model.daysInMonth + model.dateDisplacement >= 29 &&
@@ -108,19 +129,19 @@ function findWeeksInCurrentMonth() {
     for(let i = 0; i < x.length; i++) {
         let date = x[i];
         weekNumber.push(findWeekNumber(model.currentYear, model.currentMonth, date))
-    }    
+    }
     model.weeksInCurrentMonth = weekNumber;
 }
 
 //Hjelpe funksjon som finner uke nummer fra dato
-function findWeekNumber(year,month,day) {    
+function findWeekNumber(year,month,day) {
     function serial(days) { return 86400000*days; }
     function dateserial(year,month,day) { return (new Date(year,month-1,day).valueOf()); }
     function weekday(date) { return (new Date(date)).getDay()+1; }
     function yearserial(date) { return (new Date(date)).getFullYear(); }
-    var date = year instanceof Date ? year.valueOf() : typeof year === "string" ? new Date(year).valueOf() : dateserial(year,month,day), 
+    var date = year instanceof Date ? year.valueOf() : typeof year === "string" ? new Date(year).valueOf() : dateserial(year,month,day),
         date2 = dateserial(yearserial(date - serial(weekday(date-serial(1))) + serial(4)),1,3);
-    return ~~((date - date2 + serial(weekday(date2) + 5))/ serial(7));    
+    return ~~((date - date2 + serial(weekday(date2) + 5))/ serial(7));
 }
 
 //Antall rader i mnd
@@ -133,17 +154,17 @@ function findWeeksRowCount() {
     } if (x <= 28) {
         model.weeksRowCount = 4
     }
-} 
+}
 
 //Style currentDate first, then style selectedDate
 function styleSelectedDate() {
     let index = model.selectedDate
-    let id = 'date' + index 
+    let id = 'date' + index
     document.getElementById(id).classList.add('selectedDate')
 }
 
 //Style selectedDate
-function selectedDate(selectedDiv, date) {    
+function selectedDate(selectedDiv, date) {
     let datesDiv = document.getElementsByClassName('dates-grid-item');
     for(let i = 0; i < datesDiv.length; i++) {
         datesDiv[i].classList.remove('selectedDate');
@@ -161,9 +182,9 @@ function showAppointments() {
         if (appointment.date.getFullYear() == model.currentYear
             && appointment.date.getMonth() == (model.currentMonth - 1)
             && appointment.date.getDate() == model.selectedDate) {
-            
+
             filteredList.push(appointment)
-        } 
+        }
     }
     model.selectedDateAppointments = filteredList
 }
@@ -177,13 +198,13 @@ function getAppointmentsSelctedMonth() {
             && appointment.date.getMonth() == (model.currentMonth - 1)) {
 
             filteredList.push(appointment)
-        } 
-    }  
+        }
+    }
     model.selectedMonthAppointments = filteredList
 }
 
 
-// Backwords years 
+// Backwords years
 function days(month,year) {
     return new Date(year, month, 0).getDate();
     initiereYear();
@@ -197,7 +218,7 @@ function selectCurrentYear() {
     } else {
         index = model.currentYear
     }
-    let id = 'year' + index 
+    let id = 'year' + index
     document.getElementById(id).classList.add('entireYear__currentYear')
 }
 
@@ -210,7 +231,7 @@ function selectYearInEntireYear(value) {
 function getHolidays() {
     //Gets all holidays in current year (er kun 2021 uansett.. finn et bedre alternativ)
     let filterdList = []
-    for(let i = 0; i < holidays2021.length; i++) {        
+    for(let i = 0; i < holidays2021.length; i++) {
         let date = holidays2021[i].date.datetime;
         let holidayName = holidays2021[i].name[0].text;
         filterdList.push({holidayName, date})
@@ -219,7 +240,7 @@ function getHolidays() {
 
     //Gets all holidays in current month
     let filterdList2 = []
-    for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {        
+    for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {
         if (holidays2021[i].date.datetime.month == model.currentMonth) {
             let date = holidays2021[i].date.datetime
             let holidayName = holidays2021[i].name[0].text
@@ -230,7 +251,9 @@ function getHolidays() {
 }
 
 //Finds all sundays in currentMonth
-function allSundaysInCurrentMonth() {
+function getSundays() {
+
+    //All sundays in currentMonth
     let filteredList = []
     for(let i = 1; i < model.daysInMonth + 1; i++) {
         let isoDates = new Date(model.currentYear, (model.currentMonth - 1), i);
@@ -241,15 +264,25 @@ function allSundaysInCurrentMonth() {
         }
     }
     model.sundaysInCurrentMonth = filteredList;
+
+    //All sundays in a year
+    let filteredList2 = []
+    for(let j = 0; j < model.months.length; j++) {
+        for(let i = 1; i < model.daysInMonth + 1; i++) {
+            let isoDates = new Date(model.currentYear, (j - 1), i);
+            let month = j
+            let date = i
+            let dateToString = isoDates.toString()
+            let weekday = dateToString.substr(0, 2)
+            if (weekday == 'Su') {
+                filteredList2.push({month, date})
+            }
+        }
+    }
+    model.sundaysInCurrentYear = filteredList2;
+    // console.log(model.sundaysInCurrentYear)
 }
 
-//lag en funksjon som lager alle helligdager under appointment 
-function holidaysInAppointment() {
-
-    console.log(model)
-
-    // let holidayNames
-}
 
 // Add Event to Calender
 function addNewEvent() {

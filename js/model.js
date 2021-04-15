@@ -44,6 +44,7 @@ const model = {
     currentDate: 0,
     selectedDate: 0,
     dateDisplacement: 0,
+    dateDisplacementEntireYear: [],
 
     weeksInCurrentMonth: [], 
     weeksRowCount: 0,
@@ -59,6 +60,7 @@ const model = {
 
     allHolidaysInCurrentYear: [],
     allHolidaysInCurrentMonth: [],
+    sundaysInCurrentYear: [],
     sundaysInCurrentMonth: [],
 
 
