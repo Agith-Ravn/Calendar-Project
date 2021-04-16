@@ -143,9 +143,11 @@ p {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  overflow: hidden;
   position: relative;
   top: 0px;
   width: 100px;
+  height: 20px;
 }
 
 .appointment--color {
@@ -177,16 +179,17 @@ p {
 }
 
 .hendelseBox {
-  width: 360px;
-  height: 640px;
-  margin: auto;
+  width: 375px;
+  height: 710px;
+  margin: auto 0 auto 20px;
+  overflow-x: hidden;
 }
 
 .hendelse {
   padding: 15px;
-  width: 330px;
+  width: auto;
   height: auto;
-  margin: auto auto 20px auto;
+  margin: auto 15px 15px 0;
   border: solid rgb(200, 200, 200) 1px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 15px;

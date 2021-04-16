@@ -47,8 +47,7 @@ function getCurrentTime() {
     let d = new Date();
     let hour = d.getHours();
     let minutes = d.getMinutes();
-    // let sec = d.getSeconds();
-
+    
     if(hour < 10) {
         hour = ('0' + hour).slice(-2)
     }
@@ -56,14 +55,12 @@ function getCurrentTime() {
         minutes = ('0' + minutes).slice(-2)
     }
     model.currentTime = hour + ':' + minutes;
-    // model.currentTime = hour + ':' + minutes + ':' + sec; //til testing
 }
 
 function updateTime() {
     let time
     if (time != model.currentTime) {
         time = model.currentTime;
-        // console.log('test')
         updateView();
     }
 }

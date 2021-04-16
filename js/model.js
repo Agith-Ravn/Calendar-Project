@@ -70,12 +70,19 @@ const model = {
 //--------------------------- Appointments ---------------------------
     //hendelser
     appointments: [//år , mnd (zero index) , dato
-        { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',       content: '',                                                         privat: false, color: 'blue'},
-        { date: new Date(2021, 3, 16), time: '09.45', header: 'OPT',          content: 'Vise fram hvor langt dere har kommet med gruppeoppgave',   privat: false, color: 'red'},
+        { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '',                                                         privat: false, color: 'blue'},
+        { date: new Date(2021, 3, 16), time: '09.45', header: 'OPT',        content: 'Vise fram hvor langt dere har kommet med gruppeoppgave',   privat: false, color: 'red'},
         { date: new Date(2021, 3, 22), time: '', header: 'Test4',           content: 'Tgg sdfd dfs',                                             privat: true, color: 'green'},
         { date: new Date(2021, 3, 25), time: '', header: 'Test5',           content: 'Test-test-test5',                                          privat: true, color: 'orange'},
         { date: new Date(2021, 3, 28), time: '', header: 'Test6',           content: 'Test-test-test6',                                          privat: true, color: 'purple'},
-        { date: new Date(2021, 3, 30), time: '', header: 'Test3',           content: 'Test-test-test3',                                          privat: false, color: 'blue'},
+        { date: new Date(2021, 3, 30), time: '', header: 'Test3.1',         content: 'Test-test-test3',                                          privat: false, color: 'blue'},
+        { date: new Date(2021, 3, 30), time: '', header: 'Test3.2',         content: 'Test-test-test3',                                          privat: false, color: 'green'},
+        { date: new Date(2021, 3, 30), time: '', header: 'Test3.3',         content: 'Test-test-test3',                                          privat: false, color: 'yellow'},
+        { date: new Date(2021, 3, 30), time: '', header: 'Test3.4',         content: 'Test-test-test3',                                          privat: false, color: 'red'},
+        { date: new Date(2021, 3, 30), time: '', header: 'Test3.5',         content: 'Test-test-test3',                                          privat: false, color: 'black'},
+        { date: new Date(2021, 3, 30), time: '', header: 'Test3.6',         content: 'Test-test-test3',                                          privat: false, color: 'blue'},
+        { date: new Date(2021, 3, 30), time: '', header: 'Test3.7',         content: 'Test-test-test3',                                          privat: false, color: 'blue'},
+        { date: new Date(2021, 3, 30), time: '', header: 'Test3.8',         content: 'Test-test-test3',                                          privat: false, color: 'blue'},
         { date: new Date(2021, 2, 9),  time: '', header: 'Test7',           content: 'smfdsfsd ',                                                privat: false, color: 'yellow'},
         { date: new Date(2021, 2, 11), time: '', header: 'Test8',           content: '233ssdfdsfsfd ',                                           privat: false, color: 'hotpink'},
     ],
