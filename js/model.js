@@ -95,13 +95,15 @@ const model = {
         orange:'#FF7F50',
         //Legg til flere farger senere
     },
-    addedNewEventParams: {
+    addedNewEventParams: {  ///flytt hele obj og push til controller og push i events :D
         header: "",
         content: "",
         color: "",
         fromToDate: "",
         date: new Date(),
-    }
+    },
+    vacationStartDate: "",
+    vacationEndDate: "",
 }
 today = new Date();
 fullYear = today.getFullYear();

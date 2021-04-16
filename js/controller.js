@@ -324,4 +324,13 @@ function addNewEvent() {
     console.log(p);
     model.addedNewEventParams
 }
+    
+function selectVacationStart(startDate){
+    model.vacationStartDate = startDate.value;
+}
+    
+function selectVacationEnd(endDate){
+    model.vacationEndDate = endDate.value;
+}
+
 

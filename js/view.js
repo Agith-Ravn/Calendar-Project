@@ -30,19 +30,19 @@ function updateView(){
     }
 }
 // THIS IS HOME PAGE.
-function homeView() {
+function homeView() {   //model.day model.month .model.year == vacation start date 
     let html = ``;
     //Navbar
     html += navBarView();
     //Dates
     html += `<div class="calender">`
-            //Weeks
-            html += `<div class="weeksContainer">`
-                //Midlertidig
-                html += `<p> Uke</p>`
-                for(let i = 1; i <= model.weeksRowCount; i++) {
-                    html += `<p class="weeks-grid-item"> ${model.weeksInCurrentMonth[i - 1]}</p>`
-                }
+    //Weeks
+    html += `<div class="weeksContainer">`
+    //Midlertidig
+    html += `<p> Uke</p>`
+    for(let i = 1; i <= model.weeksRowCount; i++) {
+        html += `<p class="weeks-grid-item"> ${model.weeksInCurrentMonth[i - 1]}</p>`
+    }
             html += `</div>`
             //Weekdays
             html += `<div class="grid-date-container">
@@ -62,8 +62,25 @@ function homeView() {
                     let date = i
                     html += `<div>`
                         html += `<div id="date${i}" class="dates-grid-item `
+<<<<<<< Updated upstream
                         holidaysInMonthView(date) == undefined ? html += '' : html += holidaysInMonthView(date);
                         sundaysInMonthView(date) == undefined ? html += '' : html += sundaysInMonthView(date);                        
+=======
+                        //på samme måte med om ferie er mellom datoer
+                        //vi trenger: datoene (new date() greia) 
+                        //for hver enkelt dato mens den blir tegna opp - og så 
+                        //sjekke mot vacation datoene med if - og dersom mellom disse to farge eller whatever
+                        console.log("homeview: ", model.selectedDate, model.months[model.currentMonth - 1], model.currentYear, model.vacationStartDate);
+
+                        if (holidaysInMonthView(date) == undefined) {
+                            html += ''
+                        } else {html += holidaysInMonthView(date)}
+
+                        if (sundaysInMonthView(date) == undefined) {
+                            html += ''
+                        } else {html += sundaysInMonthView(date)}
+                        
+>>>>>>> Stashed changes
                         html +=`" onclick="selectedDate(this, ${i})"> ${i} </div>
                         <div class="appointment-container">`
                         for(let i = 0; i < model.selectedMonthAppointments.length; i++) {
@@ -253,13 +270,12 @@ function addAppointment() {
         <label id="alignTextInEvent" for="Privat"> Privat</label><br>
         <br>
 
-
         <h2 id="alignTextInEvent">Legg til ferie</h2>
         <p id="alignTextInEvent">Fra</p>
-        <input id="alignTextInEvent" type="date">
+        <input id="alignTextInEvent" type="date" onchange="selectVacationStart(this)">
         <br>
         <p id="alignTextInEvent">Til</p>
-        <input id="alignTextInEvent" type="date">
+        <input id="alignTextInEvent" type="date" onchange="selectVacationEnd(this)">
 
         <a href="#"><div class="nyHendelse" onclick="addNewEvent()">Legg til i kalender </div></a>
     </div>
