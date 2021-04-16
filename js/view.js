@@ -14,7 +14,7 @@ function updateView(){
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
         styleSelectedDate();
-        runIntervalOnce();
+        runUpdateTimeIntervalOnce();
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()

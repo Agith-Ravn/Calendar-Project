@@ -68,7 +68,7 @@ function updateTime() {
     }
 }
 
-function runIntervalOnce() {
+function runUpdateTimeIntervalOnce(); {
     if (model.interval == false) {
         model.interval = true;
         setInterval(updateTime, 10000);
