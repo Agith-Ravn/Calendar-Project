@@ -168,7 +168,7 @@ function appointmentsView() {
     html +=`<div class="widthCard">
     <div id="changeBox" class="hendelser">
         <div id="remove">
-        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
+        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear} | ${model.currentTime}</h1>
         </div>
         
             <a href="#" onclick="addAppointment()"> 
