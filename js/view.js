@@ -225,6 +225,7 @@ function addAppointment() {
     //document.getElementById("remove").style.display = "";
     //var elem = document.getElementById('remove');
     //elem.parentNode.removeChild(elem);
+    window.updateTime.visible
     let html = '';
     html +=`<div id="changeBox">
         <div class="gridContainer">
