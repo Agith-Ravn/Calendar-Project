@@ -14,6 +14,7 @@ function updateView(){
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
         styleSelectedDate();
+        runIntervalOnce();
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
@@ -187,14 +188,13 @@ function appointmentsView() {
     for(let i = 0; i < model.selectedDateAppointments.length; i++) {
         html += `<div class="hendelse">
                 <div style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
-                <h2> ${model.selectedDateAppointments[i].header} </h2>
+                
+                <h2 class="header"> ${model.selectedDateAppointments[i].time} <span style="font-weight:100"> | </span> ${model.selectedDateAppointments[i].header} </h2>
                 <p> ${model.selectedDateAppointments[i].content} </p>
-                <p> Privat: ${model.selectedDateAppointments[i].privat} <- må endres til noe annet </p>
                 </div>`
     }
         
     html += `</div></div>`
-
     return html;
 }
 
