@@ -167,9 +167,13 @@ function appointmentsView() {
     let html = '';
     html +=`<div class="widthCard">
     <div id="changeBox" class="hendelser">
-        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear} | ${model.currentTime}</h1>
-        <a href="#" onclick="addAppointment()"> <div class="nyHendelse">+ Legg til ny </div></a>`
-
+        <div id="remove">
+        <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</h1>
+        </div>
+        
+            <a href="#" onclick="addAppointment()"> 
+                <div class="nyHendelse">+ Legg til ny </div>
+            </a>`
     html += `<div class="hendelseBox">`
 
     //Holidays in appointment
@@ -218,6 +222,9 @@ function yearUpdateView() {
 }
 
 function addAppointment() {
+    //document.getElementById("remove").style.display = "";
+    //var elem = document.getElementById('remove');
+    //elem.parentNode.removeChild(elem);
     let html = '';
     html +=`<div id="changeBox">
         <div class="gridContainer">
@@ -264,7 +271,9 @@ function addAppointment() {
         <a href="#"><div class="nyHendelse" onclick="addNewEvent()">Legg til i kalender </div></a>
     </div>
     `
+    
     document.getElementById("changeBox").innerHTML = html;
+    
 }
 
 //Gives all holidays classname 'holidays'
