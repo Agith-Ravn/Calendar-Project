@@ -338,7 +338,7 @@ function pushToAppointmentsArray(){
     console.table(model.appointments)
 }
 
-function 
+// function 
 
 //Bestemmer om du edit mode er på eller av
 function appointmentEditMode(trueOrFalse) {
