@@ -326,7 +326,7 @@ function pushToAppointmentsArray(){
             header: newHeaderValue, 
             content:newParagraphValue, 
             privat: newPrivatOrNot, 
-            color: newColorValue
+            color: newColorValue,
         }
     )
     console.table(model.appointments)
