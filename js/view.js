@@ -258,8 +258,8 @@ function addAppointment() {
         <input id="paragraphText" placeholder="Enter text" type="text" oninput="model.appointmentsContentInput = this.value">
 
         <h3 id="alignTextInEvent">Tid</h3>
-        <input id="timeWhenStart" type="time">
-
+        <input id="timeWhenStart" type="time" oninput="model.appointmentTimeInput = this.value">
+    
         <br>
         <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
         <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul1">

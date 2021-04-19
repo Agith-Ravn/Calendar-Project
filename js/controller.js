@@ -331,17 +331,20 @@ function pushToAppointmentsArray(){
     newHeaderValue = model.appointmentsHeaderInput;
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
+    newDateValue = model.selectedDate;
 
     // items.push(newColorValue,newHeaderValue,newParagraphValue);
     // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
     model.appointments.push(
         {
-            date: '', 
-            time: '', 
+            date: new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate), 
+            time: newTimeValue, 
             header: newHeaderValue, 
             content:newParagraphValue, 
             privat: '', 
-            color: newColorValue})
+            color: newColorValue
+        }
+    )
     console.table(model.appointments)
 }
 
