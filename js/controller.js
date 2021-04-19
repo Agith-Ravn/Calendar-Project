@@ -314,28 +314,27 @@ function getSundays() {
 
 
 // Add Event to Calender
-function addNewEvent() {
-    //const h = document.getElementById("headerText").value
-    //const p = document.getElementById("paragraphText").value
-    console.log(h);
-    console.log(p);
-    model.addedNewEventParams
-    model.appointments
-}
+// function addNewEvent() {
+//     //const h = document.getElementById("headerText").value
+//     //const p = document.getElementById("paragraphText").value
+//     console.log(h);
+//     console.log(p);
+//     model.addedNewEventParams
+//     model.appointments
+// }
 
 // Pusher input Values fra event/hendelser. 
 function pushToAppointmentsArray(){
-    items = []
-    newColorValue = document.getElementById('circleColorChooser').value;
-    newHeaderValue = document.getElementById('headerText').value;
-    newParagraphValue = document.getElementById('paragraphText').value;
-    
+    // items = []
+    // newDate = model.currentYear, model.selectedDate, model.currentMonth; 
+    newColorValue = model.appointmentsColorInput;
+    newHeaderValue = model.appointmentsHeaderInput;
+    newParagraphValue = model.appointmentsContentInput;
 
-    items.push(newColorValue,newHeaderValue,newParagraphValue);
-    console.log(items);
-    return false;
-
-    //model.appointmentsColorInput // <--- Her ligger fargen som du velger på input
+    // items.push(newColorValue,newHeaderValue,newParagraphValue);
+    // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
+    model.appointments.push({date: '', time: '', header: newHeaderValue, content:newParagraphValue, privat: '', color: newColorValue})
+    console.table(model.appointments)
 }
 
 function selectVacationStart(startDate){
@@ -349,7 +348,6 @@ function selectVacationEnd(endDate){
 //Bestemmer om du edit mode er på eller av
 function appointmentEditMode(trueOrFalse) {
     model.appointmentEditMode = trueOrFalse
-    // console.log(model.appointmentEditMode)
     updateView();
 }
 

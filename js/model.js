@@ -92,7 +92,6 @@ const model = {
     selectedMonthAppointments: [],
     
     appointmentsColorInput:'',
-    appointmentsDateInput:'',
     appointmentsHeaderInput:'',
     appointmentsContentInput:'',
 
