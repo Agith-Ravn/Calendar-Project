@@ -334,12 +334,14 @@ function pushToAppointmentsArray(){
     items.push(newColorValue,newHeaderValue,newParagraphValue);
     console.log(items);
     return false;
+
+    //model.appointmentsColorInput // <--- Her ligger fargen som du velger på input
 }
-    
+
 function selectVacationStart(startDate){
     model.vacationStartDate = startDate.value;
 }
-    
+
 function selectVacationEnd(endDate){
     model.vacationEndDate = endDate.value;
 }

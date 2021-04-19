@@ -14,7 +14,7 @@ function updateView(){
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
         styleSelectedDate();
-        // runUpdateTimeIntervalOnce();
+        runUpdateTimeIntervalOnce();
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
@@ -244,7 +244,7 @@ function addAppointment() {
         <div id="changeBox" class="hendelser">
         <div class="gridContainer">
             <div class="gridItem" >
-                <a href="#" id="circleColorChooser" onclick="changeColorfunction()"></a>
+                <input type="color" id="circleColorChooser" value="#ff0000" onchange="model.appointmentsColorInput = this.value">
             </div>
             <div class="gridItem" >
                 <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
@@ -283,13 +283,8 @@ function addAppointment() {
             <p id="alignTextInEvent">Til</p>
             <input id="alignTextInEvent" type="date">
 
-            <input type="submit" value="submit">
-                <a href="#">
-                    <div class="nyHendelse" onclick="appointmentEditMode(false);">
-                        Legg til i kalender 
-                    </div>
-                </a>
-            </input>
+            <input type="submit" class="nyHendelse" value="Legg til i kalender" onclick="appointmentEditMode(false)"> 
+                
         </form>
     </div>
     `

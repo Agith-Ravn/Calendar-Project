@@ -223,6 +223,7 @@ p {
   line-height: 2.5;
   color: white;
   font-size: 1.5rem;
+  border: none;
 }
 .widthCard {
   width: 400px;
@@ -331,17 +332,18 @@ p {
 .gridContainer {
   display: grid;
   grid-template-columns: auto auto;
+  justify-items: center;
+  width: 350px;
 }
 .gridItem {
   font-size: 35px;
   margin: 20px;
   font-weight: bold;
+  width: auto;
+  
 }
 #circleColorChooser {
-  height: 25px;
-  width: 25px;
-  background-color: #5978d5;
-  border-radius: 50%;
-  border: 1px solid #000;
+  height: 30px;
+  width: 30px;
   display: inline-block;
 }

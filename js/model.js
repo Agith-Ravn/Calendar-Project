@@ -91,6 +91,7 @@ const model = {
     selectedDateAppointments: [],
     selectedMonthAppointments: [],
     
+    appointmentsColorInput:'',
     appointmentsDateInput:'',
     appointmentsHeaderInput:'',
     appointmentsContentInput:'',
@@ -117,5 +118,3 @@ const model = {
 today = new Date();
 fullYear = today.getFullYear();
 monthsNames = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"]
-
-
