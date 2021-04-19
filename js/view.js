@@ -259,8 +259,9 @@ function addAppointment() {
 
         <h3 id="alignTextInEvent">Tid</h3>
         <input id="timeWhenStart" type="time" oninput="model.appointmentTimeInput = this.value">
-    
+
         <br>
+        <!-- Check if True Or False -->
         <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
         <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul1">
         <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
@@ -273,8 +274,9 @@ function addAppointment() {
 
         <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT">
         <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
-
-        <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat">
+        
+        <!-- Check if True Or False -->
+        <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" oninput="model.appointmentPrivatOrNot = this.value">
         <label id="alignTextInEvent" for="Privat"> Privat</label><br>
         <br>
 
