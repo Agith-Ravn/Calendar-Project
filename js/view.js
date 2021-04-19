@@ -281,19 +281,16 @@ function addAppointment() {
 
         <h3 id="alignTextInEvent">Legg til ferie</h3>
         <p id="alignTextInEvent">Fra</p>
-        <input id="alignTextInEvent" type="date">
+        <input id="alignTextInEvent" type="date" input="model.vacationStartDate = this.value">
         <br>
         <p id="alignTextInEvent">Til</p>
-        <input id="alignTextInEvent" type="date">
+        <input id="alignTextInEvent" type="date" input="model.vacationStartEnd = this.value">
 
         <input type="submit" class="nyHendelse" value="Legg til i kalender" onclick="pushToAppointmentsArray();appointmentEditMode(false)"> 
-            
-    
-    </div>
-    `
+        
+    </div>`
     
     return html;
-    
 }
 
 //Gives all holidays classname 'holidays'

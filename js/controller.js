@@ -200,6 +200,7 @@ function selectedDate(selectedDiv, date) {
     }
     model.selectedDate = date
     selectedDiv.classList.add('selectedDate')
+    model.appointmentEditMode = false;
     updateView();
 }
 
@@ -313,27 +314,15 @@ function getSundays() {
 }
 
 
-// Add Event to Calender
-// function addNewEvent() {
-//     //const h = document.getElementById("headerText").value
-//     //const p = document.getElementById("paragraphText").value
-//     console.log(h);
-//     console.log(p);
-//     model.addedNewEventParams
-//     model.appointments
-// }
-
 // Pusher input Values fra event/hendelser. 
 function pushToAppointmentsArray(){
-    // items = []
-    // newDate = model.currentYear, model.selectedDate, model.currentMonth; 
+
     newColorValue = model.appointmentsColorInput;
     newHeaderValue = model.appointmentsHeaderInput;
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
 
-    // items.push(newColorValue,newHeaderValue,newParagraphValue);
     // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
     model.appointments.push(
         {
@@ -348,13 +337,7 @@ function pushToAppointmentsArray(){
     console.table(model.appointments)
 }
 
-function selectVacationStart(startDate){
-    model.vacationStartDate = startDate.value;
-}
-
-function selectVacationEnd(endDate){
-    model.vacationEndDate = endDate.value;
-}
+function 
 
 //Bestemmer om du edit mode er på eller av
 function appointmentEditMode(trueOrFalse) {
@@ -366,10 +349,10 @@ function appointmentEditMode(trueOrFalse) {
 /* 
 Plan: 
     X - Gjør det mulig å legg til ny appointment | Jonas allerede fikset
-    o - Legge til i model at du er i legg til ny menu
-    o - Kunne gå ut av "legg til ny appointment menu" når man trykker "legg til i kalender"
-    o - koble input felt sammen med modell
-    o - når du trykker på "legg til i kalender", skal du pushe alt i innput felt opp til modell (appointment)
+    X - Legge til i model at du er i legg til ny menu
+    X - Kunne gå ut av "legg til ny appointment menu" når man trykker "legg til i kalender"
+    X - koble input felt sammen med modell
+    X - når du trykker på "legg til i kalender", skal du pushe alt i innput felt opp til modell (appointment)
     o - Kanskje legge til en tilbake knapp, i tilfelle du ikke skal legge til noe?
     o - Skal komme opp feil melding, om VITKIGE input felt ikke er fylt inn
     o - Kunne velge ferie (ta dette til slutt)
