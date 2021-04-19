@@ -289,9 +289,7 @@ function addAppointment() {
         <input id="alignTextInEvent" type="date" input="model.vacationStartEnd = this.value">
 
         <input type="submit" class="nyHendelse" value="Legg til i kalender" onclick="pushToAppointmentsArray();appointmentEditMode(false)"> 
-        
     </div>`
-    
     return html;
 }
 
