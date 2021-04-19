@@ -160,8 +160,6 @@ p {
   border: 0.5px solid rgba(0, 0, 0, 0.5);
 }
 
-
-
 /*--------------------------- Events ---------------------------*/
 .hendelser {
   position: absolute;
@@ -312,14 +310,21 @@ p {
   width: 350px;
   border-radius: 10px;
   border: 1px solid rgb(121, 121, 121);
-  margin: 20px;
+  margin-left: 20px;
 }
 #paragraphText {
   height: 75px;
   width: 350px;
   border-radius: 10px;
   border: 1px solid rgb(121, 121, 121);
-  margin: 20px;
+  margin-left: 20px;
+}
+#timeWhenStart {
+  height: 40px;
+  width: 350px;
+  border-radius: 10px;
+  border: 1px solid rgb(121, 121, 121);
+  margin-left: 20px;
 }
 #changeBox {
   width: 400px;
@@ -340,7 +345,6 @@ p {
   margin: 20px;
   font-weight: bold;
   width: auto;
-  
 }
 #circleColorChooser {
   height: 30px;

@@ -251,14 +251,17 @@ function addAppointment() {
             </div>
         </div>
         
-        <h2 id="alignTextInEvent">Header</h2>
+        <h3 id="alignTextInEvent">Header</h3>
         <input id="headerText" placeholder="Enter text" type="text" oninput="model.appointmentsHeaderInput = this.value"><br>
 
-        <h2 id="alignTextInEvent">Paragraph</h2>
+        <h3 id="alignTextInEvent">Paragraph</h3>
         <input id="paragraphText" placeholder="Enter text" type="text" oninput="model.appointmentsContentInput = this.value">
 
+        <h3 id="alignTextInEvent">Tid</h3>
+        <input id="timeWhenStart" type="time">
+
         <br>
-        <h2 id="alignTextInEvent">Velg hvem som skal se</h2>
+        <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
         <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul1">
         <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
@@ -276,7 +279,7 @@ function addAppointment() {
         <br>
 
 
-        <h2 id="alignTextInEvent">Legg til ferie</h2>
+        <h3 id="alignTextInEvent">Legg til ferie</h3>
         <p id="alignTextInEvent">Fra</p>
         <input id="alignTextInEvent" type="date">
         <br>
