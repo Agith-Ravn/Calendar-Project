@@ -332,6 +332,7 @@ function pushToAppointmentsArray(){
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
+    newPrivatOrNot = model.appointmentPrivatOrNot;
 
     // items.push(newColorValue,newHeaderValue,newParagraphValue);
     // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
@@ -341,7 +342,7 @@ function pushToAppointmentsArray(){
             time: newTimeValue, 
             header: newHeaderValue, 
             content:newParagraphValue, 
-            privat: '', 
+            privat: newPrivatOrNot, 
             color: newColorValue
         }
     )
