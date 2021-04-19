@@ -4,23 +4,18 @@ const model = {
     currentPage: 'homePage',
     // currentPage: 'loginPage',
     // currentPage: 'yearPage',
-
     navbar: { //forandrer utseende på navbar
         homePageView: true,
     },
-
     appointmentEditMode: false,
-
 
 //--------------------------- Login content ---------------------------
     adminUser: {
         userName: 'admin',
         password: '1234',
     },
-
     loginInputUser: '',
     loginInputPassword: '',
-
 
 //--------------------------- Calender ---------------------------
     //time

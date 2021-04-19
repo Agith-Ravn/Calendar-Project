@@ -77,7 +77,6 @@ function homeView() {
     html += `</div>`    
     html += appointmentsView();
     html += `</div>`
-    
     return html
 }
 // THIS IS LOGIN PAGE 
@@ -108,7 +107,6 @@ function initiereYear(){
             html += `<div class="grid-item-month"><div class="month-name">` + model.months[j - 1] + `</div>
                     <div class="daysInMonthBox">
                     <div class="grid-item-month-days">`
-                    
                     //displacement in entireYear view
                     for(let i = 0; i < model.dateDisplacementEntireYear.length; i++) {
                         if(model.dateDisplacementEntireYear[i].month == (j)) {
@@ -117,7 +115,6 @@ function initiereYear(){
                             }
                         }
                     }
-
                     //days in month
                     for (let i = 1; i <= getMonthDays ; i++) {
                         html += `<div class="grid-item-year-days`
@@ -166,15 +163,12 @@ function navBarView() {
 function appointmentsView() {
     //hvis modeL.appointment == true, skal "addAppointView" vises
     // hvis modeL.appointment == true, skal det under vises
-    
     let html = '';
     html +=`<div class="widthCard">`
 
     if(model.appointmentEditMode == true) {
         html += addAppointment();
-
     }
-
 
     if(model.appointmentEditMode == false) {
     html +=`<div id="changeBox" class="hendelser">
@@ -203,7 +197,6 @@ function appointmentsView() {
     for(let i = 0; i < model.selectedDateAppointments.length; i++) {
         html += `<div class="hendelse">
                 <div style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
-                
                 <h2 class="header"> ${model.selectedDateAppointments[i].time} <span style="font-weight:100"> | </span> ${model.selectedDateAppointments[i].header} </h2>
                 <p> ${model.selectedDateAppointments[i].content} </p>
                 </div>`
@@ -214,7 +207,6 @@ function appointmentsView() {
     html += `</div>`
     return html;
 }
-
 
 function yearUpdateView() {
     let html = '';
@@ -232,10 +224,7 @@ function yearUpdateView() {
     html += `<div> <button onclick="changeYear(10)"> › </button> </div>
     </div>`
     return html;
-}
-
-// function 
-
+} 
 
 function addAppointment() {
     // window.updateTime.visible
@@ -280,13 +269,12 @@ function addAppointment() {
         <label id="alignTextInEvent" for="Privat"> Privat</label><br>
         <br>
 
-
         <h3 id="alignTextInEvent">Legg til ferie</h3>
         <p id="alignTextInEvent">Fra</p>
-        <input id="alignTextInEvent" type="date" input="model.vacationStartDate = this.value">
+        <input id="alignTextInEvent" type="date" oninput="model.vacationStartDate = this.value">
         <br>
         <p id="alignTextInEvent">Til</p>
-        <input id="alignTextInEvent" type="date" input="model.vacationStartEnd = this.value">
+        <input id="alignTextInEvent" type="date" oninput="model.vacationStartEnd = this.value">
 
         <input type="submit" class="nyHendelse" value="Legg til i kalender" onclick="pushToAppointmentsArray();appointmentEditMode(false)"> 
     </div>`

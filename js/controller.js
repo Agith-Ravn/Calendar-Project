@@ -23,7 +23,6 @@ function findCurrentDate() {
     } else {
         model.currentYear = (year + model.changeYear)
     }
-
     //month
     let month = d.getMonth() + 1;
     if (model.changeMonth == 0) {
@@ -212,7 +211,6 @@ function showAppointments() {
         if (appointment.date.getFullYear() == model.currentYear
             && appointment.date.getMonth() == (model.currentMonth - 1)
             && appointment.date.getDate() == model.selectedDate) {
-
             filteredList.push(appointment)
         }
     }
@@ -226,7 +224,6 @@ function getAppointmentsSelctedMonth() {
         let appointment = model.appointments[i];
         if (appointment.date.getFullYear() == model.currentYear
             && appointment.date.getMonth() == (model.currentMonth - 1)) {
-
             filteredList.push(appointment)
         }
     }
@@ -267,7 +264,6 @@ function getHolidays() {
         filterdList.push({holidayName, date})
     }
     model.allHolidaysInCurrentYear = filterdList;
-
     //Gets all holidays in current month
     let filterdList2 = []
     for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {
@@ -282,7 +278,6 @@ function getHolidays() {
 
 //Finds all sundays in currentMonth
 function getSundays() {
-
     //All sundays in currentMonth
     let filteredList = []
     for(let i = 1; i < model.daysInMonth + 1; i++) {
@@ -313,7 +308,6 @@ function getSundays() {
     // console.log(model.sundaysInCurrentYear)
 }
 
-
 // Pusher input Values fra event/hendelser. 
 function pushToAppointmentsArray(){
 
@@ -339,13 +333,19 @@ function pushToAppointmentsArray(){
 }
 
 // function 
+function selectVacationStart(startDate){
+    model.vacationStartDate = startDate.value;
+}
+
+function selectVacationEnd(endDate){
+    model.vacationEndDate = endDate.value;
+}
 
 //Bestemmer om du edit mode er på eller av
 function appointmentEditMode(trueOrFalse) {
     model.appointmentEditMode = trueOrFalse
     updateView();
 }
-
 
 /* 
 Plan: 
