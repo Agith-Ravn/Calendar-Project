@@ -315,11 +315,25 @@ function getSundays() {
 
 // Add Event to Calender
 function addNewEvent() {
-    const h = document.getElementById("headerText").value
-    const p = document.getElementById("paragraphText").value
+    //const h = document.getElementById("headerText").value
+    //const p = document.getElementById("paragraphText").value
     console.log(h);
     console.log(p);
     model.addedNewEventParams
+    model.appointments
+}
+
+// Pusher input Values fra event/hendelser. 
+function pushToAppointmentsArray(){
+    items = []
+    newColorValue = document.getElementById('circleColorChooser').value;
+    newHeaderValue = document.getElementById('headerText').value;
+    newParagraphValue = document.getElementById('paragraphText').value;
+    
+
+    items.push(newColorValue,newHeaderValue,newParagraphValue);
+    console.log(items);
+    return false;
 }
     
 function selectVacationStart(startDate){

@@ -238,9 +238,6 @@ function yearUpdateView() {
 
 
 function addAppointment() {
-    //document.getElementById("remove").style.display = "";
-    //var elem = document.getElementById('remove');
-    //elem.parentNode.removeChild(elem);
     // window.updateTime.visible
     let html = '';
     html +=` 
@@ -253,40 +250,47 @@ function addAppointment() {
                 <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
             </div>
         </div>
+        <form onsubmit="pushToAppointmentsArray()">
+            <h2 id="alignTextInEvent">Header</h2>
+            <input id="headerText" placeholder="Enter text" type="text"><br>
 
-        <h2 id="alignTextInEvent">Header</h2>
-        <input id="headerText" placeholder="Enter text" onblur="getVal() type="text"><br>
+            <h2 id="alignTextInEvent">Paragraph</h2>
+            <input id="paragraphText" placeholder="Enter text" type="text">
 
-        <h2 id="alignTextInEvent">Paragraph</h2>
-        <input id="paragraphText" placeholder="Enter text" onblur="getVal() type="text">
+            <br>
+            <h2 id="alignTextInEvent">Velg hvem som skal se</h2>
+            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul1">
+            <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
-        <br>
-        <h2 id="alignTextInEvent">Velg hvem som skal se</h2>
-        <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul1">
-        <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
+            <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul2">
+            <label id="alignTextInEvent" for="Modul1"> Modul 2</label><br>
 
-        <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul2">
-        <label id="alignTextInEvent" for="Modul1"> Modul 2</label><br>
+            <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul3">
+            <label id="alignTextInEvent" for="Modul1"> Modul 3</label><br>
 
-        <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul3">
-        <label id="alignTextInEvent" for="Modul1"> Modul 3</label><br>
+            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT">
+            <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
-        <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT">
-        <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
-
-        <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat">
-        <label id="alignTextInEvent" for="Privat"> Privat</label><br>
-        <br>
+            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat">
+            <label id="alignTextInEvent" for="Privat"> Privat</label><br>
+            <br>
 
 
-        <h2 id="alignTextInEvent">Legg til ferie</h2>
-        <p id="alignTextInEvent">Fra</p>
-        <input id="alignTextInEvent" type="date">
-        <br>
-        <p id="alignTextInEvent">Til</p>
-        <input id="alignTextInEvent" type="date">
+            <h2 id="alignTextInEvent">Legg til ferie</h2>
+            <p id="alignTextInEvent">Fra</p>
+            <input id="alignTextInEvent" type="date">
+            <br>
+            <p id="alignTextInEvent">Til</p>
+            <input id="alignTextInEvent" type="date">
 
-        <a href="#"><div class="nyHendelse" onclick="appointmentEditMode(false);">Legg til i kalender </div></a>
+            <input type="submit" value="submit">
+                <a href="#">
+                    <div class="nyHendelse" onclick="appointmentEditMode(false);">
+                        Legg til i kalender 
+                    </div>
+                </a>
+            </input>
+        </form>
     </div>
     `
     
