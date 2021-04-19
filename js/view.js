@@ -164,14 +164,25 @@ function navBarView() {
 }
 
 function appointmentsView() {
+    //hvis modeL.appointment == true, skal "addAppointView" vises
+    // hvis modeL.appointment == true, skal det under vises
+    
     let html = '';
-    html +=`<div class="widthCard">
-    <div id="changeBox" class="hendelser">
+    html +=`<div class="widthCard">`
+
+    if(model.appointmentEditMode == true) {
+        html += addAppointment();
+
+    }
+
+
+    if(model.appointmentEditMode == false) {
+    html +=`<div id="changeBox" class="hendelser">
         <div id="remove">
         <h1>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear} | ${model.currentTime}</h1>
         </div>
         
-            <a href="#" onclick="addAppointment()"> 
+            <a href="#" onclick="appointmentEditMode(true)"> 
                 <div class="nyHendelse">+ Legg til ny </div>
             </a>`
     html += `<div class="hendelseBox">`
@@ -197,8 +208,10 @@ function appointmentsView() {
                 <p> ${model.selectedDateAppointments[i].content} </p>
                 </div>`
     }
-        
-    html += `</div></div>`
+    html += `</div>`
+    }
+
+    html += `</div>`
     return html;
 }
 
@@ -221,13 +234,17 @@ function yearUpdateView() {
     return html;
 }
 
+// function 
+
+
 function addAppointment() {
     //document.getElementById("remove").style.display = "";
     //var elem = document.getElementById('remove');
     //elem.parentNode.removeChild(elem);
-    window.updateTime.visible
+    // window.updateTime.visible
     let html = '';
-    html +=`<div id="changeBox">
+    html +=` 
+        <div id="changeBox" class="hendelser">
         <div class="gridContainer">
             <div class="gridItem" >
                 <a href="#" id="circleColorChooser" onclick="changeColorfunction()"></a>
@@ -269,11 +286,11 @@ function addAppointment() {
         <p id="alignTextInEvent">Til</p>
         <input id="alignTextInEvent" type="date">
 
-        <a href="#"><div class="nyHendelse" onclick="addNewEvent()">Legg til i kalender </div></a>
+        <a href="#"><div class="nyHendelse" onclick="appointmentEditMode(false);">Legg til i kalender </div></a>
     </div>
     `
     
-    document.getElementById("changeBox").innerHTML = html;
+    return html;
     
 }
 

@@ -330,4 +330,22 @@ function selectVacationEnd(endDate){
     model.vacationEndDate = endDate.value;
 }
 
+//Bestemmer om du edit mode er på eller av
+function appointmentEditMode(trueOrFalse) {
+    model.appointmentEditMode = trueOrFalse
+    // console.log(model.appointmentEditMode)
+    updateView();
+}
 
+
+/* 
+Plan: 
+    X - Gjør det mulig å legg til ny appointment | Jonas allerede fikset
+    o - Legge til i model at du er i legg til ny menu
+    o - Kunne gå ut av "legg til ny appointment menu" når man trykker "legg til i kalender"
+    o - koble input felt sammen med modell
+    o - når du trykker på "legg til i kalender", skal du pushe alt i innput felt opp til modell (appointment)
+    o - Kanskje legge til en tilbake knapp, i tilfelle du ikke skal legge til noe?
+    o - Skal komme opp feil melding, om VITKIGE input felt ikke er fylt inn
+    o - Kunne velge ferie (ta dette til slutt)
+*/
