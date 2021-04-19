@@ -326,14 +326,13 @@ function getSundays() {
 // Pusher input Values fra event/hendelser. 
 function pushToAppointmentsArray(){
     // items = []
-    // newDate = model.currentYear, model.selectedDate, model.currentMonth; 
     newColorValue = model.appointmentsColorInput;
     newHeaderValue = model.appointmentsHeaderInput;
     newParagraphValue = model.appointmentsContentInput;
 
     // items.push(newColorValue,newHeaderValue,newParagraphValue);
     // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
-    model.appointments.push({date: '', time: '', header: newHeaderValue, content:newParagraphValue, privat: '', color: newColorValue})
+    model.appointments.push({date: new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate), time: '', header: newHeaderValue, content:newParagraphValue, privat: '', color: newColorValue})
     console.table(model.appointments)
 }
 
