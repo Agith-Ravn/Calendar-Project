@@ -95,6 +95,7 @@ const model = {
     appointmentsHeaderInput:'',
     appointmentsContentInput:'',
     appointmentTimeInput: '',
+    appointmentPrivatOrNot: '', 
 
     colors: {
         green:'#7CFC00',
