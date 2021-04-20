@@ -357,4 +357,5 @@ Plan:
     o - Kanskje legge til en tilbake knapp, i tilfelle du ikke skal legge til noe?
     o - Skal komme opp feil melding, om VITKIGE input felt ikke er fylt inn
     o - Kunne velge ferie (ta dette til slutt)
+    o - Kunne endre og slette appointment
 */
