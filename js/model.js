@@ -7,6 +7,9 @@ const model = {
     navbar: { //forandrer utseende på navbar
         homePageView: true,
     },
+    appointmentMenuView: false,
+    specialEventMenuView: false,
+
     appointmentEditMode: false,
     specialEventEditMode: false,
 
@@ -26,6 +29,7 @@ const model = {
     //date/day
     currentDate: 0,
     selectedDate: 0,
+    selectedFullDate: 0,
     dateDisplacement: 0,
     dateDisplacementEntireYear: [],
     weekdayNames: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'],
@@ -110,14 +114,39 @@ const model = {
         date: new Date(),
     },
 
+    specialEvent: {
+        events: [
+            {
+                startDate: new Date(2021, 3, 1), 
+                endDate: new Date(2021, 3, 5), 
+                header: 'Ferie', 
+                content: 'Påskeferie',
+                visibility: {
+                    modul1: true,
+                    modul2: true,
+                    modul3: true,
+                    startIT: true,
+                    privat: true,
+                },
+                color: 'grey',
+                calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03", "2021-04-04", "2021-04-05"]
+            }
+        ],
 
-    specialEvents: [
-        {startDate: new Date(2021, 3, 20), endDate: new Date(2021, 3, 25), header: 'Ferie', content: 'Ferie for modul x', privat: '', color: 'grey', calculatedDate: []}
-    ],
-    
-    specialEventStartDateInput: "noEvents",
-    specialEventEndDateInput: "noEvents",
-    specialEventCalculatedDate: "noEvents",
+        startDateInput: '',
+        endDateInput: '',
+        calculatedDate: [],
+        colorInput:'#000000',
+        headerInput:'',
+        contentInput:'',
+        visibility: {
+            modul1: false,
+            modul2: false,
+            modul3: false,
+            startIT: false,
+            privat: true,
+        }, 
+    }
     
 }
 today = new Date();

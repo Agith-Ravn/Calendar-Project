@@ -40,6 +40,10 @@ function findCurrentDate() {
     if (model.selectedDate == 0) {
         model.selectedDate = model.currentDate;
     }
+    
+    let dato = ('0' + model.selectedDate).slice(-2)
+    let mnd = ('0' + model.currentMonth).slice(-2)
+    model.selectedFullDate = `${model.currentYear}`+ '-' + mnd + '-' + dato
 }
 
 function getCurrentTime() {
@@ -119,6 +123,7 @@ function firstWeekdayInMonth(year, month) {
 function changeMonth(monthIndex, idName) {
     model.changeMonth = monthIndex + 1;
     model.colorSelectedMonth = idName;
+    appointmentMenuToFalse();
     updateView();
 }
 
@@ -137,7 +142,9 @@ function changeYear(value) {
     if (model.selectedYearInEntireYear !== 0) {
         model.selectedYearInEntireYear += value;
     }
+    appointmentMenuToFalse();
     updateView();
+    
 }
 
 //Funksjon som finner riktig uke nummer i currentMonth
@@ -199,7 +206,7 @@ function selectedDate(selectedDiv, date) {
     }
     model.selectedDate = date
     selectedDiv.classList.add('selectedDate')
-    model.appointmentEditMode = false;
+    appointmentMenuToFalse();
     updateView();
 }
 
@@ -235,6 +242,7 @@ function getAppointmentsSelctedMonth() {
 function days(month,year) {
     return new Date(year, month, 0).getDate();
     initiereYear();
+    
 };
 
 //Select current year in entire year view
@@ -310,8 +318,7 @@ function getSundays() {
 
 // Pusher input Values fra event/hendelser. 
 function pushToAppointmentsArray(){
-
-    newColorValue = model.appointmentsColorInput;
+    newColorValue = model.appointmentsColorInput == '' ? '#000000' : model.appointmentsColorInput;
     newHeaderValue = model.appointmentsHeaderInput;
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
@@ -332,41 +339,89 @@ function pushToAppointmentsArray(){
     console.table(model.appointments)
 }
 
+function pushToSpecialEventsArray() {
+    let startDate = model.specialEvent.startDateInput
+    let endDate = model.specialEvent.endDateInput
+    let header = model.specialEvent.headerInput
+    let content = model.specialEvent.contentInput
+    let visibility = model.specialEvent.visibility
+    let color = model.specialEvent.colorInput
+    
+    if (startDate > endDate) {
+        alert('Ugyldig dato, Til dato starter før fra dato.') 
+        return
+    } 
+    if (startDate.length == !8 || endDate.length == !8) {
+        alert('Fyll inn dato') 
+        return
+    }
+
+    let calculatedDate = calculateSpecialEventDate(startDate, endDate);
+
+    model.specialEvent.events.push(
+        {
+            startDate: new Date(startDate), 
+            endDate: new Date(endDate), 
+            header: header, 
+            content: content,
+            visibility: visibility,
+            color: color == '#FFFFFF' ? '#000000' : color,
+            calculatedDate: calculatedDate
+        }
+    )
+    console.log(model.specialEvent.events)
+}
+
 //Regner ut hvor mange dager 
-function calculateSpecialEvent(startDate, endDate) {
-    // console.log(model.specialStartDate)
+function calculateSpecialEventDate(start, end) {
+
+    const listDate = [];
+    const startDate = start;
+    const endDate = end;
+    const dateMove = new Date(startDate);
+    let strDate = startDate;    
+    while (strDate < endDate) {
+        strDate = dateMove.toISOString().slice(0, 10);
+        listDate.push(strDate);
+        dateMove.setDate(dateMove.getDate() + 1);
+    };
+    return listDate;
     /*
-        o - Lag til "Legg til spesiell hendelse"
-        o - Regne ut dato fra startDate til endDate
-        o - Pushe dette inn til specialEvents.calculatedDate
-        o - Hvis en av verdiene inni special event er "noEvents", eller om endDate er før startDate > Feil melding
-        o - Krysse av om du vil ha specialEvent
+        X - Lag ny "Legg til spesiell hendelse"
+        X - Regne ut dato fra startDate til endDate
+        X - Pushe dette inn til specialEvents.calculatedDate
         o - Kunne endre start/end date
         o - Slette start/end date
     */
-
-    /*
-        Hvis checkbox om å bruke specialEvent er krysset 
-        Skal tid felt forsvinne,
-
-    */
-    
 }
 
-//Bestemmer om du edit mode er på eller av
-function appointmentEditMode(trueOrFalse) {
-    model.appointmentEditMode = trueOrFalse
-    // if(model.appointmentEditMode == trueOrFalse) {model.specialEventEditMode = !trueOrFalse}
+
+function appointmentMenuView(trueOrFalse) {
+    model.appointmentMenuView = trueOrFalse
     updateView();
 }
 
+function specialEventMenuView(trueOrFalse) {
+    model.specialEventMenuView = trueOrFalse
+    updateView();
+}
+
+function appointmentEditMode(trueOrFalse) {
+    model.appointmentEditMode = trueOrFalse
+    updateView();
+}
 
 function specialEventEditMode(trueOrFalse) {
     model.specialEventEditMode = trueOrFalse
-    // if(model.specialEventEditMode == trueOrFalse) {model.appointmentEditMode = !trueOrFalse}
     updateView();
 }
 
+function appointmentMenuToFalse() {
+    model.appointmentMenuView = false;
+    model.specialEventMenuView = false;
+    model.appointmentEditMode = false;
+    model.specialEventEditMode = false;
+}
 /* 
 Plan: 
     X - Gjør det mulig å legg til ny appointment | Jonas allerede fikset
