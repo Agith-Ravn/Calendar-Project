@@ -8,6 +8,7 @@ const model = {
         homePageView: true,
     },
     appointmentEditMode: false,
+    specialEventEditMode: false,
 
 //--------------------------- Login content ---------------------------
     adminUser: {
@@ -108,8 +109,16 @@ const model = {
         fromToDate: "",
         date: new Date(),
     },
-    vacationStartDate: "",
-    vacationEndDate: "",
+
+
+    specialEvents: [
+        {startDate: new Date(2021, 3, 20), endDate: new Date(2021, 3, 25), header: 'Ferie', content: 'Ferie for modul x', privat: '', color: 'grey', calculatedDate: []}
+    ],
+    
+    specialEventStartDateInput: "noEvents",
+    specialEventEndDateInput: "noEvents",
+    specialEventCalculatedDate: "noEvents",
+    
 }
 today = new Date();
 fullYear = today.getFullYear();

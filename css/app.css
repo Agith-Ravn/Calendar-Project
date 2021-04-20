@@ -178,7 +178,7 @@ p {
 
 .hendelseBox {
   width: 375px;
-  height: 710px;
+  height: 650px;
   margin: auto 0 auto 20px;
   overflow-x: hidden;
 }
@@ -211,18 +211,64 @@ p {
 
 .nyHendelse {
   position: absolute;
-  top: 810px;
+  top: 815px;
   left: 10px;
   width: 380px;
-  height: 60px;
+  height: 55px;
   background-color: #5978d5;
   border-radius: 15px;
   text-align: center;
-  line-height: 2.5;
+  line-height: 2.3;
   color: white;
   font-size: 1.5rem;
   border: none;
 }
+
+.nySpesiellHendelse {
+  position: absolute;
+  top: 750px;
+  left: 10px;
+  width: 380px;
+  height: 55px;
+  background-color: #5978d5;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 2.3;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+}
+
+.appointment__back-button {
+  position: absolute;
+  top: 815px;
+  left: 10px;
+  width: 120px;
+  height: 55px;
+  background-color: #5978d5;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 2.3;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+}
+
+.appointment__add-button {
+  position: absolute;
+  top: 815px;
+  left: 140px;
+  width: 250px;
+  height: 55px;
+  background-color: #5978d5;
+  border-radius: 15px;
+  text-align: center;
+  line-height: 2.3;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+}
+
 .widthCard {
   width: 400px;
 }

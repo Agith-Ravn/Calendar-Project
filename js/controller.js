@@ -332,18 +332,38 @@ function pushToAppointmentsArray(){
     console.table(model.appointments)
 }
 
-// function 
-function selectVacationStart(startDate){
-    model.vacationStartDate = startDate.value;
-}
+//Regner ut hvor mange dager 
+function calculateSpecialEvent(startDate, endDate) {
+    // console.log(model.specialStartDate)
+    /*
+        o - Lag til "Legg til spesiell hendelse"
+        o - Regne ut dato fra startDate til endDate
+        o - Pushe dette inn til specialEvents.calculatedDate
+        o - Hvis en av verdiene inni special event er "noEvents", eller om endDate er før startDate > Feil melding
+        o - Krysse av om du vil ha specialEvent
+        o - Kunne endre start/end date
+        o - Slette start/end date
+    */
 
-function selectVacationEnd(endDate){
-    model.vacationEndDate = endDate.value;
+    /*
+        Hvis checkbox om å bruke specialEvent er krysset 
+        Skal tid felt forsvinne,
+
+    */
+    
 }
 
 //Bestemmer om du edit mode er på eller av
 function appointmentEditMode(trueOrFalse) {
     model.appointmentEditMode = trueOrFalse
+    // if(model.appointmentEditMode == trueOrFalse) {model.specialEventEditMode = !trueOrFalse}
+    updateView();
+}
+
+
+function specialEventEditMode(trueOrFalse) {
+    model.specialEventEditMode = trueOrFalse
+    // if(model.specialEventEditMode == trueOrFalse) {model.appointmentEditMode = !trueOrFalse}
     updateView();
 }
 
