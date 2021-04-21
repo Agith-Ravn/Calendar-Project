@@ -116,7 +116,8 @@ const model = {
 
     specialEvent: {
         events: [
-            {
+            {   
+                id: '2021-04-02-1',
                 startDate: new Date(2021, 04, 01), 
                 endDate: new Date(2021, 04, 05), 
                 header: 'Ferie', 
@@ -132,6 +133,7 @@ const model = {
                 calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03", "2021-04-04", "2021-04-05"]
             },
             {
+                id: '2021-04-02-2',
                 startDate: new Date(2021, 04, 02), 
                 endDate: new Date(2021, 04, 04), 
                 header: 'Ferie2', 

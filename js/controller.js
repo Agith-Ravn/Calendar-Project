@@ -356,6 +356,7 @@ function pushToSpecialEventsArray() {
         return
     }
 
+    let id = generateID(model.specialEvent.events, startDate);
     let calculatedDate = calculateSpecialEventDate(startDate, endDate);
 
     model.specialEvent.events.push(
@@ -369,7 +370,6 @@ function pushToSpecialEventsArray() {
             calculatedDate: calculatedDate
         }
     )
-    console.log(model.specialEvent.events)
 }
 
 //Regner ut hvor mange dager 
@@ -393,6 +393,32 @@ function calculateSpecialEventDate(start, end) {
         o - Kunne endre start/end date
         o - Slette start/end date
     */
+}
+
+
+function generateID(modell, date) {
+    /*
+    Hvordan skal den se ut?
+        StartDato + tilfeldig tall? - 2021-04-21-1 osv?
+        
+        Hvis id er lik:
+            id (2021-04-21-1) == id inni events(2021-04-21-1) {
+                1++ i id
+            }
+        Gjør dette til id er ulik id inni events
+
+    Kode:
+        while (newID == model.sepcialEvent[i].id) {
+            newID = 1++;
+        }
+
+        */
+    modell.forEach(function (event) {
+       
+        console.log(event.id)
+    });
+    console.log(modell)
+    console.log(date)
 }
 
 
