@@ -129,7 +129,7 @@ const model = {
                     startIT: true,
                     privat: true,
                 },
-                color: 'grey',
+                color: '#000000',
                 calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03", "2021-04-04", "2021-04-05"]
             },
             {
