@@ -324,10 +324,12 @@ function pushToAppointmentsArray(){
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
     newPrivatOrNot = model.appointmentPrivatOrNot;
+    newId = generateId(model.appointments, newDateValue) 
 
     // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
     model.appointments.push(
         {
+            id:         newId,
             date:       new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate), 
             time:       newTimeValue, 
             header:     newHeaderValue, 
@@ -336,7 +338,7 @@ function pushToAppointmentsArray(){
             color:      newColorValue,
         }
     )
-    console.table(model.appointments)
+    // console.table(model.appointments)
 }
 
 function pushToSpecialEventsArray() {
@@ -356,7 +358,7 @@ function pushToSpecialEventsArray() {
         return
     }
 
-    let id = generateID(model.specialEvent.events, startDate);
+    let id = generateId(model.specialEvent.events, startDate);
     let calculatedDate = calculateSpecialEventDate(startDate, endDate);
 
     model.specialEvent.events.push(
@@ -395,8 +397,15 @@ function calculateSpecialEventDate(start, end) {
     */
 }
 
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    )
+}
+generateId()
+function generateId(idEvents, date) {
 
-function generateID(modell, date) {
+
     /*
     Hvordan skal den se ut?
         StartDato + tilfeldig tall? - 2021-04-21-1 osv?
@@ -406,19 +415,29 @@ function generateID(modell, date) {
                 1++ i id
             }
         Gjør dette til id er ulik id inni events
+*/
+    
+    // let newId
+    // let generatedId = 0
 
-    Kode:
-        while (newID == model.sepcialEvent[i].id) {
-            newID = 1++;
-        }
-
-        */
-    modell.forEach(function (event) {
+    // idEvents.forEach(function (event)
+    //     while (newID == event.id) {
+    //         generatedID = 1++;
+    //     } 
+    //     console.log(generateId)
+    //     console.log(newId)
+    
+    // newId = date + '-' + generatedId
+        
+    
+    // model.appointments.id
+    
+    // idEvents.forEach(function (event) {
        
-        console.log(event.id)
-    });
-    console.log(modell)
-    console.log(date)
+    //     console.log(event.id)
+    // });
+    // console.log(idEvents)
+    // console.log(date)
 }
 
 
@@ -449,16 +468,11 @@ function appointmentMenuToFalse() {
     model.appointmentEditMode = false;
     model.specialEventEditMode = false;
 }
-
-
-
-
 // When button clicked get specific event from the array to edit.
 function editEvent(){
-    // Check the index to get the specific event. 
-    // Can be more then one event.
-    console.log(new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate))
-    console.table(model.appointments)
+
+    appointmentEditModeView();
+
 }
 
 
