@@ -324,7 +324,12 @@ function pushToAppointmentsArray(){
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
     newPrivatOrNot = model.appointmentPrivatOrNot;
-    newId = generateId(model.appointments, newDateValue)
+
+    //legger til null forran hvis dato eller month er mindre enn 10
+    date = ('0' + newDateValue).slice(-2)
+    month = ('0' + model.currentMonth).slice(-2)
+    fullDate = `${model.currentYear}-${month}-${date}` 
+    newId = generateId(model.appointments, fullDate)
 
     // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
     model.appointments.push(
@@ -363,6 +368,7 @@ function pushToSpecialEventsArray() {
 
     model.specialEvent.events.push(
         {
+            id: id,
             startDate: new Date(startDate),
             endDate: new Date(endDate),
             header: header,
@@ -403,7 +409,7 @@ function calculateSpecialEventDate(start, end) {
 //     )
 // }
 
-generateId(model.specialEvent.events, '2021-04-01');
+// generateId(model.specialEvent.events, '2021-04-01');
 function generateId(idEvents, date) {
     let newId
     let idInEvents
@@ -420,6 +426,7 @@ function generateId(idEvents, date) {
         newId = date + '-' + generatedId;
     }
     console.log(newId + ' ny id')
+    return newId
 }
 
 
