@@ -328,12 +328,12 @@ function pushToAppointmentsArray(){
     // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
     model.appointments.push(
         {
-            date: new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate), 
-            time: newTimeValue, 
-            header: newHeaderValue, 
-            content:newParagraphValue, 
-            privat: newPrivatOrNot, 
-            color: newColorValue,
+            date:       new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate), 
+            time:       newTimeValue, 
+            header:     newHeaderValue, 
+            content:    newParagraphValue, 
+            privat:     newPrivatOrNot, 
+            color:      newColorValue,
         }
     )
     console.table(model.appointments)
@@ -437,6 +437,7 @@ function appointmentEditMode(trueOrFalse) {
     updateView();
 }
 
+
 function specialEventEditMode(trueOrFalse) {
     model.specialEventEditMode = trueOrFalse
     updateView();
@@ -448,6 +449,19 @@ function appointmentMenuToFalse() {
     model.appointmentEditMode = false;
     model.specialEventEditMode = false;
 }
+
+
+
+
+// When button clicked get specific event from the array to edit.
+function editEvent(){
+    // Check the index to get the specific event. 
+    // Can be more then one event.
+    console.log(new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate))
+    console.table(model.appointments)
+}
+
+
 /* 
 Plan: 
     X - Gjør det mulig å legg til ny appointment | Jonas allerede fikset
