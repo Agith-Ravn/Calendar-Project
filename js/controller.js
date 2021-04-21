@@ -405,24 +405,21 @@ function calculateSpecialEventDate(start, end) {
 
 generateId(model.specialEvent.events, '2021-04-01');
 function generateId(idEvents, date) {
-
+    let newId
     let idInEvents
-
+    let generatedId = 1;
     for(let i = 0; i < idEvents.length; i++) {
         idInEvents = idEvents[i].id
         console.log(idInEvents + ' Id i events')
-    }
-        let newId = '';
-        let generatedId = 1;
-
+        
         newId = date + '-' + generatedId;
-
-        do {     
+        
+        if (newId == idInEvents) {
             generatedId++;
-            newId = date + '-' + generatedId;
         }
-        while (newId == idInEvents)
-        console.log(newId + ' ny id')
+        newId = date + '-' + generatedId;
+    }
+    console.log(newId + ' ny id')
 }
 
 
