@@ -460,9 +460,12 @@ function appointmentMenuToFalse() {
 }
 // When button clicked get specific event from the array to edit.
 function editEvent(){
-
     appointmentEditModeView();
+}
 
+function checkIfIdIsCorrect(){
+    let obj = model.appointments.find(id => id.name === model.appointments.id)
+    console.log(obj);
 }
 
 

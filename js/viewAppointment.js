@@ -78,7 +78,7 @@ function appointmentsView() {
                     <div class="appointment__first-row">
                         <div class="appointment__color" style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
                         <h2 class="header"> ${model.selectedDateAppointments[i].time} <span style="font-weight:100"> | </span> ${model.selectedDateAppointments[i].header} </h2>
-                        <div class="appointment__edit-button" onclick="appointmentEditMode(true)"> Edit </div>
+                        <div class="appointment__edit-button" onclick="checkIfIdIsCorrect()"> Edit </div>
                     </div>
                     <p> ${model.selectedDateAppointments[i].content} </p>
                     </div>`
