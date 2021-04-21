@@ -40,7 +40,7 @@ function findCurrentDate() {
     if (model.selectedDate == 0) {
         model.selectedDate = model.currentDate;
     }
-    
+
     let dato = ('0' + model.selectedDate).slice(-2)
     let mnd = ('0' + model.currentMonth).slice(-2)
     model.selectedFullDate = `${model.currentYear}`+ '-' + mnd + '-' + dato
@@ -50,7 +50,7 @@ function getCurrentTime() {
     let d = new Date();
     let hour = d.getHours();
     let minutes = d.getMinutes();
-    
+
     if(hour < 10) {
         hour = ('0' + hour).slice(-2)
     }
@@ -144,7 +144,7 @@ function changeYear(value) {
     }
     appointmentMenuToFalse();
     updateView();
-    
+
 }
 
 //Funksjon som finner riktig uke nummer i currentMonth
@@ -242,7 +242,7 @@ function getAppointmentsSelctedMonth() {
 function days(month,year) {
     return new Date(year, month, 0).getDate();
     initiereYear();
-    
+
 };
 
 //Select current year in entire year view
@@ -316,7 +316,7 @@ function getSundays() {
     // console.log(model.sundaysInCurrentYear)
 }
 
-// Pusher input Values fra event/hendelser. 
+// Pusher input Values fra event/hendelser.
 function pushToAppointmentsArray(){
     newColorValue = model.appointmentsColorInput == '' ? '#000000' : model.appointmentsColorInput;
     newHeaderValue = model.appointmentsHeaderInput;
@@ -324,17 +324,17 @@ function pushToAppointmentsArray(){
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
     newPrivatOrNot = model.appointmentPrivatOrNot;
-    newId = generateId(model.appointments, newDateValue) 
+    newId = generateId(model.appointments, newDateValue)
 
     // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
     model.appointments.push(
         {
             id:         newId,
-            date:       new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate), 
-            time:       newTimeValue, 
-            header:     newHeaderValue, 
-            content:    newParagraphValue, 
-            privat:     newPrivatOrNot, 
+            date:       new Date( model.currentYear, model.currentMonth - 1,  model.selectedDate),
+            time:       newTimeValue,
+            header:     newHeaderValue,
+            content:    newParagraphValue,
+            privat:     newPrivatOrNot,
             color:      newColorValue,
         }
     )
@@ -348,13 +348,13 @@ function pushToSpecialEventsArray() {
     let content = model.specialEvent.contentInput
     let visibility = model.specialEvent.visibility
     let color = model.specialEvent.colorInput
-    
+
     if (startDate > endDate) {
-        alert('Ugyldig dato, Til dato starter før fra dato.') 
+        alert('Ugyldig dato, Til dato starter før fra dato.')
         return
-    } 
+    }
     if (startDate.length == !8 || endDate.length == !8) {
-        alert('Fyll inn dato') 
+        alert('Fyll inn dato')
         return
     }
 
@@ -363,9 +363,9 @@ function pushToSpecialEventsArray() {
 
     model.specialEvent.events.push(
         {
-            startDate: new Date(startDate), 
-            endDate: new Date(endDate), 
-            header: header, 
+            startDate: new Date(startDate),
+            endDate: new Date(endDate),
+            header: header,
             content: content,
             visibility: visibility,
             color: color == '#FFFFFF' ? '#000000' : color,
@@ -374,14 +374,14 @@ function pushToSpecialEventsArray() {
     )
 }
 
-//Regner ut hvor mange dager 
+//Regner ut hvor mange dager
 function calculateSpecialEventDate(start, end) {
 
     const listDate = [];
     const startDate = start;
     const endDate = end;
     const dateMove = new Date(startDate);
-    let strDate = startDate;    
+    let strDate = startDate;
     while (strDate < endDate) {
         strDate = dateMove.toISOString().slice(0, 10);
         listDate.push(strDate);
@@ -397,48 +397,34 @@ function calculateSpecialEventDate(start, end) {
     */
 }
 
-function uuidv4() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    )
-}
-generateId()
+// function uuidv4() {
+//     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+//       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+//     )
+// }
+
+generateId(model.specialEvent.events, '2021-04-01');
 function generateId(idEvents, date) {
 
+    let idInEvents
 
-    /*
-    Hvordan skal den se ut?
-        StartDato + tilfeldig tall? - 2021-04-21-1 osv?
-        
-        Hvis id er lik:
-            id (2021-04-21-1) == id inni events(2021-04-21-1) {
-                1++ i id
-            }
-        Gjør dette til id er ulik id inni events
-*/
-    
-    // let newId
-    // let generatedId = 0
+    for(let i = 0; i < idEvents.length; i++) {
+        idInEvents = idEvents[i].id
+        console.log(idInEvents + ' Id i events')
+    }
+        let newId = '';
+        let generatedId = 1;
 
-    // idEvents.forEach(function (event)
-    //     while (newID == event.id) {
-    //         generatedID = 1++;
-    //     } 
-    //     console.log(generateId)
-    //     console.log(newId)
-    
-    // newId = date + '-' + generatedId
-        
-    
-    // model.appointments.id
-    
-    // idEvents.forEach(function (event) {
-       
-    //     console.log(event.id)
-    // });
-    // console.log(idEvents)
-    // console.log(date)
+        newId = date + '-' + generatedId;
+
+        do {     
+            generatedId++;
+            newId = date + '-' + generatedId;
+        }
+        while (newId == idInEvents)
+        console.log(newId + ' ny id')
 }
+
 
 
 function appointmentMenuView(trueOrFalse) {
@@ -476,8 +462,8 @@ function editEvent(){
 }
 
 
-/* 
-Plan: 
+/*
+Plan:
     X - Gjør det mulig å legg til ny appointment | Jonas allerede fikset
     X - Legge til i model at du er i legg til ny menu
     X - Kunne gå ut av "legg til ny appointment menu" når man trykker "legg til i kalender"

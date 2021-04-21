@@ -116,7 +116,7 @@ const model = {
     specialEvent: {
         events: [
             {   
-                id: '2021-04-02-1',
+                id: '2021-04-01-1',
                 startDate: new Date(2021, 04, 01), 
                 endDate: new Date(2021, 04, 05), 
                 header: 'Ferie', 
@@ -132,9 +132,9 @@ const model = {
                 calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03", "2021-04-04", "2021-04-05"]
             },
             {
-                id: '2021-04-02-2',
-                startDate: new Date(2021, 04, 02), 
-                endDate: new Date(2021, 04, 04), 
+                id: '2021-04-01-2',
+                startDate: new Date(2021, 04, 01), 
+                endDate: new Date(2021, 04, 03), 
                 header: 'Ferie2', 
                 content: 'Påskeferie2',
                 visibility: {
@@ -145,7 +145,7 @@ const model = {
                     privat: true,
                 },
                 color: '#FF0000',
-                calculatedDate: ["2021-04-02", "2021-04-03", "2021-04-04"]
+                calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03"]
             }
         ],
 
