@@ -369,8 +369,8 @@ function pushToSpecialEventsArray() {
     model.specialEvent.events.push(
         {
             id: id,
-            startDate: new Date(startDate),
-            endDate: new Date(endDate),
+            startDate: startDate,
+            endDate: endDate,
             header: header,
             content: content,
             visibility: visibility,
@@ -378,6 +378,60 @@ function pushToSpecialEventsArray() {
             calculatedDate: calculatedDate
         }
     )
+}
+
+function saveSpecialEvent(id, index) {
+    // console.log(index)
+    let id2 = model.specialEventEditModeId.replace(' ','')
+    if(id == id2) {
+        
+        model.specialEvent.startDateInput = model.specialEvent.startDateInput == "" ? model.specialEvent.events[index].startDate : model.specialEvent.startDateInput;
+        model.specialEvent.endDateInput = model.specialEvent.endDateInput == "" ? model.specialEvent.events[index].endDate : model.specialEvent.endDateInput;
+        model.specialEvent.headerInput = model.specialEvent.headerInput == "" ? model.specialEvent.events[index].header : model.specialEvent.headerInput;
+        model.specialEvent.contentInput = model.specialEvent.contentInput == "" ? model.specialEvent.events[index].content : model.specialEvent.contentInput;
+        model.specialEvent.visibility = model.specialEvent.visibility == "" ? model.specialEvent.events[index].visibility : model.specialEvent.visibility;
+        model.specialEvent.colorInput = model.specialEvent.colorInput == null ? model.specialEvent.events[index].color : model.specialEvent.colorInput;
+
+        let startDateInput = model.specialEvent.startDateInput
+        let endDateInput = model.specialEvent.endDateInput
+        let headerInput = model.specialEvent.headerInput
+        let contentInput = model.specialEvent.contentInput
+        let visibilityInput = model.specialEvent.visibility
+        let colorInput = model.specialEvent.colorInput
+
+        if (startDateInput > endDateInput) {
+            alert('Ugyldig dato, Til dato starter før fra dato.')
+            return
+        }
+        if (startDateInput.length == !8 || endDateInput.length == !8) {
+            alert('Fyll inn dato')
+            return
+        }
+
+        let calculatedDate = calculateSpecialEventDate(startDateInput, endDateInput);
+        
+        let changes = {
+                id: id,
+                startDate: startDateInput,
+                endDate: endDateInput,
+                header: headerInput,
+                content: contentInput,
+                visibility: visibilityInput,
+                color: colorInput,
+                calculatedDate: calculatedDate
+            }
+
+        model.specialEvent.events[index] = changes
+        updateView();
+    }
+}
+
+function deleteSpecialEvent(id, index) {
+    let id2 = model.specialEventEditModeId.replace(' ','')
+    if(id == id2) {
+        model.specialEvent.events.splice(index, 1);
+    }
+    updateView();
 }
 
 //Regner ut hvor mange dager
@@ -394,13 +448,6 @@ function calculateSpecialEventDate(start, end) {
         dateMove.setDate(dateMove.getDate() + 1);
     };
     return listDate;
-    /*
-        X - Lag ny "Legg til spesiell hendelse"
-        X - Regne ut dato fra startDate til endDate
-        X - Pushe dette inn til specialEvents.calculatedDate
-        o - Kunne endre start/end date
-        o - Slette start/end date
-    */
 }
 
 // function uuidv4() {
@@ -487,8 +534,18 @@ Plan:
     X - Kunne gå ut av "legg til ny appointment menu" når man trykker "legg til i kalender"
     X - koble input felt sammen med modell
     X - når du trykker på "legg til i kalender", skal du pushe alt i innput felt opp til modell (appointment)
-    o - Kanskje legge til en tilbake knapp, i tilfelle du ikke skal legge til noe?
+    X - Kanskje legge til en tilbake knapp, i tilfelle du ikke skal legge til noe?
     o - Skal komme opp feil melding, om VITKIGE input felt ikke er fylt inn
     o - Kunne velge ferie (ta dette til slutt)
     o - Kunne endre og slette appointment
-*/
+
+
+
+Special events:
+    X - Lag ny "Legg til spesiell hendelse"
+    X - Regne ut dato fra startDate til endDate
+    X - Pushe dette inn til specialEvents.calculatedDate
+    X - Kunne endre start/end date
+    o - Slette start/end date
+    
+ns*/

@@ -1,6 +1,5 @@
 function appointmentsView() {
-    //hvis modeL.appointment == true, skal "addAppointView" vises
-    // hvis modeL.appointment == true, skal det under vises
+
     let html = '';
     html +=`<div class="widthCard">`
 
@@ -51,6 +50,7 @@ function appointmentsView() {
 
         //Shows Speical event
         for(let i = 0; i < model.specialEvent.events.length; i++) {
+            let id = model.specialEvent.events[i].id;
             let header = model.specialEvent.events[i].header
             let content = model.specialEvent.events[i].content
             let startDate = model.specialEvent.events[i].startDate
@@ -64,7 +64,7 @@ function appointmentsView() {
                     <div class="appointment__first-row">
                         <div class="appointment__color" style="background:${color};"> </div>
                         <div class="header"> ${header} </div> 
-                        <div class="appointment__edit-button" onclick="specialEventEditMode(true)"> Edit </div>
+                        <div class="appointment__edit-button" onclick="model.specialEventEditModeId = '${id}';specialEventEditMode(true);"> Edit </div>
                     </div>
                     <p> ${content} </p>
                     </div>`
@@ -156,10 +156,8 @@ function specialEventMenu() {
         <input id="headerText" placeholder="Enter text" type="text" oninput="model.specialEvent.headerInput = this.value"><br>
 
         <h3 id="alignTextInEvent">Paragraph</h3>
-        <input id="paragraphText" placeholder="Enter text" type="text" oninput="model.specialEvent.contentInput = this.value">`
+        <input id="paragraphText" placeholder="Enter text" type="text" oninput="model.specialEvent.contentInput = this.value">
 
-    
-    html += `
         <br>
         <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
         <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onclick="model.specialEvent.visibility.modul1 = this.checked">
@@ -188,7 +186,7 @@ function specialEventMenu() {
 
         <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenuView(false)"> 
         <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToSpecialEventsArray();specialEventMenuView(false)"> 
-    </div>`
+        </div>`
     return html;
 }
 
@@ -251,19 +249,24 @@ function specialEventEditModeView() {
     let html = '';
       
     for(let i = 0; i < model.specialEvent.events.length; i++) {
+        let id = model.specialEvent.events[i].id
+        let id2 = model.specialEventEditModeId.replace(' ','')
         let header = model.specialEvent.events[i].header
         let content = model.specialEvent.events[i].content
         let startDate = model.specialEvent.events[i].startDate
         let endDate = model.specialEvent.events[i].endDate
         let color = model.specialEvent.events[i].color
 
-        for(let j = 0; j < model.specialEvent.events[i].calculatedDate.length; j++) {
-            let date = model.specialEvent.events[i].calculatedDate[j]
-
-            html +=`<div id="changeBox" class="hendelser">`
-            
-            html +=`<div class="gridContainer">
-            <div class="gridItem" >
+        let modul1 = model.specialEvent.events[i].visibility.modul1 == true ? 'checked="checked"' : '';
+        let modul2 = model.specialEvent.events[i].visibility.modul2 == true ? 'checked="checked"' : '';
+        let modul3 = model.specialEvent.events[i].visibility.modul3 == true ? 'checked="checked"' : '';
+        let startIT = model.specialEvent.events[i].visibility.startIT == true ? 'checked="checked"' : '';
+        let privat = model.specialEvent.events[i].visibility.privat == true ? 'checked="checked"' : ''; 
+    
+        if(id == id2) {
+            html +=`<div id="changeBox" class="hendelser">
+            <div class="gridContainer">
+            <div class="gridItem">
             <input type="color" id="circleColorChooser" value="${color}" onchange="model.specialEvent.colorInput = this.value">
             </div>
             <div class="gridItem" >
@@ -272,41 +275,43 @@ function specialEventEditModeView() {
             </div>
             
             <h3 id="alignTextInEvent">Header</h3>
-            <input id="headerText" placeholder="Enter text" type="text" value="${header}"oninput="model.specialEvent.headerInput = this.value"><br>
+            <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.specialEvent.headerInput = this.value"><br>
 
             <h3 id="alignTextInEvent">Paragraph</h3>
-            <input id="paragraphText" placeholder="Enter text" type="text" oninput="model.specialEvent.contentInput = this.value">
+            <input id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.specialEvent.contentInput = this.value">
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
-            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onclick="model.specialEvent.visibility.modul1 = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onchange="model.specialEvent.visibility.modul1 = this.checked" ${modul1}>
             <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onclick="model.specialEvent.visibility.modul2 = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onchange="model.specialEvent.visibility.modul2 = this.checked" ${modul2}>
             <label id="alignTextInEvent" for="Modul2"> Modul 2</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul 3" onclick="model.specialEvent.visibility.modul3 = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul 3" onchange="model.specialEvent.visibility.modul3 = this.checked" ${modul3}>
             <label id="alignTextInEvent" for="Modul2"> Modul 3</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onclick="model.specialEvent.visibility.startIT = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onchange="model.specialEvent.visibility.startIT = this.checked" ${startIT}>
             <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onclick="model.specialEvent.visibility.privat = this.checked" checked>
+            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onchange="model.specialEvent.visibility.privat = this.checked" ${privat}>
             <label id="alignTextInEvent" for="Privat"> Privat</label><br>
             <br>
 
             <h3 id="alignTextInEvent">Spesiell hendelse</h3>
 
             <p id="alignTextInEvent">Fra</p>
-            <input id="alignTextInEvent" type="date" oninput="model.specialEvent.startDateInput = this.value">
+            <input id="alignTextInEvent" type="date" value="${startDate}" onchange="model.specialEvent.startDateInput = this.value">
+            <br>
             <br>
             <p id="alignTextInEvent">Til</p>
-            <input id="alignTextInEvent" type="date" oninput="model.specialEvent.endDateInput = this.value">
+            <input id="alignTextInEvent" type="date" value="${endDate}" onchange="model.specialEvent.endDateInput = this.value">
 
-            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenuView(false)"> 
-            <input type="submit" class="appointment__add-button" value="Lagre endringer" onclick="pushToSpecialEventsArray();specialEventMenuView(false)">`
-            
-            html += `</div>`
+            <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteSpecialEvent('${id}','${i}');specialEventEditMode(false)"> Delete </button>
+
+            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventEditMode(false)"> 
+            <input type="submit" class="appointment__add-button" value="Lagre endringer" onclick="saveSpecialEvent('${id}','${i}');specialEventEditMode(false)">
+            </div>`
             return html;
         }
     }

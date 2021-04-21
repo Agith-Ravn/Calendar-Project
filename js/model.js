@@ -11,6 +11,7 @@ const model = {
     specialEventMenuView: false,
     appointmentEditMode: false,
     specialEventEditMode: false,
+    specialEventEditModeId: null,
 
 //--------------------------- Login content ---------------------------
     adminUser: {
@@ -117,8 +118,8 @@ const model = {
         events: [
             {   
                 id: '2021-04-01-1',
-                startDate: new Date(2021, 04, 01), 
-                endDate: new Date(2021, 04, 05), 
+                startDate: '2021-04-01', 
+                endDate: '2021-04-05', 
                 header: 'Ferie', 
                 content: 'Påskeferie',
                 visibility: {
@@ -133,41 +134,41 @@ const model = {
             },
             {
                 id: '2021-04-01-2',
-                startDate: new Date(2021, 04, 01), 
-                endDate: new Date(2021, 04, 03), 
+                startDate: '2021-04-01', 
+                endDate: '2021-04-03', 
                 header: 'Ferie2', 
                 content: 'Påskeferie2',
                 visibility: {
-                    modul1: true,
+                    modul1: false,
                     modul2: true,
-                    modul3: true,
+                    modul3: false,
                     startIT: true,
-                    privat: true,
+                    privat: false,
                 },
                 color: '#FF0000',
                 calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03"]
             },
             {
                 id: '2021-04-01-4',
-                startDate: new Date(2021, 04, 01), 
-                endDate: new Date(2021, 04, 03), 
+                startDate: '2021-04-01', 
+                endDate: '2021-04-03', 
                 header: 'Ferie2', 
                 content: 'Påskeferie2',
                 visibility: {
                     modul1: true,
-                    modul2: true,
+                    modul2: false,
                     modul3: true,
-                    startIT: true,
+                    startIT: false,
                     privat: true,
                 },
-                color: '#FF0000',
+                color: '#37ff00',
                 calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03"]
             },
         ],
 
         startDateInput: '',
         endDateInput: '',
-        colorInput:'#000000',
+        colorInput: null,
         headerInput:'',
         contentInput:'',
         visibility: {
