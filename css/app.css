@@ -413,3 +413,9 @@ p {
   width: 30px;
   display: inline-block;
 }
+
+#editEventButton {
+  font-size: 12px;
+  text-decoration: underline;
+  text-align: end;
+}
