@@ -463,6 +463,17 @@ function editEvent(){
     appointmentEditModeView();
 }
 
+
+// Checks for model.appointments.id 
+// but gets only "2021-04-16-1"
+
+/*
+search an array of objects with specific object property value
+
+var result = jsObjects.find(obj => {
+  return obj.b === 6
+})
+*/
 function checkIfIdIsCorrect(){
     let obj = model.appointments.find(id => id.name === model.appointments.id)
     console.log(obj);
