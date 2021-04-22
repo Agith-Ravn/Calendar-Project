@@ -500,12 +500,6 @@ function calculateSpecialEventDate(start, end) {
     return listDate;
 }
 
-// function uuidv4() {
-//     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-//       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-//     )
-// }
-
 // generateId(model.specialEvent.events, '2021-04-01');
 function generateId(idEvents, date) {
     let newId
@@ -525,7 +519,6 @@ function generateId(idEvents, date) {
     // console.log(newId + ' ny id')
     return newId
 }
-
 
 
 function appointmentMenuView(trueOrFalse) {
@@ -587,27 +580,3 @@ function selectedEventId(id, index){
         model.specialEvent.events.splice(index, 1);
     }
 }
-
-
-/*
-Plan:
-    X - Gjør det mulig å legg til ny appointment | Jonas allerede fikset
-    X - Legge til i model at du er i legg til ny menu
-    X - Kunne gå ut av "legg til ny appointment menu" når man trykker "legg til i kalender"
-    X - koble input felt sammen med modell
-    X - når du trykker på "legg til i kalender", skal du pushe alt i innput felt opp til modell (appointment)
-    X - Kanskje legge til en tilbake knapp, i tilfelle du ikke skal legge til noe?
-    o - Skal komme opp feil melding, om VITKIGE input felt ikke er fylt inn
-    o - Kunne velge ferie (ta dette til slutt)
-    o - Kunne endre og slette appointment
-
-
-
-Special events:
-    X - Lag ny "Legg til spesiell hendelse"
-    X - Regne ut dato fra startDate til endDate
-    X - Pushe dette inn til specialEvents.calculatedDate
-    X - Kunne endre start/end date
-    o - Slette start/end date
-    
-ns*/
