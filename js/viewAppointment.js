@@ -43,7 +43,7 @@ function appointmentsView() {
                 holidayName = model.allHolidaysInCurrentMonth[i].holidayName
                 html += `<div class="hendelse">
                             <div> <!-- color --> </div>
-                            <h2 style="color:red"> ${holidayName} </h2>
+                            <div class="appointment__holiday" style="color:red"> ${holidayName} </div>
                         </div>`
             }
         }
@@ -61,7 +61,7 @@ function appointmentsView() {
                 let date = model.specialEvent.events[i].calculatedDate[j]
                 if (date == model.selectedFullDate) {
                     html += `<div class="hendelse">
-                    <div class="appointment__first-row">
+                    <div class="appointment__header-container">
                         <div class="appointment__color" style="background:${color};"> </div>
                         <div class="header"> ${header} </div> 
                         <div class="appointment__edit-button" onclick="model.specialEventEditModeId = '${id}';specialEventEditMode(true);"> Edit </div>
@@ -75,7 +75,7 @@ function appointmentsView() {
         //Shows appointment from model
         for(let i = 0; i < model.selectedDateAppointments.length; i++) {
             html += `<div class="hendelse">
-                    <div class="appointment__first-row">
+                    <div class="appointment__header-container">
                         <div class="appointment__color" style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
                         <h2 class="header"> ${model.selectedDateAppointments[i].time} <span style="font-weight:100"> | </span> ${model.selectedDateAppointments[i].header} </h2>
                         <div class="appointment__edit-button" onclick="checkIfIdIsCorrect()"> Edit </div>

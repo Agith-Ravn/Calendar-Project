@@ -193,7 +193,15 @@ p {
   border-radius: 15px;
   
 }
-.appointment__first-row {
+
+.appointment__holiday {
+  display: block;
+  font-size: 1.5em;
+  margin: 5px 30px;
+  font-weight: bold;
+}
+
+.appointment__header-container {
   display: grid;
   grid-template-columns: 30px auto 30px;
 

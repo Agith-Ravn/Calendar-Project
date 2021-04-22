@@ -75,6 +75,10 @@ function runUpdateTimeIntervalOnce() {
     }
 }
 
+function stopTimeInterval() {
+    clearInterval(updateTime())
+}
+
 function daysInMonth(month, year){
     return new Date(year, month, 0).getDate();
 }
@@ -409,7 +413,7 @@ function saveSpecialEvent(id, index) {
         }
 
         let calculatedDate = calculateSpecialEventDate(startDateInput, endDateInput);
-        
+
         let changes = {
                 id: id,
                 startDate: startDateInput,
@@ -480,22 +484,26 @@ function generateId(idEvents, date) {
 
 function appointmentMenuView(trueOrFalse) {
     model.appointmentMenuView = trueOrFalse
+    if (model.appointmentMenuView == false) {stopTimeInterval()}
     updateView();
 }
 
 function specialEventMenuView(trueOrFalse) {
     model.specialEventMenuView = trueOrFalse
+    if (model.specialEventMenuView == false) {stopTimeInterval()}
     updateView();
 }
 
 function appointmentEditMode(trueOrFalse) {
     model.appointmentEditMode = trueOrFalse
+    if (model.appointmentEditMode == false) {stopTimeInterval()}
     updateView();
 }
 
 
 function specialEventEditMode(trueOrFalse) {
     model.specialEventEditMode = trueOrFalse
+    if (model.specialEventEditMode == false) {stopTimeInterval()}
     updateView();
 }
 
