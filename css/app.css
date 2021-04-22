@@ -293,9 +293,15 @@ p {
   border: none;
 }
 
-/* .appointment__delete-button {
-  
-} */
+.appointment__delete-button {
+  margin: 10px 0px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: rgb(255, 59, 59);
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
 
 .widthCard {
   width: 400px;

@@ -14,11 +14,13 @@ function updateView(){
         document.getElementById('app').innerHTML = homeView()
         styleCurrentMonth();
         styleSelectedDate();
-        // runUpdateTimeIntervalOnce();
+        runUpdateTimeIntervalOnce();
     }
     if(model.currentPage == 'loginPage') {
         document.getElementById('app').innerHTML = loginScreen()
         appointmentMenuToFalse();
+        stopTimeInterval()
+        
     }
     if(model.currentPage == 'yearPage') {
         model.navbar.homePageView = false;
@@ -29,6 +31,7 @@ function updateView(){
         getSundays();
         document.getElementById('app').innerHTML = initiereYear()
         selectCurrentYear();
+        stopTimeInterval()
     }
 }
 // THIS IS HOME PAGE.

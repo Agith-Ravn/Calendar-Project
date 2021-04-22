@@ -7,12 +7,14 @@ const model = {
     navbar: { //forandrer utseende på navbar
         homePageView: true,
     },
-    appointmentMenuView: false,
+    
+    appointmentMenu: false,
     appointmentEditMode: false,
-    specialEventMenuView: false,
-    specialEventEditMode: false,
-    specialEventEditModeId: null,
     selectedIdEvent: false,
+
+    specialEventMenu: false,
+    specialEventEditMode: false,
+    selectedIdSpecialEvent: false,
 
 //--------------------------- Login content ---------------------------
     adminUser: {
@@ -26,6 +28,7 @@ const model = {
     //time
     currentTime: 0,
     interval: false,
+    clearInterval:'',
 
     //date/day
     currentDate: 0,
@@ -73,21 +76,21 @@ const model = {
 //--------------------------- Appointments ---------------------------
     //hendelser
     appointments: [//år , mnd (zero index) , dato
-        { id: '2021-04-16-1', date: new Date(2021, 3, 16), time: '09:00',  header: 'Chorei',     content: '',                                                         privat: false, color: '#0000FF'},
-        { id: '2021-04-16-2', date: new Date(2021, 3, 16), time: '09:45',  header: 'OPT',        content: 'Vise fram hvor langt dere har kommet med gruppeoppgave',   privat: false, color: '#FF0000'},
-        { id: '2021-04-22-1', date: new Date(2021, 3, 22), time: '10:15',  header: 'Test4',      content: 'Tgg sdfd dfs',                                             privat: true,  color: '#444444'},
-        { id: '2021-04-25-1', date: new Date(2021, 3, 25), time: '10:15',  header: 'Test5',      content: 'Test-test-test5',                                          privat: true,  color: '#FF7F50'},
-        { id: '2021-04-28-1', date: new Date(2021, 3, 28), time: '10:15',  header: 'Test6',      content: 'Test-test-test6',                                          privat: true,  color: '#FF00FF'},
-        { id: '2021-04-30-1', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.1',    content: 'Test-test-test3',                                          privat: false, color: '#0000FF'},
-        { id: '2021-04-30-2', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.2',    content: 'Test-test-test3',                                          privat: false, color: '#008000'},
-        { id: '2021-04-30-3', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.3',    content: 'Test-test-test3',                                          privat: false, color: '#ffe700'},
-        { id: '2021-04-30-4', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.4',    content: 'Test-test-test3',                                          privat: false, color: '#FF0000'},
-        { id: '2021-04-30-5', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.5',    content: 'Test-test-test3',                                          privat: false, color: '#000000'},
-        { id: '2021-04-30-6', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.6',    content: 'Test-test-test3',                                          privat: false, color: '#0000FF'},
-        { id: '2021-04-30-7', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.7',    content: 'Test-test-test3',                                          privat: false, color: '#0000FF'},
-        { id: '2021-04-30-8', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.8',    content: 'Test-test-test3',                                          privat: false, color: '#0000FF'},
-        { id: '2021-03-09-1', date: new Date(2021, 2, 9),  time: '10:15',  header: 'Test7',      content: 'smfdsfsd ',                                                privat: false, color: '#ffe700'},
-        { id: '2021-03-11-1', date: new Date(2021, 2, 11), time: '10:15',  header: 'Test8',      content: '233ssdfdsfsfd ',                                           privat: false, color: '#FF0C93'},
+        { id: '2021-04-16-1', date: new Date(2021, 3, 16), time: '09:00',  header: 'Chorei',     content: '',                                                         color: '#0000FF', visibility: {modul1: true,  modul2: true,  modul3: false, startIT: false, privat: true,}},
+        { id: '2021-04-16-2', date: new Date(2021, 3, 16), time: '09:45',  header: 'OPT',        content: 'Vise fram hvor langt dere har kommet med gruppeoppgave',   color: '#FF0000', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-22-1', date: new Date(2021, 3, 22), time: '10:15',  header: 'Test4',      content: 'Tgg sdfd dfs',                                             color: '#444444', visibility: {modul1: true,  modul2: false, modul3: true,  startIT: false, privat: true,}},
+        { id: '2021-04-25-1', date: new Date(2021, 3, 25), time: '10:15',  header: 'Test5',      content: 'Test-test-test5',                                          color: '#FF7F50', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: false,}},
+        { id: '2021-04-28-1', date: new Date(2021, 3, 28), time: '10:15',  header: 'Test6',      content: 'Test-test-test6',                                          color: '#FF00FF', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-30-1', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.1',    content: 'Test-test-test3',                                          color: '#0000FF', visibility: {modul1: false, modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-30-2', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.2',    content: 'Test-test-test3',                                          color: '#008000', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-30-3', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.3',    content: 'Test-test-test3',                                          color: '#ffe700', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-30-4', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.4',    content: 'Test-test-test3',                                          color: '#FF0000', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-30-5', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.5',    content: 'Test-test-test3',                                          color: '#000000', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-30-6', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.6',    content: 'Test-test-test3',                                          color: '#0000FF', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-30-7', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.7',    content: 'Test-test-test3',                                          color: '#0000FF', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-04-30-8', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.8',    content: 'Test-test-test3',                                          color: '#0000FF', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-03-09-1', date: new Date(2021, 2, 9),  time: '10:15',  header: 'Test7',      content: 'smfdsfsd ',                                                color: '#ffe700', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
+        { id: '2021-03-11-1', date: new Date(2021, 2, 11), time: '10:15',  header: 'Test8',      content: '233ssdfdsfsfd ',                                           color: '#FF0C93', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
     ],
     selectedDateAppointments: [],
     selectedMonthAppointments: [],
@@ -96,8 +99,13 @@ const model = {
     appointmentsHeaderInput:'',
     appointmentsContentInput:'',
     appointmentTimeInput: '',
-    appointmentPrivatOrNot: '', 
-
+    appointmentVisibilityInput: {
+        modul1: '',
+        modul2: '',
+        modul3: '',
+        startIT: '',
+        privat: '',
+    }, 
     
 
     colors: {
@@ -155,8 +163,8 @@ const model = {
                 id: '2021-04-01-4',
                 startDate: '2021-04-01', 
                 endDate: '2021-04-03', 
-                header: 'Ferie2', 
-                content: 'Påskeferie2',
+                header: 'Ferie3', 
+                content: 'Påskeferie3',
                 visibility: {
                     modul1: true,
                     modul2: false,
@@ -171,14 +179,14 @@ const model = {
 
         startDateInput: '',
         endDateInput: '',
-        colorInput: null,
+        colorInput: '',
         headerInput:'',
         contentInput:'',
         visibility: {
-            modul1: false,
-            modul2: false,
-            modul3: false,
-            startIT: false,
+            modul1: '',
+            modul2: '',
+            modul3: '',
+            startIT: '',
             privat: true,
         }, 
     }
@@ -187,3 +195,4 @@ const model = {
 today = new Date();
 fullYear = today.getFullYear();
 monthsNames = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"]
+

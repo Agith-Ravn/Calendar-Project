@@ -71,12 +71,12 @@ function updateTime() {
 function runUpdateTimeIntervalOnce() {
     if (model.interval == false) {
         model.interval = true;
-        setInterval(updateTime, 10000);
+        model.clearInterval = setInterval(updateTime, 10000);
     }
 }
 
 function stopTimeInterval() {
-    clearInterval(updateTime())
+    clearInterval(model.clearInterval)
 }
 
 function daysInMonth(month, year){
@@ -322,12 +322,12 @@ function getSundays() {
 
 // Pusher input Values fra event/hendelser.
 function pushToAppointmentsArray(){
-    newColorValue = model.appointmentsColorInput == '' ? '#000000' : model.appointmentsColorInput;
+    newColorValue = model.appointmentsColorInput
     newHeaderValue = model.appointmentsHeaderInput;
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
-    newPrivatOrNot = model.appointmentPrivatOrNot;
+    visibility = model.appointmentVisibilityInput;
 
     //legger til null forran hvis dato eller month er mindre enn 10
     date = ('0' + newDateValue).slice(-2)
@@ -343,11 +343,11 @@ function pushToAppointmentsArray(){
             time:       newTimeValue,
             header:     newHeaderValue,
             content:    newParagraphValue,
-            privat:     newPrivatOrNot,
+            visibility: visibility,
             color:      newColorValue,
         }
     )
-    // console.table(model.appointments)
+    updateView();
 }
 
 function pushToSpecialEventsArray() {
@@ -378,35 +378,39 @@ function pushToSpecialEventsArray() {
             header: header,
             content: content,
             visibility: visibility,
-            color: color == '#FFFFFF' ? '#000000' : color,
+            color: color,
             calculatedDate: calculatedDate
         }
     )
+    updateView();
 }
 
+//Save changes on "normal" events
 function saveEditEvent(id, index){
     let id2 = model.selectedIdEvent.replace(' ','')
-    if(id == id2){
-        
-        let indexForEvents = model.selectedDateAppointments[index]
-        let date = indexForEvents.date
-        let time = model.appointmentTimeInput
-        let header = model.appointmentsHeaderInput
-        let content = model.appointmentsContentInput
-        let color = model.appointmentsColorInput
+    if(id == id2){        
+        let event = model.selectedDateAppointments[index]
+        let vEvent = model.selectedDateAppointments[index].visibility
+        let vInput = model.appointmentVisibilityInput
 
-        header = header == "" ? indexForEvents.header : header
-        content = content == "" ? indexForEvents.content : content
-        color = color == "" ? indexForEvents.color : color
-        time = time == "" ? indexForEvents.time : time
-        
-        //model.appointmentPrivatOrNot = model.appointmentPrivatOrNot == "" ? model.selectedDateAppointments[index].aa
-        // let visibility = model.specialEvent.visibility
+        let date = event.date 
+        let time = model.appointmentTimeInput == "" ? event.time : model.appointmentTimeInput
+        let header = model.appointmentsHeaderInput == "" ? event.header : model.appointmentsHeaderInput
+        let content = model.appointmentsContentInput == "" ? event.content : model.appointmentsContentInput
+        let color = model.appointmentsColorInput == "" ? event.color : model.appointmentsColorInput
+
+        //Fungerer ikke.. finn en løsning
+        let modul1 = vInput.modul1 == "" ? model.selectedDateAppointments[index].visibility.modul1 : vInput.modul1;
+        let modul2 = vInput.modul2 == "" ? model.selectedDateAppointments[index].visibility.modul1 : vInput.modul2;
+        let modul3 = vInput.modul3 == "" ? vEvent.modul3 : vInput.modul3;
+        let startIT = vInput.startIT == "" ? vEvent.startIT : vInput.startIT;
+        let privat = vInput.privat == "" ? vEvent.privat : vInput.privat;
 
         let appointments = (appointment) => appointment.id == id;
         let appointmentIndex = model.appointments.findIndex(appointments)
+        
+        let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
-        console.log(appointmentIndex)
         let changes = {
             id: id,
             date: date,
@@ -414,30 +418,38 @@ function saveEditEvent(id, index){
             header: header,
             content: content,
             color: color,
+            visibility: visibility,         
         }
         model.appointments[appointmentIndex] = changes
-        updateView();
-
+        // updateView();
+        console.log(model.appointments[appointmentIndex].visibility)
     }
 }
 
+//Save changes on special events
 function saveSpecialEvent(id, index) {
-    let id2 = model.specialEventEditModeId.replace(' ','')
+    let id2 = model.selectedIdSpecialEvent.replace(' ','')
     if(id == id2) {
         let indexForEvents = model.specialEvent.events[index]
-        let startDateInput = model.specialEvent.startDateInput
-        let endDateInput = model.specialEvent.endDateInput
-        let headerInput = model.specialEvent.headerInput
-        let contentInput = model.specialEvent.contentInput
-        let visibilityInput = model.specialEvent.visibility
-        let colorInput = model.specialEvent.colorInput
+        let sEvent = model.specialEvent
+        let vInput = model.specialEvent.visibility
 
-        startDateInput =  startDateInput == "" ? indexForEvents.startDate : startDateInput;
-        endDateInput = endDateInput == "" ? indexForEvents.endDate : endDateInput;
-        headerInput = headerInput == "" ? indexForEvents.header : headerInput;
-        contentInput = contentInput == "" ? indexForEvents.content : contentInput;
-        visibilityInput = visibilityInput == "" ? indexForEvents.visibility : visibilityInput;
-        colorInput = colorInput == null ? indexForEvents.color : colorInput;
+        let startDateInput = sEvent.startDateInput == "" ? indexForEvents.startDate : sEvent.startDateInput;
+        let endDateInput = sEvent.endDateInput == "" ? indexForEvents.endDate : sEvent.endDateInput;
+        let headerInput = sEvent.headerInput == "" ? indexForEvents.header : sEvent.headerInput;
+        let contentInput = sEvent.contentInput == "" ? indexForEvents.content : sEvent.contentInput;
+        let colorInput = sEvent.colorInput == "" ? indexForEvents.color : sEvent.colorInput;
+        
+        //Fungerer ikke.. finn en løsning  
+        let modul1 = modul1 == "" ? sEvent.visibility.modul1 : indexForEvents.modul1
+        let modul2 = modul2 == "" ? sEvent.visibility.modul2 : indexForEvents.modul2;
+        let modul3 = modul3 == "" ? sEvent.visibility.modul3 : indexForEvents.modul3;
+        let startIT = startIT == "" ? sEvent.visibility.startIT : indexForEvents.startIT;
+        let privat = privat == "" ? sEvent.visibility.privat : indexForEvents.privat;
+
+        console.log(modul1)
+
+        let visibilityInput = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
         if (startDateInput > endDateInput) {
             alert('Ugyldig dato, Til dato starter før fra dato.')
@@ -462,18 +474,13 @@ function saveSpecialEvent(id, index) {
             }
 
         model.specialEvent.events[index] = changes
-        updateView();
+        // updateView();
+        // clearInput();
+        console.log(model.specialEvent.events[index].visibility)
     }
 }
 
-function deleteSpecialEvent(id, index) {
-    let id2 = model.specialEventEditModeId.replace(' ','')
-    if(id == id2) {
-        model.specialEvent.events.splice(index, 1);
-    }
-    updateView();
-}
-
+//Delete "normal" event
 function deleteEvent(id) {
     let appointments = (appointment) => appointment.id == id;
     let appointmentIndex = model.appointments.findIndex(appointments)
@@ -482,6 +489,17 @@ function deleteEvent(id) {
         model.appointments.splice(appointmentIndex, 1);
     }
     updateView();
+    // clearInput();
+}
+
+//Delete special event
+function deleteSpecialEvent(id, index) {
+    let id2 = model.selectedIdSpecialEvent.replace(' ','')
+    if(id == id2) {
+        model.specialEvent.events.splice(index, 1);
+    }
+    updateView();
+    // clearInput();
 }
 
 //Regner ut hvor mange dager
@@ -521,62 +539,47 @@ function generateId(idEvents, date) {
 }
 
 
-function appointmentMenuView(trueOrFalse) {
-    model.appointmentMenuView = trueOrFalse
-    if (model.appointmentMenuView == false) {stopTimeInterval()}
+function appointmentMenu(trueOrFalse) {
+    model.appointmentMenu = trueOrFalse
+    if (model.appointmentMenu == true) {stopTimeInterval()}
     updateView();
+
 }
 
-function specialEventMenuView(trueOrFalse) {
-    model.specialEventMenuView = trueOrFalse
-    if (model.specialEventMenuView == false) {stopTimeInterval()}
+function specialEventMenu(trueOrFalse) {
+    model.specialEventMenu = trueOrFalse
+    if (model.specialEventMenu == true) {stopTimeInterval()}
     updateView();
+  
 }
 
 function appointmentEditMode(trueOrFalse) {
     model.appointmentEditMode = trueOrFalse
-    // if (model.appointmentEditMode == false) {stopTimeInterval()}
+    if (model.appointmentEditMode == true) {stopTimeInterval()}
     updateView();
-}
 
+}
 
 function specialEventEditMode(trueOrFalse) {
     model.specialEventEditMode = trueOrFalse
-    if (model.specialEventEditMode == false) {stopTimeInterval()}
+    if (model.specialEventEditMode == true) {stopTimeInterval()}
     updateView();
-}
+} // window.updateTime.visible
 
 function appointmentMenuToFalse() {
-    model.appointmentMenuView = false;
-    model.specialEventMenuView = false;
+    model.appointmentMenu = false;
+    model.specialEventMenu = false;
     model.appointmentEditMode = false;
     model.specialEventEditMode = false;
 }
-// When button clicked get specific event from the array to edit.
-function editEvent(trueOrFalse){
-    model.appointmentEditModeView = trueOrFalse
-    
-    updateView();
-}
-
-
-// Checks for model.appointments.id 
-// but gets only "2021-04-16-1"
 
 /*
-search an array of objects with specific object property value
+FIX:
+    X - Tilbake knapp på vanlig event
+    o - Checkbox blir ikke lagret i vanlig og special event
+    o - Legg til spesiell hendelse <-- endre navn til dette eller noe annet...
+    o - Fikse klokke
 
-var result = jsObjects.find(obj => {
-  return obj.b === 6
-})
+
+
 */
-function selectedEventId(id, index){
-    //let obj = model.appointments.find(id => id.id === model.appointments.id)
-   // console.log(id.id);
-    //console.log(model.appointments.id);
-    //console.log(obj);
-    let id2 = model.specialEventEditModeId.replace(' ','')
-    if(id == id2) {
-        model.specialEvent.events.splice(index, 1);
-    }
-}
