@@ -385,17 +385,16 @@ function pushToSpecialEventsArray() {
 }
 
 function saveEditEvent(id, index){
-        // console.log(model.selectedIdEvent)
-        //console.log(model.selectedDateAppointments)
-        // selectedDateAppointments .replace(' ','')
+
     let id2 = model.selectedIdEvent.replace(' ','')
     if(id == id2){
-        //console.log(model.selectedDateAppointments[index])
+        
         let indexForEvents = model.selectedDateAppointments[index]
+        let date = indexForEvents.date
+        let time = model.appointmentTimeInput
         let header = model.appointmentsHeaderInput
         let content = model.appointmentsContentInput
-        let color = model.specialEvent.colorInput
-        let time = model.appointmentTimeInput
+        let color = model.appointmentsColorInput
 
         header = header == "" ? indexForEvents.header : header
         content = content == "" ? indexForEvents.content : content
@@ -405,15 +404,19 @@ function saveEditEvent(id, index){
         //model.appointmentPrivatOrNot = model.appointmentPrivatOrNot == "" ? model.selectedDateAppointments[index].aa
         // let visibility = model.specialEvent.visibility
 
+        let appointments = (appointment) => appointment.id == id;
+        let appointmentIndex = model.appointments.findIndex(appointments)
+
+        // console.log(model.appointments[appointmentIndex])
         let changes = {
             id: id,
+            date: date,
             time: time,
             header: header,
             content: content,
             color: color,
         }
-        console.log(model.appointments.indexOf(model.selectedDateAppointments))
-        model.appointments[index] = changes
+        model.appointments[appointmentIndex] = changes
         updateView();
 
     }
