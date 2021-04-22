@@ -529,9 +529,15 @@ var result = jsObjects.find(obj => {
   return obj.b === 6
 })
 */
-function checkIfIdIsCorrect(){
-    let obj = model.appointments.find(id => id.name === model.appointments.id)
-    console.log(obj);
+function selectedEventId(id, index){
+    //let obj = model.appointments.find(id => id.id === model.appointments.id)
+   // console.log(id.id);
+    //console.log(model.appointments.id);
+    //console.log(obj);
+    let id2 = model.specialEventEditModeId.replace(' ','')
+    if(id == id2) {
+        model.specialEvent.events.splice(index, 1);
+    }
 }
 
 
