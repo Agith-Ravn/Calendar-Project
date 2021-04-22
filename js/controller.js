@@ -385,7 +385,6 @@ function pushToSpecialEventsArray() {
 }
 
 function saveEditEvent(id, index){
-
     let id2 = model.selectedIdEvent.replace(' ','')
     if(id == id2){
         
@@ -407,7 +406,7 @@ function saveEditEvent(id, index){
         let appointments = (appointment) => appointment.id == id;
         let appointmentIndex = model.appointments.findIndex(appointments)
 
-        // console.log(model.appointments[appointmentIndex])
+        console.log(appointmentIndex)
         let changes = {
             id: id,
             date: date,
@@ -423,7 +422,6 @@ function saveEditEvent(id, index){
 }
 
 function saveSpecialEvent(id, index) {
-    // console.log(index)
     let id2 = model.specialEventEditModeId.replace(' ','')
     if(id == id2) {
         let indexForEvents = model.specialEvent.events[index]
@@ -472,6 +470,16 @@ function deleteSpecialEvent(id, index) {
     let id2 = model.specialEventEditModeId.replace(' ','')
     if(id == id2) {
         model.specialEvent.events.splice(index, 1);
+    }
+    updateView();
+}
+
+function deleteEvent(id) {
+    let appointments = (appointment) => appointment.id == id;
+    let appointmentIndex = model.appointments.findIndex(appointments)
+    let id2 = model.selectedIdEvent.replace(' ','')
+    if(id == id2) {
+        model.appointments.splice(appointmentIndex, 1);
     }
     updateView();
 }

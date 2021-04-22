@@ -214,51 +214,53 @@ function appointmentEditModeView() {
         // let privat = model.specialEvent.events[i].visibility.privat == true ? 'checked="checked"' : ''; 
         //console.log(model.selectedDateAppointments)
     
+        if(id == id2) {
+            html +=`
+            <div id="changeBox" class="hendelser">
+            <div class="gridContainer">
+                <div class="gridItem" >
+                    <input type="color" id="circleColorChooser" value="${color}" onchange="model.appointmentsColorInput = this.value">
+                </div>
+                <div class="gridItem" >
+                    <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
+                </div>
+            </div>
             
-        html +=`     
+            <h3 id="alignTextInEvent">Header</h3>
+            <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.appointmentsHeaderInput = this.value"><br>
 
-        <div id="changeBox" class="hendelser">
-        <div class="gridContainer">
-            <div class="gridItem" >
-                <input type="color" id="circleColorChooser" value="${color}" onchange="model.appointmentsColorInput = this.value">
-            </div>
-            <div class="gridItem" >
-                <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
-            </div>
-        </div>
-        
-        <h3 id="alignTextInEvent">Header</h3>
-        <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.appointmentsHeaderInput = this.value"><br>
+            <h3 id="alignTextInEvent">Paragraph</h3>
+            <input id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.appointmentsContentInput = this.value">
 
-        <h3 id="alignTextInEvent">Paragraph</h3>
-        <input id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.appointmentsContentInput = this.value">
+            <h3 id="alignTextInEvent">Tid</h3>
+            <input id="timeWhenStart" type="time" value="${time == undefined ? '' : time}" onchange="model.appointmentTimeInput = this.value">
 
-        <h3 id="alignTextInEvent">Tid</h3>
-        <input id="timeWhenStart" type="time" value="${time == undefined ? '' : time}" onchange="model.appointmentTimeInput = this.value">
+            <br>
+            <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
+            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onclick="model.specialEvent.visibility.modul1 = this.checked">
+            <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
-        <br>
-        <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
-        <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onclick="model.specialEvent.visibility.modul1 = this.checked">
-        <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
+            <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onclick="model.specialEvent.visibility.modul2 = this.checked">
+            <label id="alignTextInEvent" for="Modul2"> Modul 2</label><br>
 
-        <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onclick="model.specialEvent.visibility.modul2 = this.checked">
-        <label id="alignTextInEvent" for="Modul2"> Modul 2</label><br>
+            <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul 3" onclick="model.specialEvent.visibility.modul3 = this.checked">
+            <label id="alignTextInEvent" for="Modul2"> Modul 3</label><br>
 
-        <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul 3" onclick="model.specialEvent.visibility.modul3 = this.checked">
-        <label id="alignTextInEvent" for="Modul2"> Modul 3</label><br>
+            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onclick="model.specialEvent.visibility.startIT = this.checked">
+            <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
-        <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onclick="model.specialEvent.visibility.startIT = this.checked">
-        <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
+            
+            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onclick="model.specialEvent.visibility.privat = this.checked" checked>
+            <label id="alignTextInEvent" for="Privat"> Privat</label><br>
+            <br>
 
-        
-        <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onclick="model.specialEvent.visibility.privat = this.checked" checked>
-        <label id="alignTextInEvent" for="Privat"> Privat</label><br>
-        <br>
-        
-        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false)"> 
-        <input type="submit" class="appointment__add-button" value="Lagre" onclick="saveEditEvent('${id}','${i}');appointmentEditMode(false)"> 
-    </div>`
-    return html;
+            <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteEvent('${id}');appointmentEditMode(false)"> Delete </button>
+            
+            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false)"> 
+            <input type="submit" class="appointment__add-button" value="Lagre" onclick="saveEditEvent('${id}','${i}');appointmentEditMode(false)"> 
+            </div>`
+            return html;
+        }
     }
 }
 
