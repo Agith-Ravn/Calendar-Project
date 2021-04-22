@@ -403,7 +403,6 @@ function saveEditEvent(id, index){
         time = time == "" ? indexForEvents.time : time
         
         //model.appointmentPrivatOrNot = model.appointmentPrivatOrNot == "" ? model.selectedDateAppointments[index].aa
-
         // let visibility = model.specialEvent.visibility
 
         let changes = {
