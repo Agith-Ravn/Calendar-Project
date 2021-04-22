@@ -51,6 +51,7 @@ function appointmentsView() {
         //Shows Speical event
         for(let i = 0; i < model.specialEvent.events.length; i++) {
             let id = model.specialEvent.events[i].id;
+            // console.log(id)
             let header = model.specialEvent.events[i].header
             let content = model.specialEvent.events[i].content
             let startDate = model.specialEvent.events[i].startDate
@@ -74,11 +75,13 @@ function appointmentsView() {
 
         //Shows appointment from model
         for(let i = 0; i < model.selectedDateAppointments.length; i++) {
+            let id = model.selectedDateAppointments[i].id;
+            // console.log(model.selectedDateAppointments[i].id)
             html += `<div class="hendelse">
                     <div class="appointment__header-container">
                         <div class="appointment__color" style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
                         <h2 class="header"> ${model.selectedDateAppointments[i].time} <span style="font-weight:100"> | </span> ${model.selectedDateAppointments[i].header} </h2>
-                        <div class="appointment__edit-button" onclick="checkIfIdIsCorrect()"> Edit </div>
+                        <div class="appointment__edit-button" onclick="model.selectedIdEvent = '${id}';appointmentEditMode(true);"> Edit </div>
                     </div>
                     <p> ${model.selectedDateAppointments[i].content} </p>
                     </div>`
@@ -133,7 +136,7 @@ function addAppointment() {
         <label id="alignTextInEvent" for="Privat"> Privat</label><br>
         <br>
 
-        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentMenuView(false)"> 
+        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false)"> 
         <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToAppointmentsArray();appointmentMenuView(false)"> 
         </div>`
     return html;
@@ -191,16 +194,33 @@ function specialEventMenu() {
 }
 
 function appointmentEditModeView() {
-
     
-
+    // console.log(model.selectedIdEvent)
+    // console.log(model.selectedDateAppointments)
+    // selectedDateAppointments .replace(' ','')
     let html = '';
-    html +=` 
+    for(let i = 0; i < model.selectedDateAppointments.length; i++) {
+        let id = model.selectedDateAppointments[i].id
+        let id2 = model.selectedIdEvent.replace(' ','')
+        let header = model.selectedDateAppointments[i].header
+        let content = model.selectedDateAppointments[i].content
+        let time = model.selectedDateAppointments[i].time
+        let color = model.selectedDateAppointments[i].color
+
+        // let modul1 = model.specialEvent.events[i].visibility.modul1 == true ? 'checked="checked"' : '';
+        // let modul2 = model.specialEvent.events[i].visibility.modul2 == true ? 'checked="checked"' : '';
+        // let modul3 = model.specialEvent.events[i].visibility.modul3 == true ? 'checked="checked"' : '';
+        // let startIT = model.specialEvent.events[i].visibility.startIT == true ? 'checked="checked"' : '';
+        // let privat = model.specialEvent.events[i].visibility.privat == true ? 'checked="checked"' : ''; 
+        //console.log(model.selectedDateAppointments)
     
+            
+        html +=`     
+
         <div id="changeBox" class="hendelser">
         <div class="gridContainer">
             <div class="gridItem" >
-                <input type="color" id="circleColorChooser" value="#000000" onchange="model.specialEvent.colorInput = this.value">
+                <input type="color" id="circleColorChooser" value="${color}" onchange="model.appointmentsColorInput = this.value">
             </div>
             <div class="gridItem" >
                 <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
@@ -208,10 +228,13 @@ function appointmentEditModeView() {
         </div>
         
         <h3 id="alignTextInEvent">Header</h3>
-        <input id="headerText" placeholder="Enter text" type="text" oninput="model.specialEvent.headerInput = this.value"><br>
+        <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.appointmentsHeaderInput = this.value"><br>
 
         <h3 id="alignTextInEvent">Paragraph</h3>
-        <input id="paragraphText" placeholder="Enter text" type="text" oninput="model.specialEvent.contentInput = this.value">
+        <input id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.appointmentsContentInput = this.value">
+
+        <h3 id="alignTextInEvent">Tid</h3>
+        <input id="timeWhenStart" type="time" value="${time == undefined ? '' : time}" onchange="model.appointmentTimeInput = this.value">
 
         <br>
         <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
@@ -227,22 +250,16 @@ function appointmentEditModeView() {
         <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onclick="model.specialEvent.visibility.startIT = this.checked">
         <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
+        
         <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onclick="model.specialEvent.visibility.privat = this.checked" checked>
         <label id="alignTextInEvent" for="Privat"> Privat</label><br>
         <br>
-
-        <h3 id="alignTextInEvent">Spesiell hendelse</h3>
-
-        <p id="alignTextInEvent">Fra</p>
-        <input id="alignTextInEvent" type="date" oninput="model.specialEvent.startDateInput = this.value">
-        <br>
-        <p id="alignTextInEvent">Til</p>
-        <input id="alignTextInEvent" type="date" oninput="model.specialEvent.endDateInput = this.value">
-
-        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenuView(false)"> 
-        <input type="submit" class="appointment__add-button" value="Lagre" onclick="pushToSpecialEventsArray();specialEventMenuView(false)"> 
+        
+        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false)"> 
+        <input type="submit" class="appointment__add-button" value="Lagre" onclick="saveEditEvent('${id}','${i}');appointmentEditMode(false)"> 
     </div>`
     return html;
+    }
 }
 
 function specialEventEditModeView() {

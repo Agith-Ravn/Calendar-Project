@@ -384,24 +384,60 @@ function pushToSpecialEventsArray() {
     )
 }
 
+function saveEditEvent(id, index){
+        // console.log(model.selectedIdEvent)
+        //console.log(model.selectedDateAppointments)
+        // selectedDateAppointments .replace(' ','')
+    let id2 = model.selectedIdEvent.replace(' ','')
+    if(id == id2){
+        //console.log(model.selectedDateAppointments[index])
+        let indexForEvents = model.selectedDateAppointments[index]
+        let header = model.appointmentsHeaderInput
+        let content = model.appointmentsContentInput
+        let color = model.specialEvent.colorInput
+        let time = model.appointmentTimeInput
+
+        header = header == "" ? indexForEvents.header : header
+        content = content == "" ? indexForEvents.content : content
+        color = color == "" ? indexForEvents.color : color
+        time = time == "" ? indexForEvents.time : time
+        
+        //model.appointmentPrivatOrNot = model.appointmentPrivatOrNot == "" ? model.selectedDateAppointments[index].aa
+
+        // let visibility = model.specialEvent.visibility
+
+        let changes = {
+            id: id,
+            time: time,
+            header: header,
+            content: content,
+            color: color,
+        }
+        console.log(model.appointments.indexOf(model.selectedDateAppointments))
+        model.appointments[index] = changes
+        updateView();
+
+    }
+}
+
 function saveSpecialEvent(id, index) {
     // console.log(index)
     let id2 = model.specialEventEditModeId.replace(' ','')
     if(id == id2) {
-        
-        model.specialEvent.startDateInput = model.specialEvent.startDateInput == "" ? model.specialEvent.events[index].startDate : model.specialEvent.startDateInput;
-        model.specialEvent.endDateInput = model.specialEvent.endDateInput == "" ? model.specialEvent.events[index].endDate : model.specialEvent.endDateInput;
-        model.specialEvent.headerInput = model.specialEvent.headerInput == "" ? model.specialEvent.events[index].header : model.specialEvent.headerInput;
-        model.specialEvent.contentInput = model.specialEvent.contentInput == "" ? model.specialEvent.events[index].content : model.specialEvent.contentInput;
-        model.specialEvent.visibility = model.specialEvent.visibility == "" ? model.specialEvent.events[index].visibility : model.specialEvent.visibility;
-        model.specialEvent.colorInput = model.specialEvent.colorInput == null ? model.specialEvent.events[index].color : model.specialEvent.colorInput;
-
+        let indexForEvents = model.specialEvent.events[index]
         let startDateInput = model.specialEvent.startDateInput
         let endDateInput = model.specialEvent.endDateInput
         let headerInput = model.specialEvent.headerInput
         let contentInput = model.specialEvent.contentInput
         let visibilityInput = model.specialEvent.visibility
         let colorInput = model.specialEvent.colorInput
+
+        startDateInput =  startDateInput == "" ? indexForEvents.startDate : startDateInput;
+        endDateInput = endDateInput == "" ? indexForEvents.endDate : endDateInput;
+        headerInput = headerInput == "" ? indexForEvents.header : headerInput;
+        contentInput = contentInput == "" ? indexForEvents.content : contentInput;
+        visibilityInput = visibilityInput == "" ? indexForEvents.visibility : visibilityInput;
+        colorInput = colorInput == null ? indexForEvents.color : colorInput;
 
         if (startDateInput > endDateInput) {
             alert('Ugyldig dato, Til dato starter før fra dato.')
@@ -467,7 +503,7 @@ function generateId(idEvents, date) {
     let generatedId = 1;
     for(let i = 0; i < idEvents.length; i++) {
         idInEvents = idEvents[i].id
-        console.log(idInEvents + ' Id i events')
+        // console.log(idInEvents + ' Id i events')
         
         newId = date + '-' + generatedId;
         
@@ -476,7 +512,7 @@ function generateId(idEvents, date) {
         }
         newId = date + '-' + generatedId;
     }
-    console.log(newId + ' ny id')
+    // console.log(newId + ' ny id')
     return newId
 }
 
@@ -496,7 +532,7 @@ function specialEventMenuView(trueOrFalse) {
 
 function appointmentEditMode(trueOrFalse) {
     model.appointmentEditMode = trueOrFalse
-    if (model.appointmentEditMode == false) {stopTimeInterval()}
+    // if (model.appointmentEditMode == false) {stopTimeInterval()}
     updateView();
 }
 
@@ -514,8 +550,10 @@ function appointmentMenuToFalse() {
     model.specialEventEditMode = false;
 }
 // When button clicked get specific event from the array to edit.
-function editEvent(){
-    appointmentEditModeView();
+function editEvent(trueOrFalse){
+    model.appointmentEditModeView = trueOrFalse
+    
+    updateView();
 }
 
 
