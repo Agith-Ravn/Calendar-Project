@@ -8,24 +8,27 @@ function initiereYear(){
         html += `<div class="month-container">`
         for (let j = 1; j <= 12 ; j++) {
             var getMonthDays = days(j, model.currentYear)
-            html += `<div class="grid-item-month"><div class="month-name">` + model.months[j - 1] + `</div>
-                    <div class="daysInMonthBox">
-                    <div class="grid-item-month-days">`
-                    //displacement in entireYear view
-                    for(let i = 0; i < model.dateDisplacementEntireYear.length; i++) {
-                        if(model.dateDisplacementEntireYear[i].month == (j)) {
-                            for(let o = 0; o < model.dateDisplacementEntireYear[i].dateDisplacement; o++) {
-                                html += `<p> </p>`
+            html += `<div class="grid-item-month">
+                        <div class="month-name">` 
+                            + model.months[j - 1] + 
+                        `</div>
+                        <div class="daysInMonthBox">
+                        <div class="grid-item-month-days">`
+                        //displacement in entireYear view
+                        for(let i = 0; i < model.dateDisplacementEntireYear.length; i++) {
+                            if(model.dateDisplacementEntireYear[i].month == (j)) {
+                                for(let o = 0; o < model.dateDisplacementEntireYear[i].dateDisplacement; o++) {
+                                    html += `<p> </p>`
+                                }
                             }
                         }
-                    }
-                    //days in month
-                    for (let i = 1; i <= getMonthDays ; i++) {
-                        html += `<div class="grid-item-year-days`
-                        holidaysInEntireYearView(i, j) == undefined ? html += '' : html += holidaysInEntireYearView(i, j);
-                        sundaysInEntireYearView(i, j) == undefined ? html += '' : html += sundaysInEntireYearView(i, j);
-                        html += `">${i}</div>`
-                    }
+                        //days in month
+                        for (let i = 1; i <= getMonthDays ; i++) {
+                            html += `<div class="grid-item-year-days`
+                            holidaysInEntireYearView(i, j) == undefined ? html += '' : html += holidaysInEntireYearView(i, j);
+                            sundaysInEntireYearView(i, j) == undefined ? html += '' : html += sundaysInEntireYearView(i, j);
+                            html += `">${i}</div>`
+                        }
             html += `</div>
                 </div>
             </div>`
