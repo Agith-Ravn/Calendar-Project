@@ -68,7 +68,7 @@ function specialEventsForEntireYear(date1, month) {
             var specialMonth = myDate.getMonth()
 
             if (date1 == specialDate && month == (specialMonth + 1)) {
-                return ' holidays'
+                return ' specialEvent'
             } 
         }
     }
