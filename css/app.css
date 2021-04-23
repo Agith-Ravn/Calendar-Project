@@ -191,7 +191,6 @@ p {
   border: solid rgb(200, 200, 200) 1px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-  
 }
 
 .appointment__holiday {
@@ -204,7 +203,6 @@ p {
 .appointment__header-container {
   display: grid;
   grid-template-columns: 30px auto 30px;
-
 }
 /* hendelse farge */
 .appointment__color {
@@ -218,7 +216,7 @@ p {
   position: relative;
   margin: 5px 0px;
   position: relative;
-  right: 0px
+  right: 0px;
 }
 
 .header {
@@ -436,4 +434,9 @@ p {
   font-size: 12px;
   text-decoration: underline;
   text-align: end;
+}
+textarea {
+  font-size: 13px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
 }
