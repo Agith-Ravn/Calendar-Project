@@ -400,8 +400,8 @@ function saveEditEvent(id, index){
         let color = model.appointmentsColorInput == "" ? event.color : model.appointmentsColorInput
 
         //Fungerer ikke.. finn en løsning
-        let modul1 = vInput.modul1 == "" ? model.selectedDateAppointments[index].visibility.modul1 : vInput.modul1;
-        let modul2 = vInput.modul2 == "" ? model.selectedDateAppointments[index].visibility.modul1 : vInput.modul2;
+        let modul1 = vInput.modul1 == "" ? vEvent.modul1 : vInput.modul1;
+        let modul2 = vInput.modul2 == "" ? vEvent.modul2: vInput.modul2;
         let modul3 = vInput.modul3 == "" ? vEvent.modul3 : vInput.modul3;
         let startIT = vInput.startIT == "" ? vEvent.startIT : vInput.startIT;
         let privat = vInput.privat == "" ? vEvent.privat : vInput.privat;
@@ -422,7 +422,7 @@ function saveEditEvent(id, index){
         }
         model.appointments[appointmentIndex] = changes
         // updateView();
-        console.log(model.appointments[appointmentIndex].visibility)
+        // console.log(model.appointments[appointmentIndex].visibility)
     }
 }
 
@@ -439,17 +439,16 @@ function saveSpecialEvent(id, index) {
         let headerInput = sEvent.headerInput == "" ? indexForEvents.header : sEvent.headerInput;
         let contentInput = sEvent.contentInput == "" ? indexForEvents.content : sEvent.contentInput;
         let colorInput = sEvent.colorInput == "" ? indexForEvents.color : sEvent.colorInput;
-        
-        //Fungerer ikke.. finn en løsning  
-        let modul1 = modul1 == "" ? sEvent.visibility.modul1 : indexForEvents.modul1
-        let modul2 = modul2 == "" ? sEvent.visibility.modul2 : indexForEvents.modul2;
-        let modul3 = modul3 == "" ? sEvent.visibility.modul3 : indexForEvents.modul3;
-        let startIT = startIT == "" ? sEvent.visibility.startIT : indexForEvents.startIT;
-        let privat = privat == "" ? sEvent.visibility.privat : indexForEvents.privat;
 
-        console.log(modul1)
+        // let modul1 = vInput.modul1 == "" ? indexForEvents.visibility.modul1 : vInput.modul1
+        // let modul2 = vInput.modul2 == "" ? indexForEvents.visibility.modul2 : vInput.modul2
+        // let modul3 = vInput.modul3 == "" ? indexForEvents.visibility.modul3 : vInput.modul3
+        // let startIT = vInput.startIT == "" ? indexForEvents.visibility.startIT : vInput.startIT
+        // let privat = vInput.privat == "" ? indexForEvents.visibility.privat : vInput.privat
 
-        let visibilityInput = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
+        let test = specialEventCheckbox(index)
+        // console.log(test)
+        // let visibilityInput = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
         if (startDateInput > endDateInput) {
             alert('Ugyldig dato, Til dato starter før fra dato.')
@@ -476,7 +475,7 @@ function saveSpecialEvent(id, index) {
         model.specialEvent.events[index] = changes
         // updateView();
         // clearInput();
-        console.log(model.specialEvent.events[index].visibility)
+        // console.log(model.specialEvent.events[index].visibility)
     }
 }
 
@@ -583,3 +582,45 @@ FIX:
 
 
 */
+
+function specialEventCheckbox(index) {
+    let vInput = model.specialEvent.visibility
+    let vEvent = model.specialEvent.events[index].visibility
+
+    let m1 = vEvent.modul1
+    m1 != vInput.modul2 ? vInput.modul2 : m1
+    // m1 == "" ? vEvent.modul1 : m1
+
+    let m2 = vInput.modul2 
+    m2 == "" ? vEvent.modul2 : m2
+
+    let m3 = vInput.modul3
+    m3 == "" ? vEvent.modul3 : m3
+
+    let s = vInput.startIT
+    s == "" ? vEvent.startIT : s
+
+    let p = vInput.privat
+    p == "" ? vEvent.privat : p
+
+    // let m1 = vInput.modul1 
+    // m1 == "" ? vEvent.modul1 : vInput.modul1
+
+    console.log(m1)
+    // console.log(m2)
+    // console.log(m3)
+    // console.log(s)
+    // console.log(p)
+    // console.log(vEvent.modul1)
+
+
+    // let test = {modul1: m1, modul2: m2, modul3: m3, startIT: si, privat: p,}
+    // return test 
+}
+
+function checkbox(sLocation, checked) {
+    if (checked) {sLocation = checked}
+    // console.log(checked)
+    console.log(sLocation)
+
+}

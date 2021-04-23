@@ -300,7 +300,7 @@ function specialEventEditModeView() {
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
-            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onchange="model.specialEvent.visibility.modul1 = this.checked ? true : false" ${modul1}>
+            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onclick="checkbox(model.specialEvent.visibility.modul1, this.checked)" ${modul1}>
             <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
             <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onchange="model.specialEvent.visibility.modul2 = this.checked ? true : false" ${modul2}>

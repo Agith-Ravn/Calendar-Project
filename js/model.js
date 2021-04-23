@@ -100,11 +100,11 @@ const model = {
     appointmentsContentInput:'',
     appointmentTimeInput: '',
     appointmentVisibilityInput: {
-        modul1: '',
-        modul2: '',
-        modul3: '',
-        startIT: '',
-        privat: '',
+        modul1: false,
+        modul2: false,
+        modul3: false,
+        startIT: false,
+        privat: true,
     }, 
     
 
@@ -183,10 +183,10 @@ const model = {
         headerInput:'',
         contentInput:'',
         visibility: {
-            modul1: '',
-            modul2: '',
-            modul3: '',
-            startIT: '',
+            modul1: false,
+            modul2: false,
+            modul3: false,
+            startIT: false,
             privat: true,
         }, 
     }
