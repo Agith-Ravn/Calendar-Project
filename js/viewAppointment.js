@@ -160,7 +160,7 @@ function specialEventMenuView() {
         <input id="headerText" placeholder="Enter text" type="text" oninput="model.specialEvent.headerInput = this.value"><br>
 
         <h3 id="alignTextInEvent">Paragraph</h3>
-        <input id="paragraphText" placeholder="Enter text" type="text" oninput="model.specialEvent.contentInput = this.value">
+        <textarea id="paragraphText" placeholder="Enter text" type="text" oninput="model.specialEvent.contentInput = this.value"></textarea>
 
         <br>
         <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
@@ -228,7 +228,7 @@ function appointmentEditModeView() {
             <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.appointmentsHeaderInput = this.value"><br>
 
             <h3 id="alignTextInEvent">Paragraph</h3>
-            <input id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.appointmentsContentInput = this.value">
+            <textarea id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.appointmentsContentInput = this.value"></textarea>
 
             <h3 id="alignTextInEvent">Tid</h3>
             <input id="timeWhenStart" type="time" value="${time == undefined ? '' : time}" onchange="model.appointmentTimeInput = this.value">
@@ -296,7 +296,7 @@ function specialEventEditModeView() {
             <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.specialEvent.headerInput = this.value"><br>
 
             <h3 id="alignTextInEvent">Paragraph</h3>
-            <input id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.specialEvent.contentInput = this.value">
+            <textarea id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.specialEvent.contentInput = this.value"></textarea>
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
