@@ -8,7 +8,7 @@ function initiereYear(){
         html += `<div class="month-container">`
         for (let j = 1; j <= 12 ; j++) {
             var getMonthDays = days(j, model.currentYear)
-            html += `<div class="grid-item-month">
+            html += `<div class="grid-item-month" onclick="switchToMonthView(${j})"> 
                         <div class="month-name">` 
                             + model.months[j - 1] + 
                         `</div>
@@ -28,7 +28,7 @@ function initiereYear(){
                             holidaysInEntireYearView(i, j) == undefined ? html += '' : html += holidaysInEntireYearView(i, j);
                             sundaysInEntireYearView(i, j) == undefined ? html += '' : html += sundaysInEntireYearView(i, j);
                             specialEventsForEntireYear(i, j) == undefined ? html += '' : html += specialEventsForEntireYear(i, j);
-                            html += `">${i}</div>`
+                            html += `"onclick="selectedDate(this, ${i})">${i}</div>`
                         }
             html += `</div>
                 </div>
@@ -66,9 +66,11 @@ function specialEventsForEntireYear(date1, month) {
             var myDate = new Date(date);
             var specialDate = myDate.getDate()
             var specialMonth = myDate.getMonth()
+            var specialYear = myDate.getFullYear()
+            var year = model.currentYear
 
-            if (date1 == specialDate && month == (specialMonth + 1)) {
-                return ' specialEvent'
+            if (date1 == specialDate && month == (specialMonth + 1) && year == specialYear) {
+                return ' special-event'
             } 
         }
     }

@@ -121,6 +121,9 @@ p {
 .holidays {
   color: rgb(255, 0, 0);
 }
+.special-event {
+  color: rgb(0, 47, 255);
+}
 .sundays {
   color: rgb(255, 0, 0);
 }
@@ -171,9 +174,10 @@ p {
   border-radius: 25px;
 }
 .hendelser h1 {
-  width: 360px;
+  width: 365px;
   text-align: center;
   margin: 25px auto;
+  /* font-size: 1.8rem; */
 }
 
 .hendelseBox {
@@ -359,6 +363,7 @@ p {
   text-align: center;
   background-color: lightgray;
   border-radius: 15px;
+  cursor: pointer;
 }
 .daysInMonthBox {
   width: 290px;
@@ -381,6 +386,10 @@ p {
   justify-items: center;
   align-items: center;
   border-radius: 50px;
+}
+
+.grid-item-year-days {
+  padding: 5px 10px;
 }
 
 #headerText {

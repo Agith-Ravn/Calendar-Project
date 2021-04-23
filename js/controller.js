@@ -65,11 +65,14 @@ function updateTime() {
     if (time != model.currentTime) {
         time = model.currentTime;
         updateView();
+        // console.log('kjører')
     }
 }
 
 function runUpdateTimeIntervalOnce() {
-    if (model.interval == false) {
+    if (model.interval == false && model.appointmentMenu == false &&
+        model.appointmentEditMode == false && model.specialEventMenu == false &&
+        model.specialEventEditMode == false) {
         model.interval = true;
         model.clearInterval = setInterval(updateTime, 10000);
     }
@@ -77,6 +80,7 @@ function runUpdateTimeIntervalOnce() {
 
 function stopTimeInterval() {
     clearInterval(model.clearInterval)
+    model.interval = false
 }
 
 function daysInMonth(month, year){
@@ -327,7 +331,7 @@ function pushToAppointmentsArray(){
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
-    // visibility = model.appointmentVisibilityInput;
+    visibility = model.appointmentVisibilityInput;
 
     //legger til null forran hvis dato eller month er mindre enn 10
     date = ('0' + newDateValue).slice(-2)
@@ -335,7 +339,21 @@ function pushToAppointmentsArray(){
     fullDate = `${model.currentYear}-${month}-${date}` 
     newId = generateId(model.appointments, fullDate)
 
-    // { date: new Date(2021, 3, 16), time: '09.00', header: 'Chorei',     content: '', privat: false, color: 'blue'} //Følg dette oppsette <--
+    if (!newColorValue) {
+        alert('Velg en farge')
+        return
+    }
+
+    if (newHeaderValue.length < 1 || newParagraphValue.length < 1) {
+        alert('Fyll inn tekst')
+        return
+    }
+
+    if (!newTimeValue) {
+        alert('Velg et tidspunkt')
+        return
+    }
+
     model.appointments.push(
         {
             id:         newId,
@@ -343,11 +361,11 @@ function pushToAppointmentsArray(){
             time:       newTimeValue,
             header:     newHeaderValue,
             content:    newParagraphValue,
-            // visibility: visibility,
+            visibility: visibility,
             color:      newColorValue,
         }
     )
-    updateView();
+    appointmentMenu(false)
 }
 
 function pushToSpecialEventsArray() {
@@ -355,21 +373,26 @@ function pushToSpecialEventsArray() {
     let endDate = model.specialEvent.endDateInput
     let header = model.specialEvent.headerInput
     let content = model.specialEvent.contentInput
-    // let visibility = model.specialEvent.visibility
+    let visibility = model.specialEvent.visibility
     let color = model.specialEvent.colorInput
+
+    if (!color) {
+        alert('Velg en farge')
+        return
+    }
+
+    if (header.length < 1 || content.length < 1) {
+        alert('Fyll inn tekst')
+        return
+    }
 
     if (startDate > endDate) {
         alert('Ugyldig dato, Til dato starter før fra dato.')
         return
     }
-    if (startDate.length == !8 || endDate.length == !8) {
-        alert('Fyll inn dato')
-        return
-    }
 
     let id = generateId(model.specialEvent.events, startDate);
     let calculatedDate = calculateSpecialEventDate(startDate, endDate);
-
     model.specialEvent.events.push(
         {
             id: id,
@@ -377,12 +400,12 @@ function pushToSpecialEventsArray() {
             endDate: endDate,
             header: header,
             content: content,
-            // visibility: visibility,
+            visibility: visibility,
             color: color,
             calculatedDate: calculatedDate
         }
     )
-    updateView();
+    specialEventMenu(false)
 }
 
 //Save changes on "normal" events
@@ -612,3 +635,4 @@ function appointmentMenuToFalse() {
 //     console.log(sLocation)
 
 // }
+

@@ -136,12 +136,22 @@ function addAppointmentView() {
         <br>
 
         <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentMenu(false)"> 
-        <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToAppointmentsArray();appointmentMenu(false)"> 
+        <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToAppointmentsArray()"> 
         </div>`
     return html;
 }
 
 function specialEventMenuView() {
+
+    //Slik at date input starter på dato du trykker på
+    let date = ('0' + model.selectedDate).slice(-2).toString()
+    let date2 = ('0' + (model.selectedDate + 1)).slice(-2).toString()
+    let month = ('0' + model.currentMonth).slice(-2).toString()
+    let year = model.currentYear.toString()
+    let startYear = year + '-' + month + '-' + date;
+    let endYear = year + '-' + month + '-' + date2;
+    model.specialEvent.startDateInput = startYear
+    model.specialEvent.endDateInput = endYear
 
     let html = '';
     html +=` 
@@ -182,13 +192,13 @@ function specialEventMenuView() {
         <h3 id="alignTextInEvent">Spesiell hendelse</h3>
 
         <p id="alignTextInEvent">Fra</p>
-        <input id="alignTextInEvent" type="date" oninput="model.specialEvent.startDateInput = this.value">
+        <input id="alignTextInEvent" id="test12345" type="date" value="${year}-${month}-${date}" oninput="model.specialEvent.startDateInput = this.value">
         <br>
         <p id="alignTextInEvent">Til</p>
-        <input id="alignTextInEvent" type="date" oninput="model.specialEvent.endDateInput = this.value">
+        <input id="alignTextInEvent" type="date" value="${year}-${month}-${date2}" oninput="model.specialEvent.endDateInput = this.value">
 
         <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenu(false)"> 
-        <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToSpecialEventsArray();specialEventMenu(false)"> 
+        <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToSpecialEventsArray()"> 
         </div>`
     return html;
 }
