@@ -27,6 +27,7 @@ function initiereYear(){
                             html += `<div class="grid-item-year-days`
                             holidaysInEntireYearView(i, j) == undefined ? html += '' : html += holidaysInEntireYearView(i, j);
                             sundaysInEntireYearView(i, j) == undefined ? html += '' : html += sundaysInEntireYearView(i, j);
+                            specialEventsForEntireYear(i, j) == undefined ? html += '' : html += specialEventsForEntireYear(i, j);
                             html += `">${i}</div>`
                         }
             html += `</div>
@@ -53,4 +54,44 @@ function yearUpdateView() {
     html += `<div> <button onclick="changeYear(10)"> › </button> </div>
     </div>`
     return html;
+}
+
+// special Events Entire Year
+function specialEventsForEntireYear(date1, month) {
+
+    for(let i = 0; i < model.specialEvent.events.length; i++){
+
+        for(let j = 0; j < model.specialEvent.events[i].calculatedDate.length; j++) {
+            let date = model.specialEvent.events[i].calculatedDate[j]
+            var myDate = new Date(date);
+            var specialDate = myDate.getDate()
+            var specialMonth = myDate.getMonth()
+
+            if (date1 == specialDate && month == (specialMonth + 1)) {
+                return ' holidays'
+            } 
+        }
+    }
+}
+
+//Gives all holidays classname 'holidays'
+function holidaysInEntireYearView(date, month) {
+    for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {
+        // console.log(model.allHolidaysInCurrentYear[i].date.year)
+        if (model.allHolidaysInCurrentYear[i].date.day == date && 
+            model.allHolidaysInCurrentYear[i].date.month == month && 
+            model.allHolidaysInCurrentYear[i].date.year == model.currentYear) {
+            return ' holidays'
+        } 
+    }
+}
+
+//Gives all sundays classname 'sunday'
+function sundaysInEntireYearView(date, month) {
+    for(let i = 0; i < model.sundaysInCurrentYear.length; i++) {
+        if (model.sundaysInCurrentYear[i].date == date &&
+            model.sundaysInCurrentYear[i].month == month) {
+            return ' sundays'
+        }
+    }
 }

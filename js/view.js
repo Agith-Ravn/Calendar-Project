@@ -3,7 +3,7 @@ function updateView(){
     if(model.currentPage == 'homePage') {
         model.navbar.homePageView = true;
         findCurrentDate();
-        getCurrentTime()
+        getCurrentTime();
         getHolidays();
         getSundays();
         dateDisplacement();
@@ -11,15 +11,15 @@ function updateView(){
         findWeeksInCurrentMonth();
         getAppointmentsSelctedMonth();
         showAppointments();
-        document.getElementById('app').innerHTML = homeView()
+        document.getElementById('app').innerHTML = homeView();
         styleCurrentMonth();
         styleSelectedDate();
         runUpdateTimeIntervalOnce();
     }
     if(model.currentPage == 'loginPage') {
-        document.getElementById('app').innerHTML = loginScreen()
+        document.getElementById('app').innerHTML = loginScreen();
         appointmentMenuToFalse();
-        stopTimeInterval()
+        stopTimeInterval();
         
     }
     if(model.currentPage == 'yearPage') {
@@ -29,9 +29,9 @@ function updateView(){
         dateDisplacementEntireYear();
         getHolidays();
         getSundays();
-        document.getElementById('app').innerHTML = initiereYear()
+        document.getElementById('app').innerHTML = initiereYear();
         selectCurrentYear();
-        stopTimeInterval()
+        stopTimeInterval();
     }
 }
 // THIS IS HOME PAGE.
@@ -165,21 +165,3 @@ function sundaysInMonthView(date) {
     }
 }
 
-//Gives all holidays classname 'holidays'
-function holidaysInEntireYearView(date, month) {
-    for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {
-        // console.log(model.allHolidaysInCurrentYear[i].date.year)
-        if (model.allHolidaysInCurrentYear[i].date.day == date && model.allHolidaysInCurrentYear[i].date.month == month && model.allHolidaysInCurrentYear[i].date.year == model.currentYear) {
-            return ' holidays'
-        } 
-    }
-}
-
-//Gives all sundays classname 'sunday'
-function sundaysInEntireYearView(date, month) {
-    for(let i = 0; i < model.sundaysInCurrentYear.length; i++) {
-        if (model.sundaysInCurrentYear[i].date == date && model.sundaysInCurrentYear[i].month == month) {
-            return ' sundays'
-        }
-    }
-}

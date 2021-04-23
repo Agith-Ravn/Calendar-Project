@@ -175,6 +175,22 @@ const model = {
                 color: '#37ff00',
                 calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03"]
             },
+            {
+                id: '2021-04-12-4',
+                startDate: '2021-04-18', 
+                endDate: '2021-04-03', 
+                header: 'Ferie3', 
+                content: 'Påskeferie3',
+                visibility: {
+                    modul1: true,
+                    modul2: false,
+                    modul3: true,
+                    startIT: false,
+                    privat: true,
+                },
+                color: '#37ff00',
+                calculatedDate: ["2021-04-12", "2021-04-13", "2021-04-14", "2021-04-15", "2021-04-16", "2021-04-17" , "2021-04-18"]
+            },
         ],
 
         startDateInput: '',

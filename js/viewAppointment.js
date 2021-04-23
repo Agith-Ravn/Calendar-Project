@@ -88,7 +88,6 @@ function appointmentsView() {
         }
         html += `</div>`
     }
-
     html += `</div>`
     return html;
 }
