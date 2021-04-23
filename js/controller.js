@@ -327,7 +327,7 @@ function pushToAppointmentsArray(){
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
-    visibility = model.appointmentVisibilityInput;
+    // visibility = model.appointmentVisibilityInput;
 
     //legger til null forran hvis dato eller month er mindre enn 10
     date = ('0' + newDateValue).slice(-2)
@@ -343,7 +343,7 @@ function pushToAppointmentsArray(){
             time:       newTimeValue,
             header:     newHeaderValue,
             content:    newParagraphValue,
-            visibility: visibility,
+            // visibility: visibility,
             color:      newColorValue,
         }
     )
@@ -355,7 +355,7 @@ function pushToSpecialEventsArray() {
     let endDate = model.specialEvent.endDateInput
     let header = model.specialEvent.headerInput
     let content = model.specialEvent.contentInput
-    let visibility = model.specialEvent.visibility
+    // let visibility = model.specialEvent.visibility
     let color = model.specialEvent.colorInput
 
     if (startDate > endDate) {
@@ -377,7 +377,7 @@ function pushToSpecialEventsArray() {
             endDate: endDate,
             header: header,
             content: content,
-            visibility: visibility,
+            // visibility: visibility,
             color: color,
             calculatedDate: calculatedDate
         }
@@ -400,16 +400,16 @@ function saveEditEvent(id, index){
         let color = model.appointmentsColorInput == "" ? event.color : model.appointmentsColorInput
 
         //Fungerer ikke.. finn en løsning
-        let modul1 = vInput.modul1 == "" ? vEvent.modul1 : vInput.modul1;
-        let modul2 = vInput.modul2 == "" ? vEvent.modul2: vInput.modul2;
-        let modul3 = vInput.modul3 == "" ? vEvent.modul3 : vInput.modul3;
-        let startIT = vInput.startIT == "" ? vEvent.startIT : vInput.startIT;
-        let privat = vInput.privat == "" ? vEvent.privat : vInput.privat;
+        // let modul1 = vInput.modul1 == "" ? vEvent.modul1 : vInput.modul1;
+        // let modul2 = vInput.modul2 == "" ? vEvent.modul2: vInput.modul2;
+        // let modul3 = vInput.modul3 == "" ? vEvent.modul3 : vInput.modul3;
+        // let startIT = vInput.startIT == "" ? vEvent.startIT : vInput.startIT;
+        // let privat = vInput.privat == "" ? vEvent.privat : vInput.privat;
 
         let appointments = (appointment) => appointment.id == id;
         let appointmentIndex = model.appointments.findIndex(appointments)
         
-        let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
+        // let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
         let changes = {
             id: id,
@@ -418,7 +418,7 @@ function saveEditEvent(id, index){
             header: header,
             content: content,
             color: color,
-            visibility: visibility,         
+            // visibility: visibility,         
         }
         model.appointments[appointmentIndex] = changes
         // updateView();
@@ -446,7 +446,6 @@ function saveSpecialEvent(id, index) {
         // let startIT = vInput.startIT == "" ? indexForEvents.visibility.startIT : vInput.startIT
         // let privat = vInput.privat == "" ? indexForEvents.visibility.privat : vInput.privat
 
-        let test = specialEventCheckbox(index)
         // console.log(test)
         // let visibilityInput = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
@@ -467,7 +466,7 @@ function saveSpecialEvent(id, index) {
                 endDate: endDateInput,
                 header: headerInput,
                 content: contentInput,
-                visibility: visibilityInput,
+                // visibility: visibilityInput,
                 color: colorInput,
                 calculatedDate: calculatedDate
             }
@@ -572,55 +571,44 @@ function appointmentMenuToFalse() {
     model.specialEventEditMode = false;
 }
 
-/*
-FIX:
-    X - Tilbake knapp på vanlig event
-    o - Checkbox blir ikke lagret i vanlig og special event
-    o - Legg til spesiell hendelse <-- endre navn til dette eller noe annet...
-    o - Fikse klokke
+// function specialEventCheckbox(index) {
+//     let vInput = model.specialEvent.visibility
+//     let vEvent = model.specialEvent.events[index].visibility
+
+//     let m1 = vEvent.modul1
+//     m1 != vInput.modul2 ? vInput.modul2 : m1
+//     // m1 == "" ? vEvent.modul1 : m1
+
+//     let m2 = vInput.modul2 
+//     m2 == "" ? vEvent.modul2 : m2
+
+//     let m3 = vInput.modul3
+//     m3 == "" ? vEvent.modul3 : m3
+
+//     let s = vInput.startIT
+//     s == "" ? vEvent.startIT : s
+
+//     let p = vInput.privat
+//     p == "" ? vEvent.privat : p
+
+//     // let m1 = vInput.modul1 
+//     // m1 == "" ? vEvent.modul1 : vInput.modul1
+
+//     console.log(m1)
+//     // console.log(m2)
+//     // console.log(m3)
+//     // console.log(s)
+//     // console.log(p)
+//     // console.log(vEvent.modul1)
 
 
+//     // let test = {modul1: m1, modul2: m2, modul3: m3, startIT: si, privat: p,}
+//     // return test 
+// }
 
-*/
+// function checkbox(sLocation, checked) {
+//     if (checked) {sLocation = checked}
+//     // console.log(checked)
+//     console.log(sLocation)
 
-function specialEventCheckbox(index) {
-    let vInput = model.specialEvent.visibility
-    let vEvent = model.specialEvent.events[index].visibility
-
-    let m1 = vEvent.modul1
-    m1 != vInput.modul2 ? vInput.modul2 : m1
-    // m1 == "" ? vEvent.modul1 : m1
-
-    let m2 = vInput.modul2 
-    m2 == "" ? vEvent.modul2 : m2
-
-    let m3 = vInput.modul3
-    m3 == "" ? vEvent.modul3 : m3
-
-    let s = vInput.startIT
-    s == "" ? vEvent.startIT : s
-
-    let p = vInput.privat
-    p == "" ? vEvent.privat : p
-
-    // let m1 = vInput.modul1 
-    // m1 == "" ? vEvent.modul1 : vInput.modul1
-
-    console.log(m1)
-    // console.log(m2)
-    // console.log(m3)
-    // console.log(s)
-    // console.log(p)
-    // console.log(vEvent.modul1)
-
-
-    // let test = {modul1: m1, modul2: m2, modul3: m3, startIT: si, privat: p,}
-    // return test 
-}
-
-function checkbox(sLocation, checked) {
-    if (checked) {sLocation = checked}
-    // console.log(checked)
-    console.log(sLocation)
-
-}
+// }

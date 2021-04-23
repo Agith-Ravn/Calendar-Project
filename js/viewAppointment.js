@@ -206,11 +206,11 @@ function appointmentEditModeView() {
         let time = appointment.time
         let color = appointment.color
 
-        let modul1 = appointment.visibility.modul1 == true ? 'checked="checked"' : '';
-        let modul2 = appointment.visibility.modul2 == true ? 'checked="checked"' : '';
-        let modul3 = appointment.visibility.modul3 == true ? 'checked="checked"' : '';
-        let startIT = appointment.visibility.startIT == true ? 'checked="checked"' : '';
-        let privat = appointment.visibility.privat == true ? 'checked="checked"' : ''; 
+        // let modul1 = appointment.visibility.modul1 == true ? 'checked="checked"' : '';
+        // let modul2 = appointment.visibility.modul2 == true ? 'checked="checked"' : '';
+        // let modul3 = appointment.visibility.modul3 == true ? 'checked="checked"' : '';
+        // let startIT = appointment.visibility.startIT == true ? 'checked="checked"' : '';
+        // let privat = appointment.visibility.privat == true ? 'checked="checked"' : ''; 
     
         if(id == id2) {
             html +=`
@@ -235,20 +235,20 @@ function appointmentEditModeView() {
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
-            <input id="alignTextInEvent" type="checkbox" id="modul1" name="Modul 1" onclick="model.appointmentVisibilityInput.modul1 = this.checked ? true : false" ${modul1}>
+            <input id="alignTextInEvent" type="checkbox" id="modul1" name="Modul 1" onclick="model.appointmentVisibilityInput.modul1 = this.checked">
             <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="modul2" name="Modul 2" onchange="model.appointmentVisibilityInput.modul2 = this.checked ? true : false" ${modul2}>
+            <input id="alignTextInEvent" type="checkbox" id="modul2" name="Modul 2" onchange="model.appointmentVisibilityInput.modul2 = this.checked">
             <label id="alignTextInEvent" for="Modul2"> Modul 2</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="modul3" name="Modul 3" onchange="model.appointmentVisibilityInput.modul3 = this.checked ? true : false" ${modul3}>
+            <input id="alignTextInEvent" type="checkbox" id="modul3" name="Modul 3" onchange="model.appointmentVisibilityInput.modul3 = this.checked">
             <label id="alignTextInEvent" for="Modul2"> Modul 3</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onchange="model.appointmentVisibilityInput.startIT = this.checked? true : false" ${startIT}>
+            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onchange="model.appointmentVisibilityInput.startIT = this.checked">
             <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
             
-            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onchange="model.appointmentVisibilityInput.privat = this.checked ? true : false" disabled="disabled" ${privat}>
+            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onchange="model.appointmentVisibilityInput.privat = this.checked" disabled="disabled">
             <label id="alignTextInEvent" for="Privat"> Privat</label><br>
             <br>
 
@@ -275,11 +275,11 @@ function specialEventEditModeView() {
         let endDate = event.endDate
         let color = event.color
 
-        let modul1 = event.visibility.modul1 == true ? 'checked="checked"' : '';
-        let modul2 = event.visibility.modul2 == true ? 'checked="checked"' : '';
-        let modul3 = event.visibility.modul3 == true ? 'checked="checked"' : '';
-        let startIT = event.visibility.startIT == true ? 'checked="checked"' : '';
-        let privat = event.visibility.privat == true ? 'checked="checked"' : ''; 
+        // let modul1 = event.visibility.modul1 == true ? 'checked="checked"' : '';
+        // let modul2 = event.visibility.modul2 == true ? 'checked="checked"' : '';
+        // let modul3 = event.visibility.modul3 == true ? 'checked="checked"' : '';
+        // let startIT = event.visibility.startIT == true ? 'checked="checked"' : '';
+        // let privat = event.visibility.privat == true ? 'checked="checked"' : ''; 
     
         if(id == id2) {
             html +=`<div id="changeBox" class="hendelser">
@@ -300,19 +300,19 @@ function specialEventEditModeView() {
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
-            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onclick="checkbox(model.specialEvent.visibility.modul1, this.checked)" ${modul1}>
+            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onchange="model.specialEvent.visibility.modul1 = this.checked">
             <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onchange="model.specialEvent.visibility.modul2 = this.checked ? true : false" ${modul2}>
+            <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onchange="model.specialEvent.visibility.modul2 = this.checked">
             <label id="alignTextInEvent" for="Modul2"> Modul 2</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul 3" onchange="model.specialEvent.visibility.modul3 = this.checked ? true : false" ${modul3}>
+            <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul 3" onchange="model.specialEvent.visibility.modul3 = this.checke">
             <label id="alignTextInEvent" for="Modul2"> Modul 3</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onchange="model.specialEvent.visibility.startIT = this.checked ? true : false" ${startIT}>
+            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onchange="model.specialEvent.visibility.startIT = this.checked">
             <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onchange="model.specialEvent.visibility.privat = this.checked ? true : false" disabled="disabled" ${privat}>
+            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onchange="model.specialEvent.visibility.privat = this.checked" disabled="disabled">
             <label id="alignTextInEvent" for="Privat"> Privat</label><br>
             <br>
 
