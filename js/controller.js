@@ -591,11 +591,11 @@ function deleteSpecialEvent(id, index) {
 }
 
 function clearInput() {
-    model.specialEvent.events.startDateInput = '';
-    model.specialEvent.events.endDateInput = '';
-    model.specialEvent.events.colorInput = '';
-    model.specialEvent.events.headerInput = '';
-    model.specialEvent.events.contentInput = '';
+    model.specialEvent.startDateInput = '';
+    model.specialEvent.endDateInput = '';
+    model.specialEvent.colorInput = '';
+    model.specialEvent.headerInput = '';
+    model.specialEvent.contentInput = '';
     model.specialEvent.visibility.modul1 = false;
     model.specialEvent.visibility.modul2 = false;
     model.specialEvent.visibility.modul3 = false;
