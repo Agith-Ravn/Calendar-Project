@@ -45,6 +45,8 @@ function appointmentsView() {
                             <div> <!-- color --> </div>
                             <div class="appointment__holiday" style="color:red"> ${holidayName} </div>
                         </div>`
+                console.log(model.allHolidaysInCurrentMonth[i].date.day)
+                console.log(model.selectedDate)
             }
         }
 

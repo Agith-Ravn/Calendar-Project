@@ -61,26 +61,28 @@ function getCurrentTime() {
 }
 
 function updateTime() {
-    let time
-    if (time != model.currentTime) {
-        time = model.currentTime;
+    getCurrentTime()
+    if (model.compareTime != model.currentTime) {
+        model.compareTime = model.currentTime;
         updateView();
         // console.log('kjører')
+    } else {
+        return
     }
 }
 
 function runUpdateTimeIntervalOnce() {
-    if (model.interval == false && model.appointmentMenu == false &&
+    if (model.timeInterval == false && model.appointmentMenu == false &&
         model.appointmentEditMode == false && model.specialEventMenu == false &&
         model.specialEventEditMode == false) {
-        model.interval = true;
+        model.timeInterval = true;
         model.clearInterval = setInterval(updateTime, 10000);
     }
 }
 
 function stopTimeInterval() {
     clearInterval(model.clearInterval)
-    model.interval = false
+    model.timeInterval = false
 }
 
 function daysInMonth(month, year){
@@ -270,26 +272,52 @@ function selectYearInEntireYear(value) {
     updateView();
 }
 
-//Gets all holidays
-function getHolidays() {
-    //Gets all holidays in current year (er kun 2021 uansett.. finn et bedre alternativ)
+function filterHolidays() {
+    //Gets all holidays in current year
     let filterdList = []
-    for(let i = 0; i < holidays2021.length; i++) {
-        let date = holidays2021[i].date.datetime;
-        let holidayName = holidays2021[i].name[0].text;
-        filterdList.push({holidayName, date})
+    for(let i = 0; i < model.allHolidays.length; i++) {
+        let year = model.currentYear.toString().slice(-2)
+        let index = i.toString()
+        let holidays = model.allHolidays[i];
+        
+        for(let j = 0; j < holidays.length; j++) {
+            let holidayName = holidays[j].name
+            let d = parseInt(holidays[j].date.substr(8, 2))
+            let m = parseInt(holidays[j].date.substr(5, 2))
+            let y = parseInt(holidays[j].date.substr(0, 4))
+            let date = {year: y, month: m, day: d}
+            
+            if (year == index) {
+                filterdList.push({holidayName, date})
+            }
+        }
     }
     model.allHolidaysInCurrentYear = filterdList;
-    //Gets all holidays in current month
+    // console.log(model.allHolidaysInCurrentYear)
+
+    // //Gets all holidays in current month
     let filterdList2 = []
-    for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {
-        if (holidays2021[i].date.datetime.month == model.currentMonth) {
-            let date = holidays2021[i].date.datetime
-            let holidayName = holidays2021[i].name[0].text
-            filterdList2.push({holidayName, date})
+    for(let i = 0; i < model.allHolidays.length; i++) {
+        let year = model.currentYear.toString().slice(-2)
+        let month = model.currentMonth
+        let index = i.toString()
+        let holidays = model.allHolidays[i];
+
+        
+        for(let j = 0; j < holidays.length; j++) {
+            let holidayName = holidays[j].name
+            let d = parseInt(holidays[j].date.substr(8, 2))
+            let m = parseInt(holidays[j].date.substr(5, 2))
+            let y = parseInt(holidays[j].date.substr(0, 4))
+            let date = {year: y, month: m, day: d}
+            
+            if (month == m && year == index) {
+                filterdList2.push({holidayName, date})
+            }
         }
     }
     model.allHolidaysInCurrentMonth = filterdList2;
+    // console.log(model.allHolidaysInCurrentMonth)
 }
 
 //Finds all sundays in currentMonth

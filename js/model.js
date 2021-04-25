@@ -15,7 +15,6 @@ const model = {
     specialEventMenu: false,
     specialEventEditMode: false,
     selectedIdSpecialEvent: false,
-
 //--------------------------- Login content ---------------------------
     adminUser: {
         userName: 'admin',
@@ -27,7 +26,8 @@ const model = {
 //--------------------------- Calender ---------------------------
     //time
     currentTime: 0,
-    interval: false,
+    compareTime: '',
+    timeInterval: false,
     clearInterval:'',
 
     //date/day
@@ -68,6 +68,7 @@ const model = {
     selectedYearInEntireYear: 0,
 
     //holidays
+    allHolidays: [],
     allHolidaysInCurrentYear: [],
     allHolidaysInCurrentMonth: [],
     sundaysInCurrentYear: [],

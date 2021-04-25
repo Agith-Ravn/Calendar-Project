@@ -4,7 +4,7 @@ function updateView(){
         model.navbar.homePageView = true;
         findCurrentDate();
         getCurrentTime();
-        getHolidays();
+        filterHolidays();
         getSundays();
         dateDisplacement();
         findWeeksRowCount();
@@ -27,7 +27,7 @@ function updateView(){
         appointmentMenuToFalse();
         findCurrentDate();
         dateDisplacementEntireYear();
-        getHolidays();
+        filterHolidays();
         getSundays();
         document.getElementById('app').innerHTML = initiereYear();
         selectCurrentYear();

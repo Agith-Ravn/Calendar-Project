@@ -120,14 +120,17 @@ p {
   text-align: center;
 }
 
-.holidays {
+.sundays {
   color: rgb(255, 0, 0);
 }
 .special-event {
   color: rgb(0, 47, 255);
 }
-.sundays {
+.holidays {
   color: rgb(255, 0, 0);
+}
+.special-event.holidays {
+  color: rgb(234, 0, 255);
 }
 
 .selectedDate {
