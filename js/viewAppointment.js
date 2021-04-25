@@ -45,8 +45,8 @@ function appointmentsView() {
                             <div> <!-- color --> </div>
                             <div class="appointment__holiday" style="color:red"> ${holidayName} </div>
                         </div>`
-                console.log(model.allHolidaysInCurrentMonth[i].date.day)
-                console.log(model.selectedDate)
+                // console.log(model.allHolidaysInCurrentMonth[i].date.day)
+                // console.log(model.selectedDate)
             }
         }
 
@@ -59,6 +59,12 @@ function appointmentsView() {
             let startDate = model.specialEvent.events[i].startDate
             let endDate = model.specialEvent.events[i].endDate
             let color = model.specialEvent.events[i].color
+            let sd = startDate.substr(8,2)
+            let sm = startDate.substr(5,2)
+            let sy = startDate.substr(0,4)
+            let ed = endDate.substr(8,2)
+            let em = endDate.substr(5,2)
+            let ey = endDate.substr(0,4)
 
             for(let j = 0; j < model.specialEvent.events[i].calculatedDate.length; j++) {
                 let date = model.specialEvent.events[i].calculatedDate[j]
@@ -67,9 +73,10 @@ function appointmentsView() {
                     <div class="appointment__header-container">
                         <div class="appointment__color" style="background:${color};"> </div>
                         <div class="header"> ${header} </div> 
-                        <div class="appointment__edit-button" onclick="model.selectedIdSpecialEvent = '${id}';specialEventEditMode(true);"> Edit </div>
+                        <div class="appointment__edit-button" onclick="model.selectedIdSpecialEvent = '${id}';getSpecialEventInput();specialEventEditMode(true)"> Edit </div>
                     </div>
                     <p> ${content} </p>
+                    <p> Fra: ${sd}/${sm}/${sy} - Til: ${ed}/${em}/${ey}  </p>
                     </div>`
                 }
             }
@@ -83,7 +90,7 @@ function appointmentsView() {
                     <div class="appointment__header-container">
                         <div class="appointment__color" style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
                         <h2 class="header"> ${model.selectedDateAppointments[i].time} <span style="font-weight:100"> | </span> ${model.selectedDateAppointments[i].header} </h2>
-                        <div class="appointment__edit-button" onclick="model.selectedIdEvent = '${id}';appointmentEditMode(true);"> Edit </div>
+                        <div class="appointment__edit-button" onclick="model.selectedIdEvent = '${id}';getAppointmentInput();appointmentEditMode(true)"> Edit </div>
                     </div>
                     <p> ${model.selectedDateAppointments[i].content} </p>
                     </div>`
@@ -133,7 +140,7 @@ function addAppointmentView() {
         <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
         <!-- Check if True Or False -->
-        <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onclick="model.appointmentVisibilityInput.privat = this.checked" disabled="disabled" checked>
+        <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" disabled="disabled" checked>
         <label id="alignTextInEvent" for="Privat"> Privat</label><br>
         <br>
 
@@ -217,11 +224,10 @@ function appointmentEditModeView() {
         let time = appointment.time
         let color = appointment.color
 
-        // let modul1 = appointment.visibility.modul1 == true ? 'checked="checked"' : '';
-        // let modul2 = appointment.visibility.modul2 == true ? 'checked="checked"' : '';
-        // let modul3 = appointment.visibility.modul3 == true ? 'checked="checked"' : '';
-        // let startIT = appointment.visibility.startIT == true ? 'checked="checked"' : '';
-        // let privat = appointment.visibility.privat == true ? 'checked="checked"' : ''; 
+        let modul1 = appointment.visibility.modul1 == true ? 'checked="checked"' : '';
+        let modul2 = appointment.visibility.modul2 == true ? 'checked="checked"' : '';
+        let modul3 = appointment.visibility.modul3 == true ? 'checked="checked"' : '';
+        let startIT = appointment.visibility.startIT == true ? 'checked="checked"' : '';
     
         if(id == id2) {
             html +=`
@@ -239,34 +245,34 @@ function appointmentEditModeView() {
             <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.appointmentsHeaderInput = this.value"><br>
 
             <h3 id="alignTextInEvent">Paragraph</h3>
-            <textarea id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.appointmentsContentInput = this.value"></textarea>
+            <textarea id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.appointmentsContentInput = this.value">${content}</textarea>
 
             <h3 id="alignTextInEvent">Tid</h3>
             <input id="timeWhenStart" type="time" value="${time == undefined ? '' : time}" onchange="model.appointmentTimeInput = this.value">
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
-            <input id="alignTextInEvent" type="checkbox" id="modul1" name="Modul 1" onclick="model.appointmentVisibilityInput.modul1 = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="modul1" name="Modul 1" onclick="model.appointmentVisibilityInput.modul1 = this.checked" ${modul1}>
             <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="modul2" name="Modul 2" onchange="model.appointmentVisibilityInput.modul2 = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="modul2" name="Modul 2" onclick="model.appointmentVisibilityInput.modul2 = this.checked" ${modul2}>
             <label id="alignTextInEvent" for="Modul2"> Modul 2</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="modul3" name="Modul 3" onchange="model.appointmentVisibilityInput.modul3 = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="modul3" name="Modul 3" onclick="model.appointmentVisibilityInput.modul3 = this.checked" ${modul3}>
             <label id="alignTextInEvent" for="Modul2"> Modul 3</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onchange="model.appointmentVisibilityInput.startIT = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onclick="model.appointmentVisibilityInput.startIT = this.checked" ${startIT}>
             <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
             
-            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onchange="model.appointmentVisibilityInput.privat = this.checked" disabled="disabled">
+            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" disabled="disabled">
             <label id="alignTextInEvent" for="Privat"> Privat</label><br>
             <br>
 
             <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteEvent('${id}');appointmentEditMode(false)"> Slett hendelse </button>
             
             <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false)"> 
-            <input type="submit" class="appointment__add-button" value="Lagre" onclick="saveEditEvent('${id}','${i}');appointmentEditMode(false)"> 
+            <input type="submit" class="appointment__add-button" value="Lagre" onclick="saveEditEvent('${id}','${i}');appointmentEditMode(false);"> 
             </div>`
             return html;
         }
@@ -285,13 +291,12 @@ function specialEventEditModeView() {
         let startDate = event.startDate
         let endDate = event.endDate
         let color = event.color
-
-        // let modul1 = event.visibility.modul1 == true ? 'checked="checked"' : '';
-        // let modul2 = event.visibility.modul2 == true ? 'checked="checked"' : '';
-        // let modul3 = event.visibility.modul3 == true ? 'checked="checked"' : '';
-        // let startIT = event.visibility.startIT == true ? 'checked="checked"' : '';
-        // let privat = event.visibility.privat == true ? 'checked="checked"' : ''; 
-    
+        
+        let modul1 = event.visibility.modul1 == true ? 'checked="checked"' : '';
+        let modul2 = event.visibility.modul2 == true ? 'checked="checked"' : '';
+        let modul3 = event.visibility.modul3 == true ? 'checked="checked"' : '';
+        let startIT = event.visibility.startIT == true ? 'checked="checked"' : '';
+        
         if(id == id2) {
             html +=`<div id="changeBox" class="hendelser">
             <div class="gridContainer">
@@ -307,23 +312,23 @@ function specialEventEditModeView() {
             <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.specialEvent.headerInput = this.value"><br>
 
             <h3 id="alignTextInEvent">Paragraph</h3>
-            <textarea id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.specialEvent.contentInput = this.value"></textarea>
+            <textarea id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.specialEvent.contentInput = this.value">${content}</textarea>
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
-            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onchange="model.specialEvent.visibility.modul1 = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="Modul1" name="Modul 1" onclick="model.specialEvent.visibility.modul1 = this.checked" ${modul1}>
             <label id="alignTextInEvent" for="Modul1"> Modul 1</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onchange="model.specialEvent.visibility.modul2 = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="Modul2" name="Modul 2" onclick="model.specialEvent.visibility.modul2 = this.checked" ${modul2}>
             <label id="alignTextInEvent" for="Modul2"> Modul 2</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul 3" onchange="model.specialEvent.visibility.modul3 = this.checke">
+            <input id="alignTextInEvent" type="checkbox" id="Modul3" name="Modul 3" onclick="model.specialEvent.visibility.modul3 = this.checked" ${modul3}>
             <label id="alignTextInEvent" for="Modul2"> Modul 3</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onchange="model.specialEvent.visibility.startIT = this.checked">
+            <input id="alignTextInEvent" type="checkbox" id="StartIT" name="StartIT" onclick="model.specialEvent.visibility.startIT = this.checked" ${startIT}>
             <label id="alignTextInEvent" for="StartIT"> Start IT</label><br>
 
-            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" onchange="model.specialEvent.visibility.privat = this.checked" disabled="disabled">
+            <input id="alignTextInEvent" type="checkbox" id="Privat" name="Privat" disabled="disabled">
             <label id="alignTextInEvent" for="Privat"> Privat</label><br>
             <br>
 
@@ -340,7 +345,7 @@ function specialEventEditModeView() {
             <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteSpecialEvent('${id}','${i}');specialEventEditMode(false)"> Slett hendelse </button>
 
             <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventEditMode(false)"> 
-            <input type="submit" class="appointment__add-button" value="Lagre endringer" onclick="saveSpecialEvent('${id}','${i}');specialEventEditMode(false)">
+            <input type="submit" class="appointment__add-button" value="Lagre endringer" onclick="saveEditSpecialEvent('${id}','${i}');specialEventEditMode(false);">
             </div>`
             return html;
         }

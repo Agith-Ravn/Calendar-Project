@@ -80,7 +80,7 @@ const model = {
         { id: '2021-04-16-1', date: new Date(2021, 3, 16), time: '09:00',  header: 'Chorei',     content: '',                                                         color: '#0000FF', visibility: {modul1: true,  modul2: true,  modul3: false, startIT: false, privat: true,}},
         { id: '2021-04-16-2', date: new Date(2021, 3, 16), time: '09:45',  header: 'OPT',        content: 'Vise fram hvor langt dere har kommet med gruppeoppgave',   color: '#FF0000', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
         { id: '2021-04-22-1', date: new Date(2021, 3, 22), time: '10:15',  header: 'Test4',      content: 'Tgg sdfd dfs',                                             color: '#444444', visibility: {modul1: true,  modul2: false, modul3: true,  startIT: false, privat: true,}},
-        { id: '2021-04-25-1', date: new Date(2021, 3, 25), time: '10:15',  header: 'Test5',      content: 'Test-test-test5',                                          color: '#FF7F50', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: false,}},
+        { id: '2021-04-25-1', date: new Date(2021, 3, 25), time: '10:15',  header: 'Test5',      content: 'Test-test-test5',                                          color: '#FF7F50', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
         { id: '2021-04-28-1', date: new Date(2021, 3, 28), time: '10:15',  header: 'Test6',      content: 'Test-test-test6',                                          color: '#FF00FF', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
         { id: '2021-04-30-1', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.1',    content: 'Test-test-test3',                                          color: '#0000FF', visibility: {modul1: false, modul2: true,  modul3: true,  startIT: true,  privat: true,}},
         { id: '2021-04-30-2', date: new Date(2021, 3, 30), time: '10:15',  header: 'Test3.2',    content: 'Test-test-test3',                                          color: '#008000', visibility: {modul1: true,  modul2: true,  modul3: true,  startIT: true,  privat: true,}},
@@ -155,7 +155,7 @@ const model = {
                     modul2: true,
                     modul3: false,
                     startIT: true,
-                    privat: false,
+                    privat: true,
                 },
                 color: '#FF0000',
                 calculatedDate: ["2021-04-01", "2021-04-02", "2021-04-03"]
@@ -178,8 +178,8 @@ const model = {
             },
             {
                 id: '2021-04-12-4',
-                startDate: '2021-04-18', 
-                endDate: '2021-04-03', 
+                startDate: '2021-04-12', 
+                endDate: '2021-04-18', 
                 header: 'Ferie3', 
                 content: 'Påskeferie3',
                 visibility: {
