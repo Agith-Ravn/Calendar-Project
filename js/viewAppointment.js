@@ -108,13 +108,18 @@ function addAppointmentView() {
         <div id="changeBox" class="hendelser">
         <div class="gridContainer">
             <div class="gridItem" >
-                <input type="color" id="circleColorChooser" value="#000000" onchange="model.appointmentsColorInput = this.value">
+            <div id="circleColorChooser" style="background-color:${model.specialEvent.colorInput}" onclick="useColorPicker(true)"></div>
             </div>
             <div class="gridItem" >
                 <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
             </div>
-        </div>
-        
+        </div>`
+
+        if (model.colorPicker) {
+            html += appointmentColor() == undefined ? '' : appointmentColor();
+        }
+
+        html += `        
         <h3 id="alignTextInEvent">Header</h3>
         <input id="headerText" placeholder="Enter text" type="text" oninput="model.appointmentsHeaderInput = this.value"><br>
 
@@ -144,7 +149,7 @@ function addAppointmentView() {
         <label id="alignTextInEvent" for="Privat"> Privat</label><br>
         <br>
 
-        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentMenu(false)"> 
+        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentMenu(false);model.colorPicker = false;"> 
         <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToAppointmentsArray()"> 
         </div>`
     return html;
@@ -167,14 +172,18 @@ function specialEventMenuView() {
         <div id="changeBox" class="hendelser">
         <div class="gridContainer">
             <div class="gridItem" >
-                <input type="color" id="circleColorChooser" value="#000000" onchange="model.specialEvent.colorInput = this.value">
+            <div id="circleColorChooser" style="background-color:${model.specialEvent.colorInput}" onclick="useColorPicker(true)"></div>
             </div>
             <div class="gridItem" >
                 <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
             </div>
-        </div>
+        </div>`
+
+        if (model.colorPicker) {
+            html += appointmentColor() == undefined ? '' : appointmentColor();
+        }
         
-        <h3 id="alignTextInEvent">Header</h3>
+        html += `<h3 id="alignTextInEvent">Header</h3>
         <input id="headerText" placeholder="Enter text" type="text" oninput="model.specialEvent.headerInput = this.value"><br>
 
         <h3 id="alignTextInEvent">Paragraph</h3>
@@ -206,7 +215,7 @@ function specialEventMenuView() {
         <p id="alignTextInEvent">Til</p>
         <input id="alignTextInEvent" type="date" value="${year}-${month}-${date2}" oninput="model.specialEvent.endDateInput = this.value">
 
-        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenu(false)"> 
+        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenu(false);model.colorPicker = false;"> 
         <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToSpecialEventsArray()"> 
         </div>`
     return html;
@@ -234,14 +243,18 @@ function appointmentEditModeView() {
             <div id="changeBox" class="hendelser">
             <div class="gridContainer">
                 <div class="gridItem" >
-                    <input type="color" id="circleColorChooser" value="${color}" onchange="model.appointmentsColorInput = this.value">
+                <div id="circleColorChooser" style="background-color:${model.appointmentsColorInput}" onclick="useColorPicker(true)"></div>
                 </div>
                 <div class="gridItem" >
                     <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
                 </div>
-            </div>
-            
-            <h3 id="alignTextInEvent">Header</h3>
+            </div>`
+
+            if (model.colorPicker) {
+                html += appointmentColor() == undefined ? '' : appointmentColor();
+            }
+
+            html += `<h3 id="alignTextInEvent">Header</h3>
             <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.appointmentsHeaderInput = this.value"><br>
 
             <h3 id="alignTextInEvent">Paragraph</h3>
@@ -271,7 +284,7 @@ function appointmentEditModeView() {
 
             <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteEvent('${id}');appointmentEditMode(false)"> Slett hendelse </button>
             
-            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false)"> 
+            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false);model.colorPicker = false;"> 
             <input type="submit" class="appointment__add-button" value="Lagre" onclick="saveEditEvent('${id}','${i}');appointmentEditMode(false);"> 
             </div>`
             return html;
@@ -297,17 +310,23 @@ function specialEventEditModeView() {
         let modul3 = event.visibility.modul3 == true ? 'checked="checked"' : '';
         let startIT = event.visibility.startIT == true ? 'checked="checked"' : '';
         
+        // <input type="color" id="circleColorChooser" value="${color}" onchange="model.specialEvent.colorInput = this.value">
         if(id == id2) {
             html +=`<div id="changeBox" class="hendelser">
             <div class="gridContainer">
             <div class="gridItem">
-            <input type="color" id="circleColorChooser" value="${color}" onchange="model.specialEvent.colorInput = this.value">
+            <div id="circleColorChooser" style="background-color:${model.specialEvent.colorInput}" onclick="useColorPicker(true)"></div>
             </div>
             <div class="gridItem" >
             <p>${model.selectedDate} ${model.months[model.currentMonth - 1]} ${model.currentYear}</p>
             </div>
-            </div>
+            </div>`
             
+            if (model.colorPicker) {
+                html += appointmentColor() == undefined ? '' : appointmentColor();
+            }
+
+            html += `
             <h3 id="alignTextInEvent">Header</h3>
             <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.specialEvent.headerInput = this.value"><br>
 
@@ -344,10 +363,30 @@ function specialEventEditModeView() {
             <br>
             <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteSpecialEvent('${id}','${i}');specialEventEditMode(false)"> Slett hendelse </button>
 
-            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventEditMode(false)"> 
+            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventEditMode(false);model.colorPicker = false;"> 
             <input type="submit" class="appointment__add-button" value="Lagre endringer" onclick="saveEditSpecialEvent('${id}','${i}');specialEventEditMode(false);">
             </div>`
             return html;
         }
     }
+}
+
+function appointmentColor() { 
+    return `
+        <div class="appointment__color-picker">
+            <div class="color-picker" name="grey" style="background-color:#606060" onclick="chooseColor('#606060', this)" ></div>
+            <div class="color-picker" name="brown" style="background-color:#6b4212" onclick="chooseColor('#6b4212', this)" ></div>
+            <div class="color-picker" name="orange" style="background-color:#ff6a00" onclick="chooseColor('#ff6a00', this)" ></div>  
+            <div class="color-picker" name="yellow" style="background-color:#ffdd00" onclick="chooseColor('#ffdd00', this)" ></div> 
+            
+            <div class="color-picker" name="cyan" style="background-color:#10d3ff" onclick="chooseColor('#10d3ff', this)" ></div> 
+            <div class="color-picker" name="turquoise" style="background-color:#00b9bc" onclick="chooseColor('#00b9bc', this)" ></div> 
+            <div class="color-picker" name="green" style="background-color:#2ec400" onclick="chooseColor('#2ec400', this)" ></div>
+            <div class="color-picker" name="lime" style="background-color:#c7ff38" onclick="chooseColor('#c7ff38', this)" ></div> 
+            
+            <div class="color-picker" name="blue" style="background-color:#0037ff" onclick="chooseColor('#0037ff', this)" ></div> 
+            <div class="color-picker" name="purple" style="background-color:#8A2BE2" onclick="chooseColor('#8A2BE2', this)" ></div>
+            <div class="color-picker" name="pink" style="background-color:#FF69B4" onclick="chooseColor('#FF69B4', this)" ></div>
+            <div class="color-picker" name="red" style="background-color:#ff0000" onclick="chooseColor('#ff0000', this)" ></div> 
+        </div>`    
 }

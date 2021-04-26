@@ -352,6 +352,28 @@ function getSundays() {
     // console.log(model.sundaysInCurrentYear)
 }
 
+function useColorPicker(value) {
+    if (model.colorPicker == value) {
+        model.colorPicker = !value
+    } else {
+        model.colorPicker = value
+    }
+    updateView();
+}
+
+function chooseColor(color, div) {
+    let alleDivs = document.getElementsByClassName('color-picker')
+    for (var i = 0; i < alleDivs.length; i++) {
+        alleDivs[i].classList.remove('color-picker__selectedColor');
+    }  
+    model.specialEvent.colorInput = color;
+    model.appointmentsColorInput = color
+    model.selectedColor = div
+    div.classList.add('color-picker__selectedColor')
+    model.colorPicker = false;
+    updateView();    
+}
+
 // Pusher input Values fra event/hendelser.
 function pushToAppointmentsArray(){
     newColorValue = model.appointmentsColorInput
@@ -401,6 +423,7 @@ function pushToAppointmentsArray(){
         }
     )
     appointmentMenu(false)
+    model.colorPicker = false;
 }
 
 function pushToSpecialEventsArray() {
@@ -448,6 +471,7 @@ function pushToSpecialEventsArray() {
         }
     )
     specialEventMenu(false)
+    model.colorPicker = false;
 }
 
 //Save changes on "normal" events
@@ -486,7 +510,7 @@ function saveEditEvent(id, index){
         model.appointments[appointmentIndex] = changes
         // console.log(model.appointments[appointmentIndex].visibility)
     }
-
+    model.colorPicker = false;
 }
 
 //Save changes on special events
@@ -536,7 +560,7 @@ function saveEditSpecialEvent(id, index) {
         model.specialEvent.events[index] = changes
         // console.log(model.specialEvent.events[index].visibility)
     }
-    
+    model.colorPicker = false;
 }
 
 //give checkbox input a value, when opening appointment edit mode
@@ -593,6 +617,7 @@ function deleteEvent(id) {
         model.appointments.splice(appointmentIndex, 1);
     }
     updateView();
+    model.colorPicker = false;
 }
 
 //Delete special event
@@ -602,6 +627,7 @@ function deleteSpecialEvent(id, index) {
         model.specialEvent.events.splice(index, 1);
     }
     updateView();
+    model.colorPicker = false;
 }
 
 function clearInput() {
@@ -644,7 +670,7 @@ function calculateSpecialEventDate(start, end) {
 function generateId(idEvents, date) {
     let idInEvents
     let idDate
-    let allIdInSelectDate = []        
+    let allIdInSelectDate = [0]
     for(let i = 0; i < idEvents.length; i++) {
         idInEvents = idEvents[i].id
         idDate = idInEvents.substr(0, 10)
@@ -657,6 +683,7 @@ function generateId(idEvents, date) {
         return Math.max(a, b);
     });
     newId = date + '-' + (biggestNumber + 1)
+    // console.log(newId)
     return newId
 }
 

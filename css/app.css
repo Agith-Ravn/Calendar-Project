@@ -168,6 +168,7 @@ p {
   border: 0.5px solid rgba(0, 0, 0, 0.5);
 }
 
+
 /*--------------------------- Events ---------------------------*/
 .hendelser {
   position: absolute;
@@ -222,12 +223,42 @@ p {
   border-radius: 50px;
 }
 
+.appointment__color-picker {
+  width: 365px;
+  padding: 15px;
+  height: 250px;
+  border: solid rgb(200, 200, 200) 2px;
+  border-radius: 5%;
+  display: grid;
+  grid-template-columns: 91.25px 91.25px 91.25px 91.25px;
+  grid-template-rows: 83px 83px 83px;
+  justify-items: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 80px;
+  z-index: 99;
+  background-color: white;
+}
+
+.color-picker {
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.color-picker__selectedColor {
+  border: rgb(0, 0, 0) solid 3px;
+}
+
 .appointment__edit-button {
   display: block;
   position: relative;
   margin: 5px 0px;
   position: relative;
   right: 0px;
+  cursor: pointer;
 }
 
 .appointment__date {
@@ -446,9 +477,11 @@ p {
   width: auto;
 }
 #circleColorChooser {
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
   display: inline-block;
+  border: solid 1px black;
 }
 
 #editEventButton {
