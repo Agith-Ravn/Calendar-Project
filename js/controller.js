@@ -650,13 +650,13 @@ function generateId(idEvents, date) {
         idDate = idInEvents.substr(0, 10)
         if (date == idDate) {
             idInEvents = parseInt(idInEvents.substr(11))
-        allIdInSelectDate.push(idInEvents)
+            allIdInSelectDate.push(idInEvents)
         }
     }
-    let biggestNumber = Math.max(...allIdInSelectDate)
-
+    let biggestNumber = allIdInSelectDate.reduce(function(a, b) {
+        return Math.max(a, b);
+    });
     newId = date + '-' + (biggestNumber + 1)
-    // console.log(newId)
     return newId
 }
 
