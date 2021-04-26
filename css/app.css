@@ -12,7 +12,7 @@ body {
 
 /*--------------------------- Navbar ---------------------------*/
 .navBar {
-  background-color: #5978d5;
+  background-color: #ff8300;
   width: 250px;
   height: 100% !important;
   color: white;
@@ -68,7 +68,7 @@ p {
 }
 
 .colorSelected {
-  background-color: #2544a3;
+  background-color: rgb(214, 103, 0);
 }
 
 /*--------------------------- Calender (dates) ---------------------------*/
@@ -135,7 +135,7 @@ p {
 
 .selectedDate {
   display: block;
-  background-color: #5978d5;
+  background-color: #ff8300;
   border-radius: 10px;
   width: auto;
   height: auto;
@@ -213,6 +213,7 @@ p {
   display: grid;
   grid-template-columns: 30px auto 30px;
 }
+
 /* hendelse farge */
 .appointment__color {
   display: block;
@@ -220,12 +221,18 @@ p {
   height: 30px;
   border-radius: 50px;
 }
+
 .appointment__edit-button {
   display: block;
   position: relative;
   margin: 5px 0px;
   position: relative;
   right: 0px;
+}
+
+.appointment__date {
+  font-weight: 700;
+  padding-bottom: 5px;
 }
 
 .header {
@@ -246,7 +253,7 @@ p {
   left: 10px;
   width: 380px;
   height: 55px;
-  background-color: #5978d5;
+  background-color: #ff8300;
   border-radius: 15px;
   text-align: center;
   line-height: 2.3;
@@ -261,7 +268,7 @@ p {
   left: 10px;
   width: 380px;
   height: 55px;
-  background-color: #5978d5;
+  background-color: #ff8300;
   border-radius: 15px;
   text-align: center;
   line-height: 2.3;
@@ -276,7 +283,7 @@ p {
   left: 10px;
   width: 120px;
   height: 55px;
-  background-color: #5978d5;
+  background-color: #ff8300;
   border-radius: 15px;
   text-align: center;
   line-height: 2.3;
@@ -291,7 +298,7 @@ p {
   left: 140px;
   width: 250px;
   height: 55px;
-  background-color: #5978d5;
+  background-color: #ff8300;
   border-radius: 15px;
   text-align: center;
   line-height: 2.3;
@@ -340,7 +347,7 @@ p {
 }
 
 .entireYear__currentYear {
-  background-color: #5978d5;
+  background-color: #ff8300;
   padding: 15px 30px;
   border-radius: 5px;
   color: white;

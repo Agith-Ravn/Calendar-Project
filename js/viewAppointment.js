@@ -32,7 +32,7 @@ function appointmentsView() {
                     <div class="nySpesiellHendelse">+ Spesiell hendelse </div>
                 </a>
                 <a href="#" onclick="appointmentMenu(true)"> 
-                    <div class="nyHendelse">+ Legg til ny </div>
+                    <div class="nyHendelse">+ Legg til hendelse </div>
                 </a>`
         html += `<div class="hendelseBox">`
 
@@ -75,8 +75,8 @@ function appointmentsView() {
                         <div class="header"> ${header} </div> 
                         <div class="appointment__edit-button" onclick="model.selectedIdSpecialEvent = '${id}';getSpecialEventInput();specialEventEditMode(true)"> Edit </div>
                     </div>
+                    <p class="appointment__date"> Fra ${sd}.${sm}.${sy} - Til ${ed}.${em}.${ey}  </p>
                     <p> ${content} </p>
-                    <p> Fra: ${sd}/${sm}/${sy} - Til: ${ed}/${em}/${ey}  </p>
                     </div>`
                 }
             }
