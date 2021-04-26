@@ -641,23 +641,22 @@ function calculateSpecialEventDate(start, end) {
     return listDate;
 }
 
-// generateId(model.specialEvent.events, '2021-04-01');
 function generateId(idEvents, date) {
-    let newId
     let idInEvents
-    let generatedId = 1;
+    let idDate
+    let allIdInSelectDate = []        
     for(let i = 0; i < idEvents.length; i++) {
         idInEvents = idEvents[i].id
-        console.log(idInEvents + ' Id i events')
-        
-        newId = date + '-' + generatedId;
-        
-        if (newId == idInEvents) {
-            generatedId++;
+        idDate = idInEvents.substr(0, 10)
+        if (date == idDate) {
+            idInEvents = parseInt(idInEvents.substr(11))
+        allIdInSelectDate.push(idInEvents)
         }
-        newId = date + '-' + generatedId;
     }
-    console.log(newId + ' ny id')
+    let biggestNumber = Math.max(...allIdInSelectDate)
+
+    newId = date + '-' + (biggestNumber + 1)
+    // console.log(newId)
     return newId
 }
 
