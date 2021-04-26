@@ -423,7 +423,6 @@ function pushToAppointmentsArray(){
         }
     )
     appointmentMenu(false)
-    model.colorPicker = false;
 }
 
 function pushToSpecialEventsArray() {
@@ -471,7 +470,6 @@ function pushToSpecialEventsArray() {
         }
     )
     specialEventMenu(false)
-    model.colorPicker = false;
 }
 
 //Save changes on "normal" events
@@ -510,7 +508,6 @@ function saveEditEvent(id, index){
         model.appointments[appointmentIndex] = changes
         // console.log(model.appointments[appointmentIndex].visibility)
     }
-    model.colorPicker = false;
 }
 
 //Save changes on special events
@@ -560,7 +557,6 @@ function saveEditSpecialEvent(id, index) {
         model.specialEvent.events[index] = changes
         // console.log(model.specialEvent.events[index].visibility)
     }
-    model.colorPicker = false;
 }
 
 //give checkbox input a value, when opening appointment edit mode
@@ -617,7 +613,6 @@ function deleteEvent(id) {
         model.appointments.splice(appointmentIndex, 1);
     }
     updateView();
-    model.colorPicker = false;
 }
 
 //Delete special event
@@ -627,7 +622,6 @@ function deleteSpecialEvent(id, index) {
         model.specialEvent.events.splice(index, 1);
     }
     updateView();
-    model.colorPicker = false;
 }
 
 function clearInput() {
@@ -691,28 +685,40 @@ function generateId(idEvents, date) {
 function appointmentMenu(trueOrFalse) {
     model.appointmentMenu = trueOrFalse
     if (model.appointmentMenu == true) {stopTimeInterval()}
-    if (model.appointmentMenu == false) {clearInput()}
+    if (model.appointmentMenu == false) {
+        clearInput()
+        model.colorPicker = false;
+    }
     updateView();
 }
 
 function specialEventMenu(trueOrFalse) {
     model.specialEventMenu = trueOrFalse
     if (model.specialEventMenu == true) {stopTimeInterval()}
-    if (model.specialEventMenu == false) {clearInput()}
+    if (model.specialEventMenu == false) {
+        clearInput()
+        model.colorPicker = false;
+    }
     updateView();
 }
 
 function appointmentEditMode(trueOrFalse) {
     model.appointmentEditMode = trueOrFalse
     if (model.appointmentEditMode == true) {stopTimeInterval()}
-    if (model.appointmentEditMode == false) {clearInput()}
+    if (model.appointmentEditMode == false) {
+        clearInput()
+        model.colorPicker = false;
+    }
     updateView();
 }
 
 function specialEventEditMode(trueOrFalse) {
     model.specialEventEditMode = trueOrFalse
     if (model.specialEventEditMode == true) {stopTimeInterval()}
-    if (model.specialEventEditMode == false) {clearInput()}
+    if (model.specialEventEditMode == false) {
+        clearInput()
+        model.colorPicker = false;
+    }
     updateView();
 }
 

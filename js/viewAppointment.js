@@ -149,7 +149,7 @@ function addAppointmentView() {
         <label id="alignTextInEvent" for="Privat"> Privat</label><br>
         <br>
 
-        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentMenu(false);model.colorPicker = false;"> 
+        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentMenu(false)"> 
         <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToAppointmentsArray()"> 
         </div>`
     return html;
@@ -215,7 +215,7 @@ function specialEventMenuView() {
         <p id="alignTextInEvent">Til</p>
         <input id="alignTextInEvent" type="date" value="${year}-${month}-${date2}" oninput="model.specialEvent.endDateInput = this.value">
 
-        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenu(false);model.colorPicker = false;"> 
+        <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenu(false)"> 
         <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToSpecialEventsArray()"> 
         </div>`
     return html;
@@ -284,7 +284,7 @@ function appointmentEditModeView() {
 
             <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteEvent('${id}');appointmentEditMode(false)"> Slett hendelse </button>
             
-            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false);model.colorPicker = false;"> 
+            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="appointmentEditMode(false)"> 
             <input type="submit" class="appointment__add-button" value="Lagre" onclick="saveEditEvent('${id}','${i}');appointmentEditMode(false);"> 
             </div>`
             return html;
@@ -363,7 +363,7 @@ function specialEventEditModeView() {
             <br>
             <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteSpecialEvent('${id}','${i}');specialEventEditMode(false)"> Slett hendelse </button>
 
-            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventEditMode(false);model.colorPicker = false;"> 
+            <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventEditMode(false);"> 
             <input type="submit" class="appointment__add-button" value="Lagre endringer" onclick="saveEditSpecialEvent('${id}','${i}');specialEventEditMode(false);">
             </div>`
             return html;
