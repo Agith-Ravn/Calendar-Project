@@ -359,7 +359,14 @@ function pushToAppointmentsArray(){
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
-    visibility = model.appointmentVisibilityInput;
+    let vInput = model.appointmentVisibilityInput
+    let modul1 = vInput.modul1
+    let modul2 = vInput.modul2 
+    let modul3 = vInput.modul3 
+    let startIT = vInput.startIT
+    let privat = vInput.privat
+
+    let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
     //legger til null forran hvis dato eller month er mindre enn 10
     date = ('0' + newDateValue).slice(-2)
@@ -401,8 +408,15 @@ function pushToSpecialEventsArray() {
     let endDate = model.specialEvent.endDateInput
     let header = model.specialEvent.headerInput
     let content = model.specialEvent.contentInput
-    let visibility = model.specialEvent.visibility
     let color = model.specialEvent.colorInput
+    let vInput = model.specialEvent.visibility
+    let modul1 = vInput.modul1
+    let modul2 = vInput.modul2
+    let modul3 = vInput.modul3
+    let startIT = vInput.startIT
+    let privat = vInput.privat
+
+    let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
     if (!color) {
         alert('Velg en farge')
@@ -634,7 +648,7 @@ function generateId(idEvents, date) {
     let generatedId = 1;
     for(let i = 0; i < idEvents.length; i++) {
         idInEvents = idEvents[i].id
-        // console.log(idInEvents + ' Id i events')
+        console.log(idInEvents + ' Id i events')
         
         newId = date + '-' + generatedId;
         
@@ -643,7 +657,7 @@ function generateId(idEvents, date) {
         }
         newId = date + '-' + generatedId;
     }
-    // console.log(newId + ' ny id')
+    console.log(newId + ' ny id')
     return newId
 }
 
