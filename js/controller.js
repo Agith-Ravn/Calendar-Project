@@ -135,6 +135,7 @@ function changeMonth(monthIndex, idName) {
     model.colorSelectedMonth = idName;
     appointmentMenuToFalse();
     updateView();
+    clearInput()
 }
 
 //Farger current/selected mnd
