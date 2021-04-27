@@ -337,7 +337,7 @@ function getSundays() {
 
     //All sundays in a year
     let filteredList2 = []
-    for(let j = 0; j < model.months.length; j++) {
+    for(let j = 0; j < model.months.length + 1; j++) {
         for(let i = 1; i <= model.daysInMonth + 1; i++) {
             let isoDates = new Date(model.currentYear, (j - 1), i);
             let month = j
