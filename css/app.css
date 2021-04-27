@@ -255,14 +255,14 @@ p {
 .appointment__edit-button {
   display: block;
   position: relative;
-  margin: 5px 0px;
+  margin: 5px 0px 0px 5px;
   position: relative;
   right: 0px;
   cursor: pointer;
 }
 
 .fa-edit {
-  margin: 0px 5px 10px 5px;
+  margin: 0px 0px 10px 5px;
   width: 20px;
 }
 
