@@ -61,26 +61,28 @@ function getCurrentTime() {
 }
 
 function updateTime() {
-    let time
-    if (time != model.currentTime) {
-        time = model.currentTime;
+    getCurrentTime()
+    if (model.compareTime != model.currentTime) {
+        model.compareTime = model.currentTime;
         updateView();
         // console.log('kjører')
+    } else {
+        return
     }
 }
 
 function runUpdateTimeIntervalOnce() {
-    if (model.interval == false && model.appointmentMenu == false &&
+    if (model.timeInterval == false && model.appointmentMenu == false &&
         model.appointmentEditMode == false && model.specialEventMenu == false &&
         model.specialEventEditMode == false) {
-        model.interval = true;
+        model.timeInterval = true;
         model.clearInterval = setInterval(updateTime, 10000);
     }
 }
 
 function stopTimeInterval() {
     clearInterval(model.clearInterval)
-    model.interval = false
+    model.timeInterval = false
 }
 
 function daysInMonth(month, year){
@@ -133,6 +135,7 @@ function changeMonth(monthIndex, idName) {
     model.colorSelectedMonth = idName;
     appointmentMenuToFalse();
     updateView();
+    clearInput()
 }
 
 //Farger current/selected mnd
@@ -270,26 +273,52 @@ function selectYearInEntireYear(value) {
     updateView();
 }
 
-//Gets all holidays
-function getHolidays() {
-    //Gets all holidays in current year (er kun 2021 uansett.. finn et bedre alternativ)
+function filterHolidays() {
+    //Gets all holidays in current year
     let filterdList = []
-    for(let i = 0; i < holidays2021.length; i++) {
-        let date = holidays2021[i].date.datetime;
-        let holidayName = holidays2021[i].name[0].text;
-        filterdList.push({holidayName, date})
+    for(let i = 0; i < model.allHolidays.length; i++) {
+        let year = model.currentYear.toString().slice(-2)
+        let index = i.toString()
+        let holidays = model.allHolidays[i];
+        
+        for(let j = 0; j < holidays.length; j++) {
+            let holidayName = holidays[j].name
+            let d = parseInt(holidays[j].date.substr(8, 2))
+            let m = parseInt(holidays[j].date.substr(5, 2))
+            let y = parseInt(holidays[j].date.substr(0, 4))
+            let date = {year: y, month: m, day: d}
+            
+            if (year == index) {
+                filterdList.push({holidayName, date})
+            }
+        }
     }
     model.allHolidaysInCurrentYear = filterdList;
-    //Gets all holidays in current month
+    // console.log(model.allHolidaysInCurrentYear)
+
+    // //Gets all holidays in current month
     let filterdList2 = []
-    for(let i = 0; i < model.allHolidaysInCurrentYear.length; i++) {
-        if (holidays2021[i].date.datetime.month == model.currentMonth) {
-            let date = holidays2021[i].date.datetime
-            let holidayName = holidays2021[i].name[0].text
-            filterdList2.push({holidayName, date})
+    for(let i = 0; i < model.allHolidays.length; i++) {
+        let year = model.currentYear.toString().slice(-2)
+        let month = model.currentMonth
+        let index = i.toString()
+        let holidays = model.allHolidays[i];
+
+        
+        for(let j = 0; j < holidays.length; j++) {
+            let holidayName = holidays[j].name
+            let d = parseInt(holidays[j].date.substr(8, 2))
+            let m = parseInt(holidays[j].date.substr(5, 2))
+            let y = parseInt(holidays[j].date.substr(0, 4))
+            let date = {year: y, month: m, day: d}
+            
+            if (month == m && year == index) {
+                filterdList2.push({holidayName, date})
+            }
         }
     }
     model.allHolidaysInCurrentMonth = filterdList2;
+    // console.log(model.allHolidaysInCurrentMonth)
 }
 
 //Finds all sundays in currentMonth
@@ -324,6 +353,28 @@ function getSundays() {
     // console.log(model.sundaysInCurrentYear)
 }
 
+function useColorPicker(value) {
+    if (model.colorPicker == value) {
+        model.colorPicker = !value
+    } else {
+        model.colorPicker = value
+    }
+    updateView();
+}
+
+function chooseColor(color, div) {
+    let alleDivs = document.getElementsByClassName('color-picker')
+    for (var i = 0; i < alleDivs.length; i++) {
+        alleDivs[i].classList.remove('color-picker__selectedColor');
+    }  
+    model.specialEvent.colorInput = color;
+    model.appointmentsColorInput = color
+    model.selectedColor = div
+    div.classList.add('color-picker__selectedColor')
+    model.colorPicker = false;
+    updateView();    
+}
+
 // Pusher input Values fra event/hendelser.
 function pushToAppointmentsArray(){
     newColorValue = model.appointmentsColorInput
@@ -331,7 +382,14 @@ function pushToAppointmentsArray(){
     newParagraphValue = model.appointmentsContentInput;
     newTimeValue = model.appointmentTimeInput;
     newDateValue = model.selectedDate;
-    visibility = model.appointmentVisibilityInput;
+    let vInput = model.appointmentVisibilityInput
+    let modul1 = vInput.modul1
+    let modul2 = vInput.modul2 
+    let modul3 = vInput.modul3 
+    let startIT = vInput.startIT
+    let privat = vInput.privat
+
+    let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
     //legger til null forran hvis dato eller month er mindre enn 10
     date = ('0' + newDateValue).slice(-2)
@@ -373,8 +431,15 @@ function pushToSpecialEventsArray() {
     let endDate = model.specialEvent.endDateInput
     let header = model.specialEvent.headerInput
     let content = model.specialEvent.contentInput
-    let visibility = model.specialEvent.visibility
     let color = model.specialEvent.colorInput
+    let vInput = model.specialEvent.visibility
+    let modul1 = vInput.modul1
+    let modul2 = vInput.modul2
+    let modul3 = vInput.modul3
+    let startIT = vInput.startIT
+    let privat = vInput.privat
+
+    let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
     if (!color) {
         alert('Velg en farge')
@@ -413,26 +478,24 @@ function saveEditEvent(id, index){
     let id2 = model.selectedIdEvent.replace(' ','')
     if(id == id2){        
         let event = model.selectedDateAppointments[index]
-        let vEvent = model.selectedDateAppointments[index].visibility
         let vInput = model.appointmentVisibilityInput
 
         let date = event.date 
-        let time = model.appointmentTimeInput == "" ? event.time : model.appointmentTimeInput
-        let header = model.appointmentsHeaderInput == "" ? event.header : model.appointmentsHeaderInput
-        let content = model.appointmentsContentInput == "" ? event.content : model.appointmentsContentInput
-        let color = model.appointmentsColorInput == "" ? event.color : model.appointmentsColorInput
+        let time = model.appointmentTimeInput
+        let header = model.appointmentsHeaderInput 
+        let content = model.appointmentsContentInput
+        let color = model.appointmentsColorInput 
 
-        //Fungerer ikke.. finn en løsning
-        // let modul1 = vInput.modul1 == "" ? vEvent.modul1 : vInput.modul1;
-        // let modul2 = vInput.modul2 == "" ? vEvent.modul2: vInput.modul2;
-        // let modul3 = vInput.modul3 == "" ? vEvent.modul3 : vInput.modul3;
-        // let startIT = vInput.startIT == "" ? vEvent.startIT : vInput.startIT;
-        // let privat = vInput.privat == "" ? vEvent.privat : vInput.privat;
+        let modul1 = vInput.modul1
+        let modul2 = vInput.modul2 
+        let modul3 = vInput.modul3 
+        let startIT = vInput.startIT
+        let privat = vInput.privat
 
         let appointments = (appointment) => appointment.id == id;
         let appointmentIndex = model.appointments.findIndex(appointments)
         
-        // let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
+        let visibility = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
         let changes = {
             id: id,
@@ -441,36 +504,34 @@ function saveEditEvent(id, index){
             header: header,
             content: content,
             color: color,
-            // visibility: visibility,         
+            visibility: visibility,         
         }
         model.appointments[appointmentIndex] = changes
-        // updateView();
         // console.log(model.appointments[appointmentIndex].visibility)
     }
 }
 
 //Save changes on special events
-function saveSpecialEvent(id, index) {
+function saveEditSpecialEvent(id, index) {
     let id2 = model.selectedIdSpecialEvent.replace(' ','')
     if(id == id2) {
         let indexForEvents = model.specialEvent.events[index]
         let sEvent = model.specialEvent
         let vInput = model.specialEvent.visibility
 
-        let startDateInput = sEvent.startDateInput == "" ? indexForEvents.startDate : sEvent.startDateInput;
-        let endDateInput = sEvent.endDateInput == "" ? indexForEvents.endDate : sEvent.endDateInput;
-        let headerInput = sEvent.headerInput == "" ? indexForEvents.header : sEvent.headerInput;
-        let contentInput = sEvent.contentInput == "" ? indexForEvents.content : sEvent.contentInput;
-        let colorInput = sEvent.colorInput == "" ? indexForEvents.color : sEvent.colorInput;
+        let startDateInput = sEvent.startDateInput
+        let endDateInput = sEvent.endDateInput
+        let headerInput = sEvent.headerInput
+        let contentInput = sEvent.contentInput
+        let colorInput = sEvent.colorInput
 
-        // let modul1 = vInput.modul1 == "" ? indexForEvents.visibility.modul1 : vInput.modul1
-        // let modul2 = vInput.modul2 == "" ? indexForEvents.visibility.modul2 : vInput.modul2
-        // let modul3 = vInput.modul3 == "" ? indexForEvents.visibility.modul3 : vInput.modul3
-        // let startIT = vInput.startIT == "" ? indexForEvents.visibility.startIT : vInput.startIT
-        // let privat = vInput.privat == "" ? indexForEvents.visibility.privat : vInput.privat
+        let modul1 = vInput.modul1
+        let modul2 = vInput.modul2
+        let modul3 = vInput.modul3
+        let startIT = vInput.startIT
+        let privat = vInput.privat
 
-        // console.log(test)
-        // let visibilityInput = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
+        let visibilityInput = {modul1: modul1, modul2: modul2, modul3: modul3, startIT: startIT, privat: privat,}
 
         if (startDateInput > endDateInput) {
             alert('Ugyldig dato, Til dato starter før fra dato.')
@@ -489,15 +550,58 @@ function saveSpecialEvent(id, index) {
                 endDate: endDateInput,
                 header: headerInput,
                 content: contentInput,
-                // visibility: visibilityInput,
+                visibility: visibilityInput,
                 color: colorInput,
                 calculatedDate: calculatedDate
             }
 
         model.specialEvent.events[index] = changes
-        // updateView();
-        // clearInput();
         // console.log(model.specialEvent.events[index].visibility)
+    }
+}
+
+//give checkbox input a value, when opening appointment edit mode
+function getAppointmentInput() {
+    for(let i = 0; i < model.selectedDateAppointments.length; i++) {
+        let appointment = model.selectedDateAppointments[i]
+        let id = model.selectedDateAppointments[i].id
+        let id2 = model.selectedIdEvent.replace(' ','');
+        
+        if(id == id2) {
+            model.appointmentsColorInput = appointment.color
+            model.appointmentsHeaderInput = appointment.header
+            model.appointmentsContentInput = appointment.content
+            model.appointmentTimeInput = appointment.time
+
+            model.appointmentVisibilityInput.modul1 = appointment.visibility.modul1
+            model.appointmentVisibilityInput.modul2 = appointment.visibility.modul2
+            model.appointmentVisibilityInput.modul3 = appointment.visibility.modul3
+            model.appointmentVisibilityInput.startIT = appointment.visibility.startIT
+        }
+    }
+}
+
+//give checkbox input a value, when opening special event edit mode
+function getSpecialEventInput() {
+    for(let i = 0; i < model.specialEvent.events.length; i++) {
+        let specialEvent = model.specialEvent.events[i]
+        let input = model.specialEvent
+        let id = model.specialEvent.events[i].id
+        let id2 = model.selectedIdSpecialEvent.replace(' ','');
+        
+        if(id == id2) {
+            input.colorInput = specialEvent.color
+            input.headerInput = specialEvent.header
+            input.contentInput = specialEvent.content
+            input.startDateInput = specialEvent.startDate
+            input.endDateInput = specialEvent.endDate
+
+            input.visibility.modul1 = specialEvent.visibility.modul1
+            input.visibility.modul2 = specialEvent.visibility.modul2
+            input.visibility.modul3 = specialEvent.visibility.modul3
+            input.visibility.startIT = specialEvent.visibility.startIT
+            // console.log(specialEvent)
+        }
     }
 }
 
@@ -510,7 +614,6 @@ function deleteEvent(id) {
         model.appointments.splice(appointmentIndex, 1);
     }
     updateView();
-    // clearInput();
 }
 
 //Delete special event
@@ -520,7 +623,27 @@ function deleteSpecialEvent(id, index) {
         model.specialEvent.events.splice(index, 1);
     }
     updateView();
-    // clearInput();
+}
+
+function clearInput() {
+    model.specialEvent.startDateInput = '';
+    model.specialEvent.endDateInput = '';
+    model.specialEvent.colorInput = '';
+    model.specialEvent.headerInput = '';
+    model.specialEvent.contentInput = '';
+    model.specialEvent.visibility.modul1 = false;
+    model.specialEvent.visibility.modul2 = false;
+    model.specialEvent.visibility.modul3 = false;
+    model.specialEvent.visibility.startIT = false;
+
+    model.appointmentsColorInput = '';
+    model.appointmentsHeaderInput = '';
+    model.appointmentsContentInput = '';
+    model.appointmentTimeInput = '';
+    model.appointmentVisibilityInput.modul1 = false;
+    model.appointmentVisibilityInput.modul2 = false;
+    model.appointmentVisibilityInput.modul3 = false;
+    model.appointmentVisibilityInput.startIT = false;
 }
 
 //Regner ut hvor mange dager
@@ -539,23 +662,23 @@ function calculateSpecialEventDate(start, end) {
     return listDate;
 }
 
-// generateId(model.specialEvent.events, '2021-04-01');
 function generateId(idEvents, date) {
-    let newId
     let idInEvents
-    let generatedId = 1;
+    let idDate
+    let allIdInSelectDate = [0]
     for(let i = 0; i < idEvents.length; i++) {
         idInEvents = idEvents[i].id
-        // console.log(idInEvents + ' Id i events')
-        
-        newId = date + '-' + generatedId;
-        
-        if (newId == idInEvents) {
-            generatedId++;
+        idDate = idInEvents.substr(0, 10)
+        if (date == idDate) {
+            idInEvents = parseInt(idInEvents.substr(11))
+            allIdInSelectDate.push(idInEvents)
         }
-        newId = date + '-' + generatedId;
     }
-    // console.log(newId + ' ny id')
+    let biggestNumber = allIdInSelectDate.reduce(function(a, b) {
+        return Math.max(a, b);
+    });
+    newId = date + '-' + (biggestNumber + 1)
+    // console.log(newId)
     return newId
 }
 
@@ -563,29 +686,42 @@ function generateId(idEvents, date) {
 function appointmentMenu(trueOrFalse) {
     model.appointmentMenu = trueOrFalse
     if (model.appointmentMenu == true) {stopTimeInterval()}
+    if (model.appointmentMenu == false) {
+        clearInput()
+        model.colorPicker = false;
+    }
     updateView();
-
 }
 
 function specialEventMenu(trueOrFalse) {
     model.specialEventMenu = trueOrFalse
     if (model.specialEventMenu == true) {stopTimeInterval()}
+    if (model.specialEventMenu == false) {
+        clearInput()
+        model.colorPicker = false;
+    }
     updateView();
-  
 }
 
 function appointmentEditMode(trueOrFalse) {
     model.appointmentEditMode = trueOrFalse
     if (model.appointmentEditMode == true) {stopTimeInterval()}
+    if (model.appointmentEditMode == false) {
+        clearInput()
+        model.colorPicker = false;
+    }
     updateView();
-
 }
 
 function specialEventEditMode(trueOrFalse) {
     model.specialEventEditMode = trueOrFalse
     if (model.specialEventEditMode == true) {stopTimeInterval()}
+    if (model.specialEventEditMode == false) {
+        clearInput()
+        model.colorPicker = false;
+    }
     updateView();
-} // window.updateTime.visible
+}
 
 function appointmentMenuToFalse() {
     model.appointmentMenu = false;
@@ -593,46 +729,4 @@ function appointmentMenuToFalse() {
     model.appointmentEditMode = false;
     model.specialEventEditMode = false;
 }
-
-// function specialEventCheckbox(index) {
-//     let vInput = model.specialEvent.visibility
-//     let vEvent = model.specialEvent.events[index].visibility
-
-//     let m1 = vEvent.modul1
-//     m1 != vInput.modul2 ? vInput.modul2 : m1
-//     // m1 == "" ? vEvent.modul1 : m1
-
-//     let m2 = vInput.modul2 
-//     m2 == "" ? vEvent.modul2 : m2
-
-//     let m3 = vInput.modul3
-//     m3 == "" ? vEvent.modul3 : m3
-
-//     let s = vInput.startIT
-//     s == "" ? vEvent.startIT : s
-
-//     let p = vInput.privat
-//     p == "" ? vEvent.privat : p
-
-//     // let m1 = vInput.modul1 
-//     // m1 == "" ? vEvent.modul1 : vInput.modul1
-
-//     console.log(m1)
-//     // console.log(m2)
-//     // console.log(m3)
-//     // console.log(s)
-//     // console.log(p)
-//     // console.log(vEvent.modul1)
-
-
-//     // let test = {modul1: m1, modul2: m2, modul3: m3, startIT: si, privat: p,}
-//     // return test 
-// }
-
-// function checkbox(sLocation, checked) {
-//     if (checked) {sLocation = checked}
-//     // console.log(checked)
-//     console.log(sLocation)
-
-// }
 
