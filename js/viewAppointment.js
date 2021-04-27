@@ -73,7 +73,7 @@ function appointmentsView() {
                     <div class="appointment__header-container">
                         <div class="appointment__color" style="background:${color};"> </div>
                         <div class="header"> ${header} </div> 
-                        <div class="appointment__edit-button" onclick="model.selectedIdSpecialEvent = '${id}';getSpecialEventInput();specialEventEditMode(true)"> Edit </div>
+                        <div class="appointment__edit-button" onclick="model.selectedIdSpecialEvent = '${id}';getSpecialEventInput();specialEventEditMode(true)"> <i class="far fa-edit"></i> </div>
                     </div>
                     <p class="appointment__date"> Fra ${sd}.${sm}.${sy} - Til ${ed}.${em}.${ey}  </p>
                     <p> ${content} </p>
@@ -90,7 +90,7 @@ function appointmentsView() {
                     <div class="appointment__header-container">
                         <div class="appointment__color" style="background:${model.selectedDateAppointments[i].color};"> <!-- color --> </div>
                         <h2 class="header"> ${model.selectedDateAppointments[i].time} <span style="font-weight:100"> | </span> ${model.selectedDateAppointments[i].header} </h2>
-                        <div class="appointment__edit-button" onclick="model.selectedIdEvent = '${id}';getAppointmentInput();appointmentEditMode(true)"> Edit </div>
+                        <div class="appointment__edit-button" onclick="model.selectedIdEvent = '${id}';getAppointmentInput();appointmentEditMode(true)"> <i class="far fa-edit"></i> </div>
                     </div>
                     <p> ${model.selectedDateAppointments[i].content} </p>
                     </div>`

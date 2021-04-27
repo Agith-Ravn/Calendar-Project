@@ -261,6 +261,11 @@ p {
   cursor: pointer;
 }
 
+.fa-edit {
+  margin: 0px 5px 10px 5px;
+  width: 20px;
+}
+
 .appointment__date {
   font-weight: 700;
   padding-bottom: 5px;
