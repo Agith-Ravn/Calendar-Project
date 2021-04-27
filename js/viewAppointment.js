@@ -121,13 +121,13 @@ function addAppointmentView() {
 
         html += `        
         <h3 id="alignTextInEvent">Header</h3>
-        <input id="headerText" placeholder="Enter text" type="text" oninput="model.appointmentsHeaderInput = this.value"><br>
+        <input id="headerText" placeholder="Enter text" type="text" value="${model.appointmentsHeaderInput}" oninput="model.appointmentsHeaderInput = this.value"><br>
 
         <h3 id="alignTextInEvent">Paragraph</h3>
-        <textarea id="paragraphText" placeholder="Enter text" type="text" oninput="model.appointmentsContentInput = this.value"></textarea>
+        <textarea id="paragraphText" placeholder="Enter text" type="text" oninput="model.appointmentsContentInput = this.value">${model.appointmentsContentInput} </textarea>
 
         <h3 id="alignTextInEvent">Tid</h3>
-        <input id="timeWhenStart" type="time" oninput="model.appointmentTimeInput = this.value">
+        <input id="timeWhenStart" type="time" value="${model.appointmentTimeInput}" oninput="model.appointmentTimeInput = this.value">
 
         <br>
         <!-- Check if True Or False -->
@@ -164,8 +164,8 @@ function specialEventMenuView() {
     let year = model.currentYear.toString()
     let startYear = year + '-' + month + '-' + date;
     let endYear = year + '-' + month + '-' + date2;
-    model.specialEvent.startDateInput = startYear
-    model.specialEvent.endDateInput = endYear
+    // model.specialEvent.startDateInput = startYear
+    // model.specialEvent.endDateInput = endYear
 
     let html = '';
     html +=` 
@@ -184,10 +184,10 @@ function specialEventMenuView() {
         }
         
         html += `<h3 id="alignTextInEvent">Header</h3>
-        <input id="headerText" placeholder="Enter text" type="text" oninput="model.specialEvent.headerInput = this.value"><br>
+        <input id="headerText" placeholder="Enter text" type="text" value="${model.specialEvent.headerInput}" oninput="model.specialEvent.headerInput = this.value"><br>
 
         <h3 id="alignTextInEvent">Paragraph</h3>
-        <textarea id="paragraphText" placeholder="Enter text" type="text" oninput="model.specialEvent.contentInput = this.value"></textarea>
+        <textarea id="paragraphText" placeholder="Enter text" type="text" oninput="model.specialEvent.contentInput = this.value">${model.specialEvent.contentInput}</textarea>
 
         <br>
         <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
@@ -210,10 +210,10 @@ function specialEventMenuView() {
         <h3 id="alignTextInEvent">Spesiell hendelse</h3>
 
         <p id="alignTextInEvent">Fra</p>
-        <input id="alignTextInEvent" id="test12345" type="date" value="${year}-${month}-${date}" oninput="model.specialEvent.startDateInput = this.value">
+        <input id="alignTextInEvent" id="test12345" type="date" value="${model.specialEvent.startDateInput == "" ? model.specialEvent.startDateInput = startYear : model.specialEvent.startDateInput}" oninput="model.specialEvent.startDateInput = this.value">
         <br>
         <p id="alignTextInEvent">Til</p>
-        <input id="alignTextInEvent" type="date" value="${year}-${month}-${date2}" oninput="model.specialEvent.endDateInput = this.value">
+        <input id="alignTextInEvent" type="date" value="${model.specialEvent.endDateInput == "" ? model.specialEvent.endDateInput = endYear : model.specialEvent.endDateInput}" oninput="model.specialEvent.endDateInput = this.value">
 
         <input type="submit" class="appointment__back-button" value="Tilbake" onclick="specialEventMenu(false)"> 
         <input type="submit" class="appointment__add-button" value="Legg til i kalender" onclick="pushToSpecialEventsArray()"> 
@@ -255,13 +255,13 @@ function appointmentEditModeView() {
             }
 
             html += `<h3 id="alignTextInEvent">Header</h3>
-            <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.appointmentsHeaderInput = this.value"><br>
+            <input id="headerText" placeholder="Enter text" type="text" value="${model.appointmentsHeaderInput == "" ? header : model.appointmentsHeaderInput}" onchange="model.appointmentsHeaderInput = this.value"><br>
 
             <h3 id="alignTextInEvent">Paragraph</h3>
-            <textarea id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.appointmentsContentInput = this.value">${content}</textarea>
+            <textarea id="paragraphText" placeholder="Enter text" type="text" onchange="model.appointmentsContentInput = this.value">${model.appointmentsContentInput == "" ? content : model.appointmentsContentInput}</textarea>
 
             <h3 id="alignTextInEvent">Tid</h3>
-            <input id="timeWhenStart" type="time" value="${time == undefined ? '' : time}" onchange="model.appointmentTimeInput = this.value">
+            <input id="timeWhenStart" type="time" value="${model.appointmentTimeInput == "" ? time : model.appointmentTimeInput}" onchange="model.appointmentTimeInput = this.value">
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
@@ -328,10 +328,10 @@ function specialEventEditModeView() {
 
             html += `
             <h3 id="alignTextInEvent">Header</h3>
-            <input id="headerText" placeholder="Enter text" type="text" value="${header}" onchange="model.specialEvent.headerInput = this.value"><br>
+            <input id="headerText" placeholder="Enter text" type="text" value="${model.specialEvent.headerInput == "" ? header : model.specialEvent.headerInput}" onchange="model.specialEvent.headerInput = this.value"><br>
 
             <h3 id="alignTextInEvent">Paragraph</h3>
-            <textarea id="paragraphText" placeholder="Enter text" type="text" value="${content}" onchange="model.specialEvent.contentInput = this.value">${content}</textarea>
+            <textarea id="paragraphText" placeholder="Enter text" type="text" onchange="model.specialEvent.contentInput = this.value">${model.specialEvent.contentInput == "" ? content : model.specialEvent.contentInput}</textarea>
 
             <br>
             <h3 id="alignTextInEvent">Velg hvem som skal se</h3>
@@ -354,11 +354,11 @@ function specialEventEditModeView() {
             <h3 id="alignTextInEvent">Spesiell hendelse</h3>
 
             <p id="alignTextInEvent">Fra</p>
-            <input id="alignTextInEvent" type="date" value="${startDate}" onchange="model.specialEvent.startDateInput = this.value">
+            <input id="alignTextInEvent" type="date" value="${model.specialEvent.startDateInput == "" ? startDate : model.specialEvent.startDateInput}" onchange="model.specialEvent.startDateInput = this.value">
             <br>
             <br>
             <p id="alignTextInEvent">Til</p>
-            <input id="alignTextInEvent" type="date" value="${endDate}" onchange="model.specialEvent.endDateInput = this.value">
+            <input id="alignTextInEvent" type="date" value="${model.specialEvent.endDateInput == "" ? endDate : model.specialEvent.endDateInput}" onchange="model.specialEvent.endDateInput = this.value">
             <br>
             <br>
             <button id="alignTextInEvent" class="appointment__delete-button" onclick="deleteSpecialEvent('${id}','${i}');specialEventEditMode(false)"> Slett hendelse </button>

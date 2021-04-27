@@ -32,6 +32,7 @@ function updateView(){
         document.getElementById('app').innerHTML = initiereYear();
         selectCurrentYear();
         stopTimeInterval();
+        model.colorPicker = false
     }
 }
 // THIS IS HOME PAGE.
