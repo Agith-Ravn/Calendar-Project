@@ -124,7 +124,7 @@ function addAppointmentView() {
         <input id="headerText" placeholder="Enter text" type="text" value="${model.appointmentsHeaderInput}" oninput="model.appointmentsHeaderInput = this.value"><br>
 
         <h3 id="alignTextInEvent">Paragraph</h3>
-        <textarea id="paragraphText" placeholder="Enter text" type="text" oninput="model.appointmentsContentInput = this.value">${model.appointmentsContentInput} </textarea>
+        <textarea id="paragraphText" placeholder="Enter text" type="text" oninput="model.appointmentsContentInput = this.value">${model.appointmentsContentInput}</textarea>
 
         <h3 id="alignTextInEvent">Tid</h3>
         <input id="timeWhenStart" type="time" value="${model.appointmentTimeInput}" oninput="model.appointmentTimeInput = this.value">
