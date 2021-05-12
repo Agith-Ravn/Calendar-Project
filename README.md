@@ -1,2 +1,2 @@
 # Kalender 
-https://agith-ravn.github.io/M2_Team2/html/app.html
+https://agith-ravn.github.io/GET-Academy_CalendarProject/html/app.html
