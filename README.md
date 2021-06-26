@@ -1,2 +1,2 @@
 # Kalender 
-https://agith-ravn.github.io/CalendarProject/html/app.html
+https://agith-ravn.github.io/Calendar-Project/html/app.html
